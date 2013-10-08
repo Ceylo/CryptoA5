@@ -10,6 +10,7 @@
 #define CryptoA5_ec_operations_h
 
 #include <gmp.h>
+#include <stdbool.h>
 
 typedef struct {
 	mpz_t x;
@@ -20,7 +21,7 @@ typedef Point* PointRef;
 
 PointRef	PointCreate();
 void		PointDestroy(PointRef point);
-int			PointCompare(PointRef p, PointRef q);
+bool		PointEqual(PointRef p, PointRef q);
 
 PointRef	PointCreateInvert(PointRef p);
 PointRef	PointCreateAdd(PointRef p, PointRef q);
