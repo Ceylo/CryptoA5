@@ -14,12 +14,12 @@
 
 typedef struct {
 	mpz_t mod;
-} Body;
+} Field;
 
-typedef Body* BodyRef;
+typedef Field* FieldRef;
 
 typedef struct {
-	BodyRef body;
+	FieldRef field;
 	mpz_t x;
 	mpz_t y;
 } Point;
@@ -27,10 +27,11 @@ typedef struct {
 typedef Point* PointRef;
 
 
-BodyRef		BodyCreate(int mod);
-void		BodyDestroy(BodyRef body);
+FieldRef	FieldCreate(int mod);
+void		FieldDestroy(FieldRef field);
+bool		FieldEqual(FieldRef aField, FieldRef anotherField);
 
-PointRef	PointCreate(BodyRef body);
+PointRef	PointCreate(FieldRef field);
 void		PointDestroy(PointRef point);
 bool		PointEqual(PointRef p, PointRef q);
 

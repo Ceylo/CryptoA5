@@ -11,7 +11,28 @@
 #include <stdlib.h>
 #include <assert.h>
 
-PointRef PointCreate()
+FieldRef FieldCreate(int mod)
+{
+	assert(mod > 1);
+	
+	FieldRef newField = malloc(sizeof(*newField));
+	assert(newField != NULL);
+	
+	mpz_init_set_si(newField->mod, mod);
+	assert(newField->mod != NULL);
+	
+	return newField;
+}
+
+void FieldDestroy(FieldRef field)
+{
+	assert(field != NULL);
+	
+	mpz_clear(field->mod);
+	free(field);
+}
+
+PointRef PointCreate(FieldRef field)
 {
 	PointRef newPoint = malloc(sizeof(*newPoint));
     assert(newPoint != NULL);
@@ -27,8 +48,25 @@ PointRef PointCreate()
 void PointDestroy(PointRef point)
 {
 	assert(point != NULL);
+	
 	mpz_clears(point->x, point->y, NULL);
 	free(point);
+}
+
+bool FieldEqual(FieldRef aField, FieldRef anotherField)
+{
+	assert(aField != NULL);
+	assert(anotherField != NULL);
+	
+	if (aField == anotherField ||
+		mpz_cmp(aField->mod, anotherField->mod) == 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool PointEqual(PointRef p, PointRef q)
@@ -36,7 +74,9 @@ bool PointEqual(PointRef p, PointRef q)
 	assert(p != NULL);
 	assert(q != NULL);
 	
-	if (mpz_cmp(p->x, q->x) == 0 && mpz_cmp(p->y, q->y) == 0)
+	if (mpz_cmp(p->x, q->x) == 0 &&
+		mpz_cmp(p->y, q->y) == 0 &&
+		FieldEqual(p->field, q->field))
 	{
 		return true;
 	}
