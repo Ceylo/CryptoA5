@@ -10,5 +10,5 @@
 
 PointRef PointCreateInvert(PointRef p)
 {
-
+    return NULL;
 }

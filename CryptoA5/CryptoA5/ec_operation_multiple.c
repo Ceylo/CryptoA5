@@ -10,5 +10,5 @@
 
 PointRef PointCreateMultiple(PointRef p, int scalar)
 {
-
+    return NULL;
 }
