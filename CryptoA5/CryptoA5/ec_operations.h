@@ -13,31 +13,32 @@
 #include <stdbool.h>
 
 typedef struct {
-	mpz_t mod;
-} Field;
-
-typedef Field* FieldRef;
-
-typedef struct {
-	FieldRef field;
 	mpz_t x;
 	mpz_t y;
 } Point;
-
 typedef Point* PointRef;
 
+typedef struct {
+	mpz_t mod;
+	int a[7];
+	PointRef g;
+} Curve;
+typedef Curve* CurveRef;
 
-FieldRef	FieldCreate(int mod);
-void		FieldDestroy(FieldRef field);
-bool		FieldEqual(FieldRef aField, FieldRef anotherField);
 
-PointRef	PointCreate(FieldRef field);
+CurveRef	CurveCreate(mpz_t mod, int a[7], PointRef g);
+void		CurveDestroy(CurveRef curve);
+bool		CurveEqual(CurveRef aCurve, CurveRef anotherCurve);
+
+PointRef	PointCreate();
+PointRef	PointCopy(PointRef other);
 void		PointDestroy(PointRef point);
 bool		PointEqual(PointRef p, PointRef q);
+bool		PointCongruent(PointRef p, PointRef q, CurveRef curve);
 
-PointRef	PointCreateInvert(PointRef p);
-PointRef	PointCreateAdd(PointRef p, PointRef q);
-PointRef	PointCreateDouble(PointRef p);
-PointRef	PointCreateMultiple(PointRef p, int scalar);
+PointRef	PointCreateInvert(PointRef p, CurveRef curve);
+PointRef	PointCreateAdd(PointRef p, PointRef q, CurveRef curve);
+PointRef	PointCreateDouble(PointRef p, CurveRef curve);
+PointRef	PointCreateMultiple(PointRef p, int scalar, CurveRef curve);
 
 #endif

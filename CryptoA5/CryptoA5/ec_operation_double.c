@@ -9,8 +9,8 @@
 #include "ec_operations.h"
 #include <assert.h>
 
-PointRef PointCreateDouble(PointRef p)
+PointRef PointCreateDouble(PointRef p, CurveRef curve)
 {
 	assert(p != NULL);
-	return PointCreateAdd(p, p);
+	return PointCreateAdd(p, p, curve);
 }

@@ -11,28 +11,58 @@
 #include <stdlib.h>
 #include <assert.h>
 
-FieldRef FieldCreate(int mod)
+CurveRef CurveCreate(mpz_t mod, int a[7], PointRef g)
 {
-	assert(mod > 1);
+	// Check input
+	assert(mod != NULL);
+	assert(g != NULL);
 	
-	FieldRef newField = malloc(sizeof(*newField));
-	assert(newField != NULL);
+	// Create structure
+	CurveRef curve = malloc(sizeof(*curve));
+	assert(curve != NULL);
 	
-	mpz_init_set_si(newField->mod, mod);
-	assert(newField->mod != NULL);
+	// Init members
+	mpz_init_set(curve->mod, mod);
+	memcpy(curve->a, a, sizeof(curve->a));
+	curve->g = PointCopy(g);
 	
-	return newField;
+	// Check members
+	assert(curve->mod != NULL);
+	assert(curve->g != NULL);
+	
+	return curve;
 }
 
-void FieldDestroy(FieldRef field)
+void CurveDestroy(CurveRef curve)
 {
-	assert(field != NULL);
+	// Check input
+	assert(curve != NULL);
 	
-	mpz_clear(field->mod);
-	free(field);
+	// Free data
+	mpz_clear(curve->mod);
+	PointDestroy(curve->g);
+	free(curve);
 }
 
-PointRef PointCreate(FieldRef field)
+bool CurveEqual(CurveRef aCurve, CurveRef anotherCurve)
+{
+	assert(aCurve != NULL);
+	assert(anotherCurve != NULL);
+	
+	if (aCurve == anotherCurve ||
+		(mpz_cmp(aCurve->mod, anotherCurve->mod) == 0 &&
+		 memcmp(aCurve->a, anotherCurve->a, sizeof(int[7])) == 0 &&
+		 PointEqual(aCurve->g, anotherCurve->g)))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+PointRef PointCreate()
 {
 	PointRef newPoint = malloc(sizeof(*newPoint));
     assert(newPoint != NULL);
@@ -45,6 +75,16 @@ PointRef PointCreate(FieldRef field)
 	return newPoint;
 }
 
+PointRef PointCopy(PointRef other)
+{
+	assert(other != NULL);
+	
+	PointRef point = PointCreate();
+	mpz_set(point->x, other->x);
+	mpz_set(point->y, other->y);
+	return point;
+}
+
 void PointDestroy(PointRef point)
 {
 	assert(point != NULL);
@@ -53,13 +93,13 @@ void PointDestroy(PointRef point)
 	free(point);
 }
 
-bool FieldEqual(FieldRef aField, FieldRef anotherField)
+bool PointEqual(PointRef p, PointRef q)
 {
-	assert(aField != NULL);
-	assert(anotherField != NULL);
+	assert(p != NULL);
+	assert(q != NULL);
 	
-	if (aField == anotherField ||
-		mpz_cmp(aField->mod, anotherField->mod) == 0)
+	if (mpz_cmp(p->x, q->x) == 0 &&
+		mpz_cmp(p->y, q->y) == 0)
 	{
 		return true;
 	}
@@ -69,19 +109,31 @@ bool FieldEqual(FieldRef aField, FieldRef anotherField)
 	}
 }
 
-bool PointEqual(PointRef p, PointRef q)
+bool PointCongruent(PointRef p, PointRef q, CurveRef curve)
 {
 	assert(p != NULL);
 	assert(q != NULL);
+	assert(curve != NULL);
 	
-	if (mpz_cmp(p->x, q->x) == 0 &&
-		mpz_cmp(p->y, q->y) == 0 &&
-		FieldEqual(p->field, q->field))
+	bool result = false;
+	
+	mpz_t xp, yp, xq, yq;
+	mpz_inits(xp, yp, xq, yq, NULL);
+	
+	mpz_mod(xp, p->x, curve->mod);
+	mpz_mod(yp, p->y, curve->mod);
+	mpz_mod(xq, q->x, curve->mod);
+	mpz_mod(yq, q->y, curve->mod);
+	
+	int xeq = mpz_cmp(xp, xq);
+	int yeq = mpz_cmp(yp, yq);
+	
+	if (xeq == 0 && yeq == 0)
 	{
-		return true;
+		result = true;
 	}
-	else
-	{
-		return false;
-	}
+	
+	mpz_clears(xp, yp, xq, yq);
+	return result;
 }
+

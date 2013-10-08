@@ -8,7 +8,7 @@
 
 #include "ec_operations.h"
 
-PointRef PointCreateInvert(PointRef p)
+PointRef PointCreateInvert(PointRef p, CurveRef curve)
 {
     return NULL;
 }

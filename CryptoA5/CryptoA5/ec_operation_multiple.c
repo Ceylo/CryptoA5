@@ -8,7 +8,7 @@
 
 #include "ec_operations.h"
 
-PointRef PointCreateMultiple(PointRef p, int scalar)
+PointRef PointCreateMultiple(PointRef p, int scalar, CurveRef curve)
 {
     return NULL;
 }
