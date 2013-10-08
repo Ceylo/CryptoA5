@@ -14,6 +14,7 @@
 		876849D717FEC790005D03C4 /* ec_operation_invert.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D217FEC790005D03C4 /* ec_operation_invert.c */; };
 		876849D817FEC790005D03C4 /* ec_operation_multiple.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D317FEC790005D03C4 /* ec_operation_multiple.c */; };
 		876849D917FEC790005D03C4 /* ec_operations.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D417FEC790005D03C4 /* ec_operations.c */; };
+		87939320180431B500C6E7B0 /* libgmp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8793931F180431B500C6E7B0 /* libgmp.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -211,6 +212,7 @@
 		876849D217FEC790005D03C4 /* ec_operation_invert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ec_operation_invert.c; sourceTree = "<group>"; };
 		876849D317FEC790005D03C4 /* ec_operation_multiple.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ec_operation_multiple.c; sourceTree = "<group>"; };
 		876849D417FEC790005D03C4 /* ec_operations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ec_operations.c; sourceTree = "<group>"; };
+		8793931F180431B500C6E7B0 /* libgmp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgmp.dylib; path = ../../../../../../usr/local/lib/libgmp.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87939320180431B500C6E7B0 /* libgmp.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +247,7 @@
 		8768490917FEC0E4005D03C4 /* CryptoA5 */ = {
 			isa = PBXGroup;
 			children = (
+				8793931E1804318C00C6E7B0 /* Libraries */,
 				8768490A17FEC0E4005D03C4 /* main.c */,
 				876849D017FEC790005D03C4 /* ec_operation_add.c */,
 				876849D117FEC790005D03C4 /* ec_operation_double.c */,
@@ -556,6 +560,14 @@
 			path = Licence;
 			sourceTree = "<group>";
 		};
+		8793931E1804318C00C6E7B0 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				8793931F180431B500C6E7B0 /* libgmp.dylib */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -655,9 +667,10 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/include,
 				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
@@ -692,8 +705,9 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/include,
 				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.8;
 			};
 			name = Release;
 		};
@@ -730,6 +744,7 @@
 				8768491217FEC0E4005D03C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
