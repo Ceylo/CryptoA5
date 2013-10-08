@@ -13,11 +13,19 @@
 #include <stdbool.h>
 
 typedef struct {
+	mpz_t mod;
+} Body;
+
+typedef struct {
 	mpz_t x;
 	mpz_t y;
 } Point;
 
 typedef Point* PointRef;
+typedef Body* BodyRef;
+
+BodyRef		BodyCreate(int mod);
+void		BodyDestroy(BodyRef body);
 
 PointRef	PointCreate();
 void		PointDestroy(PointRef point);
