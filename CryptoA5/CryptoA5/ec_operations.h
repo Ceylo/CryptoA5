@@ -20,7 +20,7 @@ typedef Point* PointRef;
 
 typedef struct {
 	mpz_t mod;
-	int a[7];
+	mpz_t a[7];
 	PointRef g;
 } Curve;
 typedef Curve* CurveRef;
