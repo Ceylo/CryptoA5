@@ -7,8 +7,10 @@
 //
 
 #include "ec_operations.h"
+#include <assert.h>
 
 PointRef PointCreateDouble(PointRef p)
 {
-	
+	assert(p != NULL);
+	return PointCreateAdd(p, p);
 }
