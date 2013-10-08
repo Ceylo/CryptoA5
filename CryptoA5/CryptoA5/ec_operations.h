@@ -16,18 +16,21 @@ typedef struct {
 	mpz_t mod;
 } Body;
 
+typedef Body* BodyRef;
+
 typedef struct {
+	BodyRef body;
 	mpz_t x;
 	mpz_t y;
 } Point;
 
 typedef Point* PointRef;
-typedef Body* BodyRef;
+
 
 BodyRef		BodyCreate(int mod);
 void		BodyDestroy(BodyRef body);
 
-PointRef	PointCreate();
+PointRef	PointCreate(BodyRef body);
 void		PointDestroy(PointRef point);
 bool		PointEqual(PointRef p, PointRef q);
 

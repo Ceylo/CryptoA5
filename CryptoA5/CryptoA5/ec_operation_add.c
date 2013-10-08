@@ -8,9 +8,9 @@
 
 #include "ec_operations.h"
 
-PointRef PointCreateAdd(PointRef p, PointRef q, mpz_t modulo)
+PointRef PointCreateAdd(PointRef p, PointRef q)
 {
-    PointRef r = PointCreate();
+    PointRef r = PointCreate(p->body);
     
     mpz_t lambda, lambda_rem, lambda_num, lambda_denum;
     mpz_inits(lambda, lambda_num, lambda_denum, NULL);
@@ -20,7 +20,7 @@ PointRef PointCreateAdd(PointRef p, PointRef q, mpz_t modulo)
     
     mpz_tdiv_qr(lambda, lambda_rem, lambda_num, lambda_denum);
     
-    mpz_mod(lambda, lambda, modulo);
+    mpz_mod(lambda, lambda, r->body->mod);
     
 
 }
