@@ -53,7 +53,16 @@ static void lambdaIfEqual(mpz_t lambda, PointRef p, PointRef q)
 
 static void lambdaNotEqual(mpz_t lambda, PointRef p, PointRef q)
 {
-    
+    mpz_t lambda_rem, lambda_num, lambda_denum;
+     mpz_inits(lambda_num, lambda_denum, NULL);
+     
+     mpz_sub(lambda_num, p->y, q->y);
+     mpz_sub(lambda_denum, p->x, q->x);
+     
+     mpz_tdiv_qr(lambda, lambda_rem, lambda_num, lambda_denum);
+     
+     mpz_mod(lambda, lambda, r->body->mod);
+
 }
 
 static PointRef add(mpz_t lambda, PointRef p, PointRef q)
