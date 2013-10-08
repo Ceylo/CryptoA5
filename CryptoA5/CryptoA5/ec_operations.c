@@ -75,6 +75,32 @@ PointRef PointCreate()
 	return newPoint;
 }
 
+PointRef PointCreateFromGMP(mpz_t x, mpz_t y)
+{
+	assert(x != NULL);
+	assert(y != NULL);
+	
+	PointRef point = PointCreate();
+	assert(point != NULL);
+	
+	mpz_set(point->x, x);
+	mpz_set(point->y, y);
+	
+	return point;
+}
+
+PointRef PointCreateFromInt(int x, int y)
+{
+	mpz_t gmpx, gmpy;
+	mpz_init_set_si(gmpx, x);
+	mpz_init_set_si(gmpy, y);
+	
+	PointRef point = PointCreateFromGMP(gmpx, gmpy);
+	mpz_clears(gmpx, gmpy, NULL);
+	
+	return point;
+}
+
 PointRef PointCopy(PointRef other)
 {
 	assert(other != NULL);
