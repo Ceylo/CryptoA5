@@ -8,11 +8,11 @@
 
 #include "ec_operations.h"
 
-static void lambdaIfEqual(mpz_t lambda, PointRef p, PointRef q);
-static void lambdaNotEqual(mpz_t lambda, PointRef p, PointRef q);
-static PointRef add(mpz_t lambda, PointRef p, PointRef q);
+static void lambdaIfEqual(mpz_t lambda, PointRef p, PointRef q, CurveRef curve);
+static void lambdaNotEqual(mpz_t lambda, PointRef p, PointRef q, CurveRef curve);
+static PointRef add(mpz_t lambda, PointRef p, PointRef q, CurveRef curve);
 
-PointRef PointCreateAdd(PointRef p, PointRef q)
+PointRef PointCreateAdd(PointRef p, PointRef q, CurveRef curve)
 {
     PointRef r;
     mpz_t lambda;
@@ -20,26 +20,26 @@ PointRef PointCreateAdd(PointRef p, PointRef q)
     
     if(mpz_cmp(p->x, q->x) == 0)
     {
-        lambdaIfEqual(lambda, p, q);
+        lambdaIfEqual(lambda, p, q, curve);
     }
     else
     {
-        lambdaNotEqual(lambda, p, q);
+        lambdaNotEqual(lambda, p, q, curve);
     }
     
-    r = add(lambda, p, q);
+    r = add(lambda, p, q, curve);
     
     mpz_clear(lambda);
     
     return r;
 }
 
-static void lambdaIfEqual(mpz_t lambda, PointRef p, PointRef q)
+static void lambdaIfEqual(mpz_t lambda, PointRef p, PointRef q, CurveRef curve)
 {
     
 }
 
-static void lambdaNotEqual(mpz_t lambda, PointRef p, PointRef q)
+static void lambdaNotEqual(mpz_t lambda, PointRef p, PointRef q, CurveRef curve)
 {
     mpz_t lambda_rem, lambda_num, lambda_denum;
     mpz_inits(lambda_rem, lambda_num, lambda_denum, NULL);
@@ -49,14 +49,14 @@ static void lambdaNotEqual(mpz_t lambda, PointRef p, PointRef q)
      
     mpz_tdiv_qr(lambda, lambda_rem, lambda_num, lambda_denum);
      
-    mpz_mod(lambda, lambda, p->field->mod);
+    mpz_mod(lambda, lambda, curve->mod);
     
     mpz_clears(lambda_rem, lambda_num, lambda_denum, NULL);
 }
 
-static PointRef add(mpz_t lambda, PointRef p, PointRef q)
+static PointRef add(mpz_t lambda, PointRef p, PointRef q, CurveRef curve)
 {
-    PointRef r = PointCreate(p->field);
+    PointRef r = PointCreate();
     
     mpz_t result1, result2;
     mpz_inits(result1, result2, NULL);
@@ -64,14 +64,14 @@ static PointRef add(mpz_t lambda, PointRef p, PointRef q)
     mpz_mul(result1, lambda, lambda);
     mpz_sub(result1, result1, p->x);
     mpz_sub(result1, result1, q->x);
-    mpz_mod(r->x, result1, r->field->mod);
+    mpz_mod(r->x, result1, curve->mod);
     
     mpz_neg(result1, lambda);
     mpz_mul(result1, result1, r->x);
     mpz_mul(result2, lambda, p->x);
     mpz_add(result1, result1, result2);
     mpz_sub(result1, result1, p->y);
-    mpz_mod(r->y, result1, r->field->mod);
+    mpz_mod(r->y, result1, curve->mod);
     
     mpz_clears(result1, result2, NULL);
     
