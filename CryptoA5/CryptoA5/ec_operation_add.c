@@ -67,7 +67,8 @@ static PointRef add(mpz_t lambda, PointRef p, PointRef q)
     mpz_mul(result1, result1, r->x);
     mpz_mul(result2, lambda, p->x);
     mpz_add(result1, result1, result2);
-    mpz_sub(r->y, result1, p->y);
+    mpz_sub(result1, result1, p->y);
+    mpz_mod(r->y, result1, r->field->mod);
     
     return r;
 }
