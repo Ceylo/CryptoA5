@@ -29,6 +29,8 @@ PointRef PointCreateAdd(PointRef p, PointRef q)
     
     r = add(lambda, p, q);
     
+    mpz_clear(lambda);
+    
     return r;
 }
 
@@ -40,7 +42,7 @@ static void lambdaIfEqual(mpz_t lambda, PointRef p, PointRef q)
 static void lambdaNotEqual(mpz_t lambda, PointRef p, PointRef q)
 {
     mpz_t lambda_rem, lambda_num, lambda_denum;
-    mpz_inits(lambda_num, lambda_denum, NULL);
+    mpz_inits(lambda_rem, lambda_num, lambda_denum, NULL);
      
     mpz_sub(lambda_num, p->y, q->y);
     mpz_sub(lambda_denum, p->x, q->x);
@@ -48,7 +50,8 @@ static void lambdaNotEqual(mpz_t lambda, PointRef p, PointRef q)
     mpz_tdiv_qr(lambda, lambda_rem, lambda_num, lambda_denum);
      
     mpz_mod(lambda, lambda, p->field->mod);
-
+    
+    mpz_clears(lambda_rem, lambda_num, lambda_denum, NULL);
 }
 
 static PointRef add(mpz_t lambda, PointRef p, PointRef q)
@@ -69,6 +72,8 @@ static PointRef add(mpz_t lambda, PointRef p, PointRef q)
     mpz_add(result1, result1, result2);
     mpz_sub(result1, result1, p->y);
     mpz_mod(r->y, result1, r->field->mod);
+    
+    mpz_clears(result1, result2, NULL);
     
     return r;
 }
