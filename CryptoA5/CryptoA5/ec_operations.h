@@ -20,7 +20,7 @@ typedef Point* PointRef;
 
 typedef struct {
 	mpz_t mod;
-	int a[7];
+	mpz_t a[7];
 	PointRef g;
 } Curve;
 typedef Curve* CurveRef;
@@ -32,6 +32,8 @@ void		CurveDestroy(CurveRef curve);
 bool		CurveEqual(CurveRef aCurve, CurveRef anotherCurve);
 
 PointRef	PointCreate();
+PointRef	PointCreateFromGMP(mpz_t x, mpz_t y);
+PointRef	PointCreateFromInt(int x, int y);
 PointRef	PointCopy(PointRef other);
 void		PointDestroy(PointRef point);
 bool		PointEqual(PointRef p, PointRef q);
