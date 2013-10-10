@@ -20,6 +20,8 @@
 		876849D917FEC790005D03C4 /* ec_operations.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D417FEC790005D03C4 /* ec_operations.c */; };
 		F43909F21806AC28006458A3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F43909F11806AC28006458A3 /* main.c */; };
 		F43909F41806AC28006458A3 /* EC_test_invert.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F43909F31806AC28006458A3 /* EC_test_invert.1 */; };
+		F49624A81806B220008A5C34 /* ec_operation_invert.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D217FEC790005D03C4 /* ec_operation_invert.c */; };
+		F49624A91806B220008A5C34 /* ec_operations.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D417FEC790005D03C4 /* ec_operations.c */; };
 		F4CF409C18069C6A001823C1 /* e256-001.gp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8768491A17FEC72D005D03C4 /* e256-001.gp */; };
 		F4CF40B618069E6D001823C1 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F4CF40B518069E6D001823C1 /* main.c */; };
 		F4CF40B818069E6D001823C1 /* EC_test_addition.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4CF40B718069E6D001823C1 /* EC_test_addition.1 */; };
@@ -868,6 +870,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F43909F21806AC28006458A3 /* main.c in Sources */,
+				F49624A81806B220008A5C34 /* ec_operation_invert.c in Sources */,
+				F49624A91806B220008A5C34 /* ec_operations.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1075,6 +1079,7 @@
 				8751F8D81806A852001AC72F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8768490217FEC0E4005D03C4 /* Build configuration list for PBXProject "CryptoA5" */ = {
 			isa = XCConfigurationList;
@@ -1101,6 +1106,7 @@
 				F43909F61806AC28006458A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4CF40B918069E6D001823C1 /* Build configuration list for PBXNativeTarget "EC_test_addition" */ = {
 			isa = XCConfigurationList;
