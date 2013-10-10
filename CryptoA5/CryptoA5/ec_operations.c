@@ -48,7 +48,7 @@ void CurveCreateFromFile(const char *filename)
         mpz_t a[7];
         PointRef g = PointCreate();
         
-        mpz_inits(p, gx, gy, NULL);
+        mpz_inits(p, gx, gy, a4, a6, NULL);
         mpz_inits(a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
         
         gmp_fscanf(input, "p=%Z", p);
@@ -56,6 +56,8 @@ void CurveCreateFromFile(const char *filename)
         gmp_fscanf(input, "a6=%Z", a[6]);
         gmp_fscanf(input, "gx=%Z", g->x);
         gmp_fscanf(input, "gy=%Z", g->y);
+        
+        gmp_printf("p : %Zd\n", p);
         
         CurveCreate(p, a, g);
     }
