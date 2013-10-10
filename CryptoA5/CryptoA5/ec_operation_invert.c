@@ -10,5 +10,9 @@
 
 PointRef PointCreateInvert(PointRef p, CurveRef curve)
 {
-    return NULL;
+    PointRef q = PointCreate();
+    mpz_set(q->x, p->x);
+    mpz_invert(q->y, p->x, p->curve->mod);
+    
+    return q;
 }
