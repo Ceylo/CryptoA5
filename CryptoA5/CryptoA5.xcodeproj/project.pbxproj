@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		875935EB18069D5200DF5770 /* path.c in Sources */ = {isa = PBXBuildFile; fileRef = 875935EA18069D5200DF5770 /* path.c */; };
 		8768490B17FEC0E4005D03C4 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 8768490A17FEC0E4005D03C4 /* main.c */; };
 		8768490D17FEC0E4005D03C4 /* CryptoA5.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8768490C17FEC0E4005D03C4 /* CryptoA5.1 */; };
 		876849D517FEC790005D03C4 /* ec_operation_add.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D017FEC790005D03C4 /* ec_operation_add.c */; };
@@ -31,6 +32,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		875935EA18069D5200DF5770 /* path.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = path.c; sourceTree = "<group>"; };
+		875935EC18069D5F00DF5770 /* path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = path.h; sourceTree = "<group>"; };
 		8768490717FEC0E4005D03C4 /* CryptoA5 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CryptoA5; sourceTree = BUILT_PRODUCTS_DIR; };
 		8768490A17FEC0E4005D03C4 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		8768490C17FEC0E4005D03C4 /* CryptoA5.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = CryptoA5.1; sourceTree = "<group>"; };
@@ -256,6 +259,8 @@
 				876849D417FEC790005D03C4 /* ec_operations.c */,
 				8768490C17FEC0E4005D03C4 /* CryptoA5.1 */,
 				8768491317FEC383005D03C4 /* ec_operations.h */,
+				875935EA18069D5200DF5770 /* path.c */,
+				875935EC18069D5F00DF5770 /* path.h */,
 			);
 			path = CryptoA5;
 			sourceTree = "<group>";
@@ -622,6 +627,7 @@
 				876849D617FEC790005D03C4 /* ec_operation_double.c in Sources */,
 				876849D817FEC790005D03C4 /* ec_operation_multiple.c in Sources */,
 				876849D717FEC790005D03C4 /* ec_operation_invert.c in Sources */,
+				875935EB18069D5200DF5770 /* path.c in Sources */,
 				8768490B17FEC0E4005D03C4 /* main.c in Sources */,
 				876849D517FEC790005D03C4 /* ec_operation_add.c in Sources */,
 				876849D917FEC790005D03C4 /* ec_operations.c in Sources */,
