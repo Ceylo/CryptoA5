@@ -33,7 +33,7 @@ void PathInit(const char *executablePath)
 	}
 	
 	// Erase end
-	directoryPath[i+1] = '\0';
+	directoryPath[position+1] = '\0';
 }
 
 void PathForFile(const char *path, char **absolutePath)
