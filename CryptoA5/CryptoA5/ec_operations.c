@@ -8,6 +8,7 @@
 
 #include "ec_operations.h"
 #include <string.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 
@@ -31,6 +32,33 @@ CurveRef CurveCreate(mpz_t mod, int a[7], PointRef g)
 	assert(curve->g != NULL);
 	
 	return curve;
+}
+
+void CurveCreateFromFile(const char *filename)
+{
+    FILE *input = fopen(filename, "r");
+    
+    if(input == NULL)
+    {
+        perror("Error opening file");
+    }
+    else
+    {
+        mpz_t p, a4, a6, gx, gy;
+        mpz_t a[7];
+        PointRef g = PointCreate();
+        
+        mpz_inits(p, gx, gy, NULL);
+        mpz_inits(a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
+        
+        gmp_fscanf(input, "p=%Z", p);
+        gmp_fscanf(input, "a4=%Z", a[4]);
+        gmp_fscanf(input, "a6=%Z", a[6]);
+        gmp_fscanf(input, "gx=%Z", g->x);
+        gmp_fscanf(input, "gy=%Z", g->y);
+        
+        CurveCreate(p, a, g);
+    }
 }
 
 void CurveDestroy(CurveRef curve)

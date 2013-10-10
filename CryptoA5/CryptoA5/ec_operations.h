@@ -26,7 +26,8 @@ typedef struct {
 typedef Curve* CurveRef;
 
 
-CurveRef	CurveCreate(mpz_t mod, int a[7], PointRef g);
+CurveRef	CurveCreate(mpz_t mod, mpz_t a[7], PointRef g);
+void        CurveCreateFromFile(const char *filename);
 void		CurveDestroy(CurveRef curve);
 bool		CurveEqual(CurveRef aCurve, CurveRef anotherCurve);
 
