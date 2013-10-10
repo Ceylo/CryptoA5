@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-CurveRef CurveCreate(mpz_t mod, int a[7], PointRef g)
+CurveRef CurveCreate(mpz_t mod, mpz_t a[7], PointRef g)
 {
 	// Check input
 	assert(mod != NULL);
