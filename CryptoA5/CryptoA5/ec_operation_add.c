@@ -70,6 +70,7 @@ static void lambdaIfEqual(mpz_t lambda, PointRef p, PointRef q, CurveRef curve)
 	mpz_add(num, mon1, mon2);
 	mpz_add(num, num, a4);
 	mpz_sub(num, num, mon4);
+    mpz_mod(num, num, curve->mod);
 	
 	// mon4
 	mpz_mul_ui(mon4, yp, 2);
@@ -80,11 +81,12 @@ static void lambdaIfEqual(mpz_t lambda, PointRef p, PointRef q, CurveRef curve)
 	//denum
 	mpz_add(denum, mon4, mon5);
 	mpz_add(denum, denum, a3);
+    mpz_mod(denum, denum, curve->mod);
 	
 	// lambda
 	mpz_tdiv_qr(lambda, rem, num, denum);
 	mpz_mod(lambda, lambda, curve->mod);
-	
+    
 	// Check rem
 	assert(mpz_cmp_si(rem, 0) == 0);
 	

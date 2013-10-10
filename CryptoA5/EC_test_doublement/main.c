@@ -11,6 +11,11 @@
 #include "ec_operations.h"
 #include <assert.h>
 
+//p = 5
+//lambda = 1
+//p = (2,4)
+//r = (2,1)
+//a4 and a6 = 1
 int main(int argc, const char * argv[])
 {
     mpz_t a[7], mod;
