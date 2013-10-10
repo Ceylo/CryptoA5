@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <gmp.h>
 #include "ec_operations.h"
+#include <assert.h>
 
 int main(int argc, const char * argv[])
 {
@@ -23,8 +24,8 @@ int main(int argc, const char * argv[])
     CurveRef curve = CurveCreate(mod, a, g);
     PointRef r = PointCreateAdd(p, p, curve);
     
-    //do assert !
-    gmp_printf("r = (%Zd, %Zd)\n", r->x, r->y);
+	assert(mpz_cmp_si(r->x, 2) == 0);
+	assert(mpz_cmp_si(r->y, 1) == 0);
     
     mpz_clears(mod, a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
     PointDestroy(g);
