@@ -9,6 +9,7 @@
 #ifndef CryptoA5_ec_operations_h
 #define CryptoA5_ec_operations_h
 
+#include <stdio.h>
 #include <gmp.h>
 #include <stdbool.h>
 
