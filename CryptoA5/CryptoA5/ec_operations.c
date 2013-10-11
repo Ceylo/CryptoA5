@@ -12,6 +12,8 @@
 #include <stdlib.h>
 #include <assert.h>
 
+static PointRef __teta = NULL;
+
 CurveRef CurveCreate(mpz_t mod, mpz_t a[7], PointRef g)
 {
 	// Check input
@@ -90,6 +92,14 @@ bool CurveEqual(CurveRef aCurve, CurveRef anotherCurve)
 	{
 		return false;
 	}
+}
+
+const PointRef PointTeta()
+{
+	if (!__teta)
+		__teta = PointCreate(); // Better definition?
+	
+	return __teta;
 }
 
 PointRef PointCreate()
