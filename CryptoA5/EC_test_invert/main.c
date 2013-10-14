@@ -18,13 +18,13 @@ int main(int argc, const char * argv[])
     mpz_set_si(a[4], 1);
     
     PointRef g = PointCreateFromInt(0,1);
-    PointRef p = PointCreateFromInt(0,1);
+    PointRef p = PointCreateFromInt(3,3);
     
     CurveRef curve = CurveCreate(mod, a, g);
     PointRef r = PointCreateInvert(p, curve);
     
-	assert(mpz_cmp_si(r->x, 0) == 0);
-	assert(mpz_cmp_si(r->y, 4) == 0);
+	assert(mpz_cmp_si(r->x, 3) == 0);
+	assert(mpz_cmp_si(r->y, 2) == 0);
     
     mpz_clears(mod, a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
     PointDestroy(g);

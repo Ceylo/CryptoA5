@@ -10,6 +10,9 @@
 
 PointRef PointCreateInvert(PointRef p, CurveRef curve)
 {
+	if (PointIsTeta(p))
+		return PointCreateTeta();
+	
     PointRef q = PointCopy(p);
 	
 	//	P = (xp, yp)

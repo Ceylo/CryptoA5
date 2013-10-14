@@ -16,6 +16,7 @@
 typedef struct {
 	mpz_t x;
 	mpz_t y;
+	bool infinite;
 } Point;
 typedef Point*	PointRef;
 
@@ -32,7 +33,8 @@ void			CurveCreateFromFile(const char *filename);
 void			CurveDestroy(CurveRef curve);
 bool			CurveEqual(CurveRef aCurve, CurveRef anotherCurve);
 
-const PointRef	PointTeta();
+PointRef		PointCreateTeta();
+bool			PointIsTeta(PointRef p);
 PointRef		PointCreate();
 PointRef		PointCreateFromGMP(mpz_t x, mpz_t y);
 PointRef		PointCreateFromInt(int x, int y);
