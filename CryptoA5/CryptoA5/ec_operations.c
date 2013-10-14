@@ -12,8 +12,6 @@
 #include <stdlib.h>
 #include <assert.h>
 
-static PointRef __teta = NULL;
-
 CurveRef CurveCreate(mpz_t mod, mpz_t a[7], PointRef g)
 {
 	// Check input
@@ -94,12 +92,18 @@ bool CurveEqual(CurveRef aCurve, CurveRef anotherCurve)
 	}
 }
 
-const PointRef PointTeta()
+PointRef PointCreateTeta()
 {
-	if (!__teta)
-		__teta = PointCreate(); // Better definition?
+	PointRef p = PointCreate();
+	p->infinite = true;
+	return p;
+}
+
+bool PointIsTeta(PointRef p)
+{
+	assert(p != NULL);
 	
-	return __teta;
+	return p->infinite;
 }
 
 PointRef PointCreate()
@@ -148,6 +152,8 @@ PointRef PointCopy(PointRef other)
 	PointRef point = PointCreate();
 	mpz_set(point->x, other->x);
 	mpz_set(point->y, other->y);
+	point->infinite = other->infinite;
+	
 	return point;
 }
 
@@ -163,6 +169,12 @@ bool PointEqual(PointRef p, PointRef q)
 {
 	assert(p != NULL);
 	assert(q != NULL);
+	
+#if DEBUG
+	gmp_printf("Comparing %p=(%Zd, %Zd) and %p=(%Zd, %Zd)\n",
+			   p, p->x, p->y, q, q->x, q->y);
+#endif
+	
 	
 	if (mpz_cmp(p->x, q->x) == 0 &&
 		mpz_cmp(p->y, q->y) == 0)

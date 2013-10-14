@@ -15,6 +15,23 @@ static PointRef add(mpz_t lambda, PointRef p, PointRef q, CurveRef curve);
 
 PointRef PointCreateAdd(PointRef p, PointRef q, CurveRef curve)
 {
+	assert(p != NULL);
+	assert(q != NULL);
+	
+	if (PointIsTeta(p))
+		return PointCopy(q);
+	else if (PointIsTeta(q))
+		return PointCopy(p);
+	
+	// inv = -p
+	PointRef inv = PointCreateInvert(p, curve);
+	
+	if (PointEqual(inv, q))
+	{
+		PointDestroy(inv);
+		return PointCreateTeta();
+	}
+	
     PointRef r;
     mpz_t lambda;
     mpz_init(lambda);
@@ -43,7 +60,6 @@ static void lambdaIfEqual(mpz_t lambda, PointRef p, PointRef q, CurveRef curve)
 	mpz_t mon1, mon2, mon3;
 	mpz_t mon4, mon5;
 	mpz_t num, denum;
-	mpz_t rem;
 	
 	mpz_init_set(xp, p->x);
 	mpz_init_set(yp, p->y);
@@ -53,7 +69,6 @@ static void lambdaIfEqual(mpz_t lambda, PointRef p, PointRef q, CurveRef curve)
 	mpz_init_set(a4, curve->a[4]);
 	mpz_inits(mon1, mon2, mon3, mon4, mon5, NULL);
 	mpz_inits(num, denum, NULL);
-	mpz_init(rem);
 	
 	// mon1
 	mpz_powm_ui(mon1, xp, 2, curve->mod);
@@ -84,16 +99,13 @@ static void lambdaIfEqual(mpz_t lambda, PointRef p, PointRef q, CurveRef curve)
     mpz_mod(denum, denum, curve->mod);
 	
 	// lambda
-	mpz_tdiv_qr(lambda, rem, num, denum);
+	mpz_invert(denum, denum, curve->mod);
+	mpz_mul(lambda, num, denum);
 	mpz_mod(lambda, lambda, curve->mod);
-    
-	// Check rem
-	assert(mpz_cmp_si(rem, 0) == 0);
 	
 	mpz_clears(xp, yp, a1, a2, a3, a4, NULL);
 	mpz_clears(mon1, mon2, mon3, mon4, mon5, NULL);
 	mpz_clears(num, denum, NULL);
-	mpz_clear(rem);
 }
 
 static void lambdaNotEqual(mpz_t lambda, PointRef p, PointRef q, CurveRef curve)

@@ -22,15 +22,16 @@ int main(int argc, const char * argv[])
     mpz_inits(a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
     mpz_init_set_si(mod, 5);
     mpz_set_si(a[4], 1);
+	mpz_set_si(a[6], 1);
     
     PointRef g = PointCreateFromInt(0,1);
-    PointRef p = PointCreateFromInt(2,4);
+    PointRef p = PointCreateFromInt(3,2);
     
     CurveRef curve = CurveCreate(mod, a, g);
-    PointRef r = PointCreateAdd(p, p, curve);
+    PointRef r = PointCreateDouble(p, curve);
     
-	assert(mpz_cmp_si(r->x, 2) == 0);
-	assert(mpz_cmp_si(r->y, 1) == 0);
+	assert(mpz_cmp_si(r->x, 3) == 0);
+	assert(mpz_cmp_si(r->y, 3) == 0);
     
     mpz_clears(mod, a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
     PointDestroy(g);

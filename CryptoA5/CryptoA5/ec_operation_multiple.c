@@ -10,21 +10,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-static int biggest_fitting_power_of_2(int value)
-{
-	int k = 0;
-	while (1 << (k+1) < value)
-		k++;
-	
-	return k;
-}
 
-static void compute_table(PointRef* table, int biggestIndex, CurveRef curve)
-{
-	int i;
-	for (i = 1; i < biggestIndex; i++)
-		table[i] = PointCreateDouble(table[i-1], curve);
-}
 
 PointRef PointCreateMultiple(PointRef p, int scalar, CurveRef curve)
 {
@@ -33,51 +19,47 @@ PointRef PointCreateMultiple(PointRef p, int scalar, CurveRef curve)
 	
 	if (scalar == 0)
 	{
-		return PointCopy(PointTeta());
+		return PointCreateTeta();
+	}
+	else if (scalar == 1)
+	{
+		return PointCopy(p);
+	}
+
+	PointRef q = PointCreateTeta();
+	int i;
+	int foundBit = 0;
+	
+	for (i = sizeof(scalar) * 8 - 1; i >= 0;i--)
+	{
+		int b = scalar & (1 << i);
+		
+		if (b != 0)
+			foundBit = 1;
+		
+		if (foundBit)
+		{
+			PointRef tmp = PointCreateDouble(q, curve);
+			PointDestroy(q);
+			q = tmp;
+			
+#if DEBUG
+			gmp_printf("double(q) = (%Zd, %Zd)\n", q->x, q->y);
+#endif
+			
+			if (b != 0)
+			{
+				PointRef tmp = PointCreateAdd(q, p, curve);
+				PointDestroy(q);
+				q = tmp;
+				
+#if DEBUG
+				gmp_printf("(q+p) = (%Zd, %Zd)\n", q->x, q->y);
+#endif
+				
+			}
+		}
 	}
 	
-	/*
-	 
-	 find biggest k where 2^k < scalar
-	 build table for [p.2^1 .. p.2^k]
-	 
-	 do
-	 {
-		Point(result) += table[k]
-		scalar -= k
-		take biggest k in table where 2^k < scalar
-	 } while (k > 0);
-	 
-	 */
-	
-	PointRef result = PointCreate();
-	
-	PointRef* pointTable = NULL;
-	int k = biggest_fitting_power_of_2(scalar);
-	int tableSize = k;
-	pointTable = malloc(sizeof(*pointTable) * tableSize);
-	
-	// Prepare
-	pointTable[0] = PointCopy(p);
-	compute_table(pointTable, k, curve);
-	
-	// Compute
-	do {
-		// Add and save result
-		PointRef tmp = PointCreateAdd(result, pointTable[k], curve);
-		PointDestroy(result);
-		result = tmp;
-		
-		// Find next interesting power
-		scalar -= k;
-		k = biggest_fitting_power_of_2(scalar);
-	} while (k > 0);
-	
-	// Clean
-	int i;
-	for (i = 0; i < tableSize;i++)
-		PointDestroy(pointTable[i]);
-	free(pointTable);
-	
-    return result;
+	return q;
 }
