@@ -23,6 +23,7 @@ int main(int argc, const char * argv[])
 	PathForFile(FILE_NAME, &filePath);
 	
 	assert(strcmp(DIR_PATH "/" FILE_NAME, filePath) == 0);
+	free(filePath);
     return 0;
 }
 
