@@ -43,6 +43,9 @@
 		F4CF40CD1806A57A001823C1 /* ec_operations.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D417FEC790005D03C4 /* ec_operations.c */; };
 		F4DCC55F180C488C002915DB /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC55E180C488C002915DB /* main.c */; };
 		F4DCC561180C488C002915DB /* EC_test_readFile.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4DCC560180C488C002915DB /* EC_test_readFile.1 */; };
+		F4DCC566180C4B64002915DB /* w256-001.gp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8768499117FEC72D005D03C4 /* w256-001.gp */; };
+		F4DCC567180C4BCA002915DB /* ec_operations.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D417FEC790005D03C4 /* ec_operations.c */; };
+		F4DCC568180C4BCA002915DB /* path.c in Sources */ = {isa = PBXBuildFile; fileRef = 875935EA18069D5200DF5770 /* path.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -125,6 +128,16 @@
 				F4DCC561180C488C002915DB /* EC_test_readFile.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
+		};
+		F4DCC565180C4B48002915DB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				F4DCC566180C4B64002915DB /* w256-001.gp in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -404,6 +417,7 @@
 				F4CF40C31806A54C001823C1 /* EC_test_doublement */,
 				F43909F01806AC28006458A3 /* EC_test_invert */,
 				8751F8D21806A852001AC72F /* EC_test_path */,
+				87B948E2180AFCC8006259B5 /* EC_test_multiple */,
 				F4DCC55D180C488C002915DB /* EC_test_readFile */,
 				F4CF40A218069E26001823C1 /* Frameworks */,
 				8768490817FEC0E4005D03C4 /* Products */,
@@ -418,6 +432,7 @@
 				F4CF40C21806A54B001823C1 /* EC_test_doublement */,
 				F43909EF1806AC28006458A3 /* EC_test_invert */,
 				8751F8D11806A852001AC72F /* EC_test_path */,
+				87B948E1180AFCC8006259B5 /* EC_test_multiple */,
 				F4DCC55C180C488C002915DB /* EC_test_readFile */,
 			);
 			name = Products;
@@ -906,6 +921,7 @@
 				F4DCC558180C488C002915DB /* Sources */,
 				F4DCC559180C488C002915DB /* Frameworks */,
 				F4DCC55A180C488C002915DB /* CopyFiles */,
+				F4DCC565180C4B48002915DB /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -942,6 +958,7 @@
 				F4CF40C11806A54B001823C1 /* EC_test_doublement */,
 				F43909EE1806AC28006458A3 /* EC_test_invert */,
 				8751F8D01806A852001AC72F /* EC_test_path */,
+				87B948E0180AFCC8006259B5 /* EC_test_multiple */,
 				F4DCC55B180C488C002915DB /* EC_test_readFile */,
 			);
 		};
@@ -1022,6 +1039,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4DCC55F180C488C002915DB /* main.c in Sources */,
+				F4DCC568180C4BCA002915DB /* path.c in Sources */,
+				F4DCC567180C4BCA002915DB /* ec_operations.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1307,6 +1326,7 @@
 				F4DCC563180C488C002915DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
