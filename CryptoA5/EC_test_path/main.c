@@ -10,6 +10,7 @@
 #include "path.h"
 #include <string.h>
 #include <assert.h>
+#include <stdlib.h>
 
 #define DIR_PATH "/sdkjhf azfiubs df/zieduh"
 #define EXEC_NAME "aizuher"
