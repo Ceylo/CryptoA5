@@ -44,20 +44,30 @@ void CurveCreateFromFile(const char *filename)
     }
     else
     {
-        mpz_t p, a4, a6, gx, gy;
+        mpz_t p, a4, a6, gx, gy, n, r4, r6;
         mpz_t a[7];
         PointRef g = PointCreate();
         
-        mpz_inits(p, gx, gy, a4, a6, NULL);
+        mpz_inits(p, gx, gy, a4, a6, n, r4, r6, NULL);
         mpz_inits(a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
         
-        gmp_fscanf(input, "p=%Z", p);
-        gmp_fscanf(input, "a4=%Z", a[4]);
-        gmp_fscanf(input, "a6=%Z", a[6]);
-        gmp_fscanf(input, "gx=%Z", g->x);
-        gmp_fscanf(input, "gy=%Z", g->y);
+        gmp_fscanf(input, "p=%Zd\n", p);
+        gmp_fscanf(input, "n=%Zd\n", n);
+        gmp_fscanf(input, "a4=%Zd\n", a[4]);
+        gmp_fscanf(input, "a6=%Zd\n", a[6]);
+        gmp_fscanf(input, "r4=%Zd\n", r4);
+        gmp_fscanf(input, "r6=%Zd\n", r6);
+        gmp_fscanf(input, "gx=%Zd\n", g->x);
+        gmp_fscanf(input, "gy=%Zd\n", g->y);
         
         gmp_printf("p : %Zd\n", p);
+        gmp_printf("n : %Zd\n", n);
+        gmp_printf("a4 : %Zd\n", a[4]);
+        gmp_printf("a6 : %Zd\n", a[6]);
+        gmp_printf("r4 : %Zd\n", r4);
+        gmp_printf("r6 : %Zd\n", r6);
+        gmp_printf("g->x : %Zd\n", g->x);
+        gmp_printf("g->y : %Zd\n", g->y);
         
         CurveCreate(p, a, g);
     }
