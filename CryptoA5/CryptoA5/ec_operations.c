@@ -34,10 +34,11 @@ CurveRef CurveCreate(mpz_t mod, mpz_t a[7], PointRef g)
 	return curve;
 }
 
-void CurveCreateFromFile(const char *filename)
+CurveRef CurveCreateFromFile(const char *filename)
 {
     FILE *input = fopen(filename, "r");
-    
+    CurveRef curve = NULL;
+	
     if(input == NULL)
     {
         perror("Error opening file");
@@ -60,17 +61,26 @@ void CurveCreateFromFile(const char *filename)
         gmp_fscanf(input, "gx=%Zd\n", g->x);
         gmp_fscanf(input, "gy=%Zd\n", g->y);
         
+#if DEBUG
         gmp_printf("p : %Zd\n", p);
         gmp_printf("n : %Zd\n", n);
         gmp_printf("a4 : %Zd\n", a[4]);
         gmp_printf("a6 : %Zd\n", a[6]);
-        gmp_printf("r4 : %Zd\n", r4);
-        gmp_printf("r6 : %Zd\n", r6);
+//        gmp_printf("r4 : %Zd\n", r4);
+//        gmp_printf("r6 : %Zd\n", r6);
         gmp_printf("g->x : %Zd\n", g->x);
         gmp_printf("g->y : %Zd\n", g->y);
+#endif
         
-        CurveCreate(p, a, g);
+        curve = CurveCreate(p, a, g);
+		
+		mpz_clears(p, gx, gy, a4, a6, n, r4, r6, NULL);
+		mpz_clears(a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
+		
+		fclose(input);
     }
+	
+	return curve;
 }
 
 void CurveDestroy(CurveRef curve)
@@ -155,6 +165,19 @@ PointRef PointCreateFromInt(int x, int y)
 	return point;
 }
 
+char *			PointCreateDescription(PointRef p)
+{
+	assert(p != NULL);
+	char *buffer = NULL;
+	
+	if (p->infinite)
+		gmp_asprintf(&buffer, "%p = teta", p);
+	else
+		gmp_asprintf(&buffer, "%p = (%Zd, %Zd)", p, p->x, p->y);
+	
+	return buffer;
+}
+
 PointRef PointCopy(PointRef other)
 {
 	assert(other != NULL);
@@ -179,12 +202,6 @@ bool PointEqual(PointRef p, PointRef q)
 {
 	assert(p != NULL);
 	assert(q != NULL);
-	
-#if DEBUG
-	gmp_printf("Comparing %p=(%Zd, %Zd) and %p=(%Zd, %Zd)\n",
-			   p, p->x, p->y, q, q->x, q->y);
-#endif
-	
 	
 	if (mpz_cmp(p->x, q->x) == 0 &&
 		mpz_cmp(p->y, q->y) == 0)

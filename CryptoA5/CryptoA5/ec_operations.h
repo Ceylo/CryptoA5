@@ -10,6 +10,7 @@
 #define CryptoA5_ec_operations_h
 
 #include <stdio.h>
+#include <stdarg.h>
 #include <gmp.h>
 #include <stdbool.h>
 
@@ -29,7 +30,7 @@ typedef Curve*	CurveRef;
 
 
 CurveRef		CurveCreate(mpz_t mod, mpz_t a[7], PointRef g);
-void			CurveCreateFromFile(const char *filename);
+CurveRef		CurveCreateFromFile(const char *filename);
 void			CurveDestroy(CurveRef curve);
 bool			CurveEqual(CurveRef aCurve, CurveRef anotherCurve);
 
@@ -38,6 +39,10 @@ bool			PointIsTeta(PointRef p);
 PointRef		PointCreate();
 PointRef		PointCreateFromGMP(mpz_t x, mpz_t y);
 PointRef		PointCreateFromInt(int x, int y);
+
+// Create a textual representation of the point.
+// You're RESPONSIBLE for FREEING the returned string.
+char *			PointCreateDescription(PointRef p);
 PointRef		PointCopy(PointRef other);
 void			PointDestroy(PointRef point);
 bool			PointEqual(PointRef p, PointRef q);
