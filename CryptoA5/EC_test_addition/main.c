@@ -12,6 +12,17 @@
 #include <assert.h>
 
 //(2,4) (3,1) a4 = 1, p = 5
+static void addPoints(PointRef p, PointRef q, CurveRef curve);
+
+//p = teta
+static void addPteta(PointRef p, PointRef q, CurveRef curve);
+
+//q = teta
+static void addQteta(PointRef p, PointRef q, CurveRef curve);
+
+//p = -q
+static void addResultTeta(PointRef p, PointRef q, CurveRef curve);
+
 
 int main(int argc, const char * argv[])
 {
@@ -23,6 +34,11 @@ int main(int argc, const char * argv[])
     PointRef g = PointCreateFromInt(0,1);
     PointRef p = PointCreateFromInt(2,4);
     PointRef q = PointCreateFromInt(3,1);
+    PointRef pTeta = PointCreateTeta();
+    PointRef qTeta = PointCreateTeta();
+    PointRef p2 = PointCreateFromInt(3,2);
+    PointRef p2Inv = PointCreateFromInt(3,3);
+
     
     CurveRef curve = CurveCreate(mod, a, g);
     
@@ -32,19 +48,60 @@ int main(int argc, const char * argv[])
 	assert(curve->g != NULL);
 	assert(curve->mod != NULL);
     
-    PointRef r = PointCreateAdd(p, q, curve);
+    addPoints(p, q, curve);
     
-	assert(mpz_cmp_si(r->x, 4) == 0);
-	assert(mpz_cmp_si(r->y, 2) == 0);
+    addPteta(pTeta, q, curve);
+    
+    addQteta(p, qTeta, curve);
+    
+    addResultTeta(p2, p2Inv, curve);
     
     mpz_clears(mod, a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
     PointDestroy(g);
     PointDestroy(p);
     PointDestroy(q);
-    PointDestroy(r);
+    PointDestroy(pTeta);
+    PointDestroy(qTeta);
     
     CurveDestroy(curve);
 
     return 0;
+}
+
+static void addPoints(PointRef p, PointRef q, CurveRef curve) {
+    PointRef r = PointCreateAdd(p, q, curve);
+    
+	assert(mpz_cmp_si(r->x, 4) == 0);
+	assert(mpz_cmp_si(r->y, 2) == 0);
+    
+    PointDestroy(r);
+}
+
+static void addPteta(PointRef p, PointRef q, CurveRef curve) {
+    PointRef r = PointCreateAdd(p, q, curve);
+    
+	assert(mpz_cmp_si(r->x, 3) == 0);
+	assert(mpz_cmp_si(r->y, 1) == 0);
+    
+    PointDestroy(r);
+}
+
+static void addQteta(PointRef p, PointRef q, CurveRef curve) {
+    PointRef r = PointCreateAdd(p, q, curve);
+    
+	assert(mpz_cmp_si(r->x, 2) == 0);
+	assert(mpz_cmp_si(r->y, 4) == 0);
+    
+    PointDestroy(r);
+}
+
+static void addResultTeta(PointRef p, PointRef q, CurveRef curve) {
+    PointRef r = PointCreateAdd(p, q, curve);
+    
+	assert(mpz_cmp_si(r->x, 0) == 0);
+	assert(mpz_cmp_si(r->y, 0) == 0);
+    assert(r->infinite == true);
+    
+    PointDestroy(r);
 }
 
