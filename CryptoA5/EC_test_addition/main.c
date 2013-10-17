@@ -14,6 +14,9 @@
 //(2,4) (3,1) a4 = 1, p = 5
 static void addPoints(PointRef p, PointRef q, CurveRef curve);
 
+//(3,2) (3,2) a4 = 1, p = 5
+static void addDoublePoint(PointRef p, PointRef q, CurveRef curve);
+
 //p = teta
 static void addPteta(PointRef p, PointRef q, CurveRef curve);
 
@@ -50,6 +53,8 @@ int main(int argc, const char * argv[])
     
     addPoints(p, q, curve);
     
+    addDoublePoint(p2, p2, curve);
+    
     addPteta(pTeta, q, curve);
     
     addQteta(p, qTeta, curve);
@@ -73,6 +78,15 @@ static void addPoints(PointRef p, PointRef q, CurveRef curve) {
     
 	assert(mpz_cmp_si(r->x, 4) == 0);
 	assert(mpz_cmp_si(r->y, 2) == 0);
+    
+    PointDestroy(r);
+}
+
+static void addDoublePoint(PointRef p, PointRef q, CurveRef curve) {
+    PointRef r = PointCreateAdd(p, q, curve);
+    
+	assert(mpz_cmp_si(r->x, 3) == 0);
+	assert(mpz_cmp_si(r->y, 3) == 0);
     
     PointDestroy(r);
 }
