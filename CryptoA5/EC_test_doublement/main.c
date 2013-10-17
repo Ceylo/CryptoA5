@@ -28,6 +28,13 @@ int main(int argc, const char * argv[])
     PointRef p = PointCreateFromInt(3,2);
     
     CurveRef curve = CurveCreate(mod, a, g);
+    
+    assert(curve != NULL);
+	assert(curve->a[4] != NULL);
+	assert(curve->a[6] != NULL);
+	assert(curve->g != NULL);
+	assert(curve->mod != NULL);
+    
     PointRef r = PointCreateDouble(p, curve);
     
 	assert(mpz_cmp_si(r->x, 3) == 0);
@@ -37,6 +44,8 @@ int main(int argc, const char * argv[])
     PointDestroy(g);
     PointDestroy(p);
     PointDestroy(r);
+    
+    CurveDestroy(curve);
     
     return 0;
 }
