@@ -10,6 +10,12 @@
 #include "ec_operations.h"
 #include <assert.h>
 
+//inv p
+static void invP(PointRef p, CurveRef curve);
+
+//p = teta
+static void invPteta(PointRef p, CurveRef curve);
+
 int main(int argc, const char * argv[])
 {
     mpz_t a[7], mod;
@@ -19,6 +25,8 @@ int main(int argc, const char * argv[])
     
     PointRef g = PointCreateFromInt(0,1);
     PointRef p = PointCreateFromInt(3,3);
+    PointRef pTeta = PointCreateTeta();
+
     
     CurveRef curve = CurveCreate(mod, a, g);
     
@@ -28,18 +36,38 @@ int main(int argc, const char * argv[])
 	assert(curve->g != NULL);
 	assert(curve->mod != NULL);
     
-    PointRef r = PointCreateInvert(p, curve);
+    invP(p, curve);
     
-	assert(mpz_cmp_si(r->x, 3) == 0);
-	assert(mpz_cmp_si(r->y, 2) == 0);
+    invPteta(pTeta, curve);
     
     mpz_clears(mod, a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
     PointDestroy(g);
     PointDestroy(p);
-    PointDestroy(r);
     
     CurveDestroy(curve);
     
     return 0;
 }
+
+static void invP(PointRef p, CurveRef curve) {
+    PointRef r = PointCreateInvert(p, curve);
+    
+	assert(mpz_cmp_si(r->x, 3) == 0);
+	assert(mpz_cmp_si(r->y, 2) == 0);
+    
+    PointDestroy(r);
+}
+
+static void invPteta(PointRef p, CurveRef curve) {
+    PointRef r = PointCreateInvert(p, curve);
+
+    assert(mpz_cmp_si(r->x, 0) == 0);
+	assert(mpz_cmp_si(r->y, 0) == 0);
+    assert(r->infinite == true);
+    
+    PointDestroy(r);
+
+}
+
+
 
