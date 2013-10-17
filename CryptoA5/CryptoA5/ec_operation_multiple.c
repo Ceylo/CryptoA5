@@ -43,20 +43,11 @@ PointRef PointCreateMultiple(PointRef p, int scalar, CurveRef curve)
 			PointDestroy(q);
 			q = tmp;
 			
-#if DEBUG
-			gmp_printf("double(q) = (%Zd, %Zd)\n", q->x, q->y);
-#endif
-			
 			if (b != 0)
 			{
 				PointRef tmp = PointCreateAdd(q, p, curve);
 				PointDestroy(q);
 				q = tmp;
-				
-#if DEBUG
-				gmp_printf("(q+p) = (%Zd, %Zd)\n", q->x, q->y);
-#endif
-				
 			}
 		}
 	}
