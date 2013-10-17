@@ -67,6 +67,8 @@ int main(int argc, const char * argv[])
     PointDestroy(q);
     PointDestroy(pTeta);
     PointDestroy(qTeta);
+    PointDestroy(p2);
+    PointDestroy(p2Inv);
     
     CurveDestroy(curve);
 

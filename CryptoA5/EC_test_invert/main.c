@@ -43,6 +43,7 @@ int main(int argc, const char * argv[])
     mpz_clears(mod, a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
     PointDestroy(g);
     PointDestroy(p);
+    PointDestroy(pTeta);
     
     CurveDestroy(curve);
     
