@@ -22,6 +22,12 @@ int main(int argc, const char * argv[])
     PointRef teta = PointCreateTeta();
 	
     CurveRef curve = CurveCreate(mod, a, g);
+    
+    assert(curve != NULL);
+	assert(curve->a[4] != NULL);
+	assert(curve->a[6] != NULL);
+	assert(curve->g != NULL);
+	assert(curve->mod != NULL);
 	
 	// Computed points
 	PointRef c0 = PointCreateMultiple(p, 0, curve);
@@ -50,6 +56,8 @@ int main(int argc, const char * argv[])
 	PointDestroy(r2);
 	PointDestroy(r3);
 	PointDestroy(teta);
+    
+    CurveDestroy(curve);
     
     return 0;
 }
