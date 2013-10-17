@@ -11,7 +11,7 @@
 #include "ec_operations.h"
 #include <assert.h>
 
-//(2,4) (3,1) a4 = 1
+//(2,4) (3,1) a4 = 1, p = 5
 
 int main(int argc, const char * argv[])
 {
