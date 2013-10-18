@@ -12,27 +12,29 @@
 
 
 
-PointRef PointCreateMultiple(PointRef p, int scalar, CurveRef curve)
+PointRef PointCreateMultiple(PointRef p, mpz_t scalar, CurveRef curve)
 {
 	assert(p != NULL);
 	assert(curve != NULL);
 	
-	if (scalar == 0)
+	if (mpz_cmp_si(scalar, 0) == 0)
 	{
 		return PointCreateTeta();
 	}
-	else if (scalar == 1)
+	else if (mpz_cmp_si(scalar, 1) == 0)
 	{
 		return PointCopy(p);
 	}
-
-	PointRef q = PointCreateTeta();
-	int i;
-	int foundBit = 0;
 	
-	for (i = sizeof(scalar) * 8 - 1; i >= 0;i--)
+	PointRef q = PointCreateTeta();
+	long i;
+	int foundBit = 0;
+	size_t nbBits = mpz_sizeinbase(scalar, 2);
+	
+	
+	for (i = nbBits - 1; i >= 0;i--)
 	{
-		int b = scalar & (1 << i);
+		int b = mpz_tstbit(scalar, i);
 		
 		if (b != 0)
 			foundBit = 1;

@@ -115,10 +115,10 @@ static void lambdaNotEqual(mpz_t lambda, PointRef p, PointRef q, CurveRef curve)
      
     mpz_sub(lambda_num, p->y, q->y);
     mpz_sub(lambda_denum, p->x, q->x);
-     
-    mpz_tdiv_qr(lambda, lambda_rem, lambda_num, lambda_denum);
-     
-    mpz_mod(lambda, lambda, curve->mod);
+	
+	mpz_invert(lambda_denum, lambda_denum, curve->mod);
+	mpz_mul(lambda, lambda_num, lambda_denum);
+	mpz_mod(lambda, lambda, curve->mod);
     
     mpz_clears(lambda_rem, lambda_num, lambda_denum, NULL);
 }

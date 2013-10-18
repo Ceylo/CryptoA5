@@ -14,6 +14,10 @@
 #include <gmp.h>
 #include <stdbool.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct {
 	mpz_t x;
 	mpz_t y;
@@ -30,6 +34,7 @@ typedef Curve*	CurveRef;
 
 
 CurveRef		CurveCreate(mpz_t mod, mpz_t a[7], PointRef g);
+CurveRef		CurveCreateFromData(const char *data);
 CurveRef		CurveCreateFromFile(const char *filename);
 void			CurveDestroy(CurveRef curve);
 bool			CurveEqual(CurveRef aCurve, CurveRef anotherCurve);
@@ -51,6 +56,10 @@ bool			PointCongruent(PointRef p, PointRef q, CurveRef curve);
 PointRef		PointCreateInvert(PointRef p, CurveRef curve);
 PointRef		PointCreateAdd(PointRef p, PointRef q, CurveRef curve);
 PointRef		PointCreateDouble(PointRef p, CurveRef curve);
-PointRef		PointCreateMultiple(PointRef p, int scalar, CurveRef curve);
+PointRef		PointCreateMultiple(PointRef p, mpz_t scalar, CurveRef curve);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

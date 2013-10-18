@@ -24,7 +24,12 @@ CurveRef CurveCreate(mpz_t mod, mpz_t a[7], PointRef g)
 	
 	// Init members
 	mpz_init_set(curve->mod, mod);
-	memcpy(curve->a, a, sizeof(curve->a));
+	
+	int i;
+	for (i = 0; i < 7;i++)
+	{
+		mpz_init_set(curve->a[i], a[i]);
+	}
 	curve->g = PointCopy(g);
 	
 	// Check members
@@ -33,6 +38,11 @@ CurveRef CurveCreate(mpz_t mod, mpz_t a[7], PointRef g)
 	
 	return curve;
 }
+
+//CurveRef CurveCreateFromData(const char *data)
+//{
+//	
+//}
 
 CurveRef CurveCreateFromFile(const char *filename)
 {

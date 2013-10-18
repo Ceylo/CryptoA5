@@ -9,6 +9,10 @@
 #ifndef CryptoA5_path_h
 #define CryptoA5_path_h
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /** Call this function once before any call to PathForFile
  *
  * @param executablePath the full path to the current executable
@@ -26,4 +30,8 @@ void PathInit(const char *executablePath);
  */
 void PathForFile(const char *path, char **absolutePath);
 
+#ifdef __cplusplus
+}
+#endif
+	
 #endif
