@@ -34,6 +34,14 @@ int main(int argc, const char * argv[])
 	assert(mpz_cmp(g2->x, xr) == 0);
 	assert(mpz_cmp(g2->y, yr) == 0);
 	
+	mpz_set_si(m, 0);
+	PointRef g3 = PointCreateMultiple(g, m, curve);
+	assert(PointIsTeta(g3));
+	
+	mpz_set_si(m, 1);
+	PointRef g4 = PointCreateMultiple(g, m, curve);
+	assert(PointEqual(g4, g));
+	
     return 0;
 }
 
