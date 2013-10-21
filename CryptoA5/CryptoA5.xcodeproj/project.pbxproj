@@ -53,6 +53,9 @@
 		876356A918108EC700AEAF8A /* w512-018.gp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 876849A217FEC72D005D03C4 /* w512-018.gp */; };
 		876356B01810952A00AEAF8A /* libEC.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 876356841810872300AEAF8A /* libEC.dylib */; };
 		876356B118112A1A00AEAF8A /* path.c in Sources */ = {isa = PBXBuildFile; fileRef = 875935EA18069D5200DF5770 /* path.c */; };
+		8764582118155B840047B530 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8764581B18155B840047B530 /* client.cpp */; };
+		8764582218155B840047B530 /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8764581D18155B840047B530 /* server.cpp */; };
+		8764582318155B840047B530 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8764581F18155B840047B530 /* util.cpp */; };
 		87B948E4180AFCC8006259B5 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 87B948E3180AFCC8006259B5 /* main.c */; };
 		87B948E6180AFCC8006259B5 /* EC_test_multiple.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87B948E5180AFCC8006259B5 /* EC_test_multiple.1 */; };
 		F43909F21806AC28006458A3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F43909F11806AC28006458A3 /* main.c */; };
@@ -207,6 +210,12 @@
 		876356841810872300AEAF8A /* libEC.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libEC.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		8763569318108B8400AEAF8A /* sfml-network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-network.framework"; path = "../../../../Library/Frameworks/sfml-network.framework"; sourceTree = "<group>"; };
 		8763569418108B8400AEAF8A /* sfml-system.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-system.framework"; path = "../../../../Library/Frameworks/sfml-system.framework"; sourceTree = "<group>"; };
+		8764581B18155B840047B530 /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
+		8764581C18155B840047B530 /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
+		8764581D18155B840047B530 /* server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = server.cpp; sourceTree = "<group>"; };
+		8764581E18155B840047B530 /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = server.h; sourceTree = "<group>"; };
+		8764581F18155B840047B530 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
+		8764582018155B840047B530 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		8768490C17FEC0E4005D03C4 /* CryptoA5.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = CryptoA5.1; sourceTree = "<group>"; };
 		8768491317FEC383005D03C4 /* ec_operations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ec_operations.h; sourceTree = "<group>"; };
 		8768491617FEC72D005D03C4 /* curve-base.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "curve-base.pdf"; sourceTree = "<group>"; };
@@ -479,6 +488,12 @@
 		876356781810862900AEAF8A /* DH */ = {
 			isa = PBXGroup;
 			children = (
+				8764581B18155B840047B530 /* client.cpp */,
+				8764581C18155B840047B530 /* client.h */,
+				8764581D18155B840047B530 /* server.cpp */,
+				8764581E18155B840047B530 /* server.h */,
+				8764581F18155B840047B530 /* util.cpp */,
+				8764582018155B840047B530 /* util.h */,
 				8763569318108B8400AEAF8A /* sfml-network.framework */,
 				8763569418108B8400AEAF8A /* sfml-system.framework */,
 				876356791810862900AEAF8A /* main.cpp */,
@@ -1089,7 +1104,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8764582218155B840047B530 /* server.cpp in Sources */,
+				8764582118155B840047B530 /* client.cpp in Sources */,
 				8763567A1810862900AEAF8A /* main.cpp in Sources */,
+				8764582318155B840047B530 /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
