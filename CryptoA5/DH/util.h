@@ -10,9 +10,22 @@
 #include <gmp.h>
 #include <string>
 
+#define DH_PORT 4445
+
 using namespace std;
 
+/** Create a random number between 0 and max
+ */
 void secure_rand(mpz_t random, mpz_t max);
+
+/** Create a small random number withing [min, max[
+ */
 long limited_rand(long min, long max);
+
+/** Read the given file and return its content
+ */
 string readFile(string filename);
+
+/** Read some curve file and return its content
+ */
 string readRandomCurve();

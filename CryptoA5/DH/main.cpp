@@ -12,46 +12,11 @@
 
 #include "ec_operations.h"
 #include "path.h"
+#include "client.h"
+#include "server.h"
 
 using namespace sf;
 using namespace std;
-
-#define DH_PORT 4445
-
-
-
-void server()
-{
-	sf::TcpListener listener;
-	
-	// bind the listener to a port
-	if (listener.listen(DH_PORT) != sf::Socket::Done)
-	{
-		perror("error when listening");
-		return;
-	}
-	
-	// accept a new connection
-	sf::TcpSocket socket;
-	if (listener.accept(socket) != sf::Socket::Done)
-	{
-		perror("error when receiving new client");
-		return;
-	}
-	
-	string curveData = readRandomCurve();
-	Packet pkt;
-	pkt << curveData;
-	
-	// Send curve
-	socket.send(pkt);
-	
-	// Load curve
-	CurveRef curve = CurveCreateFromData(curveData.c_str());
-	mpz_t a;
-	gmp_printf("%Zd\n", curve->n);
-	secure_rand(a, curve->n);
-}
 
 void usage(const char *argv0)
 {

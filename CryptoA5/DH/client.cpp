@@ -1,4 +1,12 @@
 
+//
+//  client.cpp
+//  DH
+//
+//  Created by Ceylo on 21/10/2013.
+//  Copyright (c) 2013 Yalir. All rights reserved.
+//
+
 
 #include "client.h"
 #include "util.h"
@@ -18,15 +26,10 @@ CurveRef client_receive_curve(TcpSocket& stream)
 	return CurveCreateFromData(curveData.c_str());
 }
 
-PointRef client_create_key(TcpSocket& stream, CurveRef curve)
+PointRef client_create_key(TcpSocket& stream, CurveRef curve, mpz_t& outB)
 {
-	mpz_t b;
-	secure_rand(b, curve->n);
-	
-	PointRef p = PointCreateMultiple(curve->g, b, curve);
-	mpz_clear(b);
-	
-	return p;
+	secure_rand(outB, curve->n);
+	return PointCreateMultiple(curve->g, outB, curve);
 }
 
 void client_send_key(TcpSocket& stream, PointRef p)
@@ -53,26 +56,8 @@ void client_send_key(TcpSocket& stream, PointRef p)
 
 PointRef client_receive_key(TcpSocket& stream)
 {
-	
-}
-
-void client()
-{
-	TcpSocket socket;
-	Socket::Status status = socket.connect(IpAddress::getLocalAddress(), DH_PORT);
-	
-	if (status != Socket::Status::Done)
-	{
-		perror("connection to server failed");
-		return;
-	}
-	
-	CurveRef curve = client_receive_curve(socket);
-	PointRef p = client_create_key(socket, curve);
-	client_send_key(socket, p);
-	
-	pkt.clear();
-	socket.receive(pkt);
+	Packet pkt;
+	stream.receive(pkt);
 	
 	string peerXString, peerYString;
 	pkt >> peerXString;
@@ -86,7 +71,30 @@ void client()
 	gmp_sscanf(peerYString.c_str(), "%Zd", &peerY);
 	
 	PointRef peerKey = PointCreateFromGMP(peerX, peerY);
-	cout << "Received " << PointCreateDescription(peerKey) << endl;
+	mpz_clears(peerX, peerY, NULL);
+	
+	cout << "Received remote key: " << PointCreateDescription(peerKey) << endl;
+	
+	return peerKey;
+}
+
+void client()
+{
+	TcpSocket socket;
+	Socket::Status status = socket.connect(IpAddress::getLocalAddress(), DH_PORT);
+	
+	if (status != Socket::Status::Done)
+	{
+		perror("connection to server failed");
+		return;
+	}
+	
+	mpz_t secret;
+	CurveRef curve = client_receive_curve(socket);
+	PointRef p = client_create_key(socket, curve, secret);
+	client_send_key(socket, p);
+	PointRef remoteKey = client_receive_key(socket);
+	
 	
 	socket.disconnect();
 }
