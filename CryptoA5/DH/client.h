@@ -11,6 +11,7 @@
 #include "ec_operations.h"
 
 using namespace sf;
+using namespace std;
 
 /** Receive the curve data (raw representation of the curve file)
  */
@@ -34,3 +35,11 @@ PointRef client_receive_key(TcpSocket& stream);
 /** Run client
  */
 void client();
+
+/** Create a packet with the given message encrypted
+ */
+Packet client_encrypt_message(const string& message, PointRef sharedSecretKey, CurveRef curve);
+
+/** Return the message decrypted from the given packet
+ */
+string client_decrypt_packet(Packet& pkt);

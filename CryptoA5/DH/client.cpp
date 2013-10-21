@@ -94,7 +94,19 @@ void client()
 	PointRef p = client_create_key(socket, curve, secret);
 	client_send_key(socket, p);
 	PointRef remoteKey = client_receive_key(socket);
+	PointRef sharedSecret = PointCreateMultiple(remoteKey, secret, curve);
+	
 	
 	
 	socket.disconnect();
+}
+
+Packet client_encrypt_message(const string& message, PointRef sharedSecretKey, CurveRef curve)
+{
+	
+}
+
+string client_decrypt_packet(Packet& pkt)
+{
+	
 }

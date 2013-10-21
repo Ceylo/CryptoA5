@@ -14,7 +14,7 @@
 
 using namespace std;
 
-/** Create a random number between 0 and max
+/** Create a random number within [0, max[
  */
 void secure_rand(mpz_t random, mpz_t max);
 
