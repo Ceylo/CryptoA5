@@ -104,6 +104,10 @@ void server()
     
     PointRef remoteKey = server_receive_key(socket);
     
+    PointRef secret = PointCreateMultiple(remoteKey, a, curve);
+    
+    cout << "Shared secret : " << PointCreateDescription(secret);
+    
     mpz_clear(a);
     
     socket.disconnect();
