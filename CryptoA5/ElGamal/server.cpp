@@ -80,31 +80,45 @@ PointRef server_receive_key(TcpSocket& stream)
 	return peerKey;
 }
 
-string client_decrypt_packet(Packet& pkt, mpz_t secret, CurveRef curve);
+string server_decrypt_packet(Packet& pkt, mpz_t secret, CurveRef curve)
 {
+	// Extract c1 and c2
     string peerC1xString, peerC1yString, peerC2String;
     pkt >> peerC1xString;
     pkt >> peerC1yString;
-    pkt >> peerC2String;
     
-    mpz_t peerC2;
     mpz_t peerC1x, peerC1y;
     
-    mpz_inits(peerC2, peerC1x, peerC1y, NULL);
+    mpz_inits(peerC1x, peerC1y, NULL);
     gmp_sscanf(peerC1xString.c_str(), "%Zd", &peerC1x);
     gmp_sscanf(peerC1yString.c_str(), "%Zd", &peerC1y);
-	gmp_sscanf(peerC2String.c_str(), "%Zd", &peerC2);
     
     PointRef peerC1 = PointCreateFromGMP(peerC1x, peerC1y);
     mpz_clears(peerC1x, peerC1y, NULL);
     
+	// a.c1
     PointRef intermediaire = PointCreateMultiple(peerC1, secret, curve);
+	string result;
     
-    mpz_t result;
-    mpz_init(result);
-    
-    mpz_sub(result, peerC2, intermediaire->x); //message
-    
+	while (pkt >> peerC2String)
+	{
+		mpz_t peerC2;
+		mpz_init(peerC2);
+		gmp_sscanf(peerC2String.c_str(), "%Zd", &peerC2);
+		
+		char s[2] = {'\0', '\0'};
+		mpz_t mpzChar;
+		mpz_init(mpzChar);
+		
+		// m = c2 - (a.c1)x
+		mpz_sub(mpzChar, peerC2, intermediaire->x); //message
+		s[0] = (char)mpz_get_ui(mpzChar);
+		
+		result.append(string(s));
+		mpz_clear(mpzChar);
+	}
+	
+	return result;
 }
 
 void server()
