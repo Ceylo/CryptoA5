@@ -28,12 +28,13 @@ typedef Point*	PointRef;
 typedef struct {
 	mpz_t mod;
 	mpz_t a[7];
+	mpz_t n;
 	PointRef g;
 } Curve;
 typedef Curve*	CurveRef;
 
 
-CurveRef		CurveCreate(mpz_t mod, mpz_t a[7], PointRef g);
+CurveRef		CurveCreate(mpz_t mod, mpz_t n, mpz_t a[7], PointRef g);
 CurveRef		CurveCreateFromData(const char *data);
 CurveRef		CurveCreateFromFile(const char *filename);
 void			CurveDestroy(CurveRef curve);

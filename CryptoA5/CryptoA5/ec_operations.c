@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-CurveRef CurveCreate(mpz_t mod, mpz_t a[7], PointRef g)
+CurveRef CurveCreate(mpz_t mod, mpz_t n, mpz_t a[7], PointRef g)
 {
 	// Check input
 	assert(mod != NULL);
@@ -24,6 +24,7 @@ CurveRef CurveCreate(mpz_t mod, mpz_t a[7], PointRef g)
 	
 	// Init members
 	mpz_init_set(curve->mod, mod);
+	mpz_init_set(curve->n, n);
 	
 	int i;
 	for (i = 0; i < 7;i++)
@@ -37,6 +38,16 @@ CurveRef CurveCreate(mpz_t mod, mpz_t a[7], PointRef g)
 	assert(curve->g != NULL);
 	
 	return curve;
+}
+
+static size_t length_of_expression(const char *format, mpz_t value)
+{
+	char *buffer = NULL;
+	size_t length = 0;
+	gmp_asprintf(&buffer, format, value);
+	length = strlen(buffer);
+	free(buffer);
+	return length;
 }
 
 CurveRef CurveCreateFromData(const char *input)
@@ -53,12 +64,19 @@ CurveRef CurveCreateFromData(const char *input)
 	mpz_inits(a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
 	
 	gmp_sscanf(input, "p=%Zd\n", p);
+	input += length_of_expression("p=%Zd\n", p);
 	gmp_sscanf(input, "n=%Zd\n", n);
+	input += length_of_expression("n=%Zd\n", n);
 	gmp_sscanf(input, "a4=%Zd\n", a[4]);
+	input += length_of_expression("a4=%Zd\n", a[4]);
 	gmp_sscanf(input, "a6=%Zd\n", a[6]);
+	input += length_of_expression("a6=%Zd\n", a[6]);
 	gmp_sscanf(input, "r4=%Zd\n", r4);
+	input += length_of_expression("r4=%Zd\n", r4);
 	gmp_sscanf(input, "r6=%Zd\n", r6);
+	input += length_of_expression("r6=%Zd\n", r6);
 	gmp_sscanf(input, "gx=%Zd\n", g->x);
+	input += length_of_expression("gx=%Zd\n", g->x);
 	gmp_sscanf(input, "gy=%Zd\n", g->y);
 	
 #if DEBUG
@@ -70,7 +88,7 @@ CurveRef CurveCreateFromData(const char *input)
 	gmp_printf("g->y : %Zd\n", g->y);
 #endif
 	
-	curve = CurveCreate(p, a, g);
+	curve = CurveCreate(p, n, a, g);
 	
 	mpz_clears(p, gx, gy, a4, a6, n, r4, r6, NULL);
 	mpz_clears(a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
@@ -116,7 +134,7 @@ CurveRef CurveCreateFromFile(const char *filename)
         gmp_printf("g->y : %Zd\n", g->y);
 #endif
         
-        curve = CurveCreate(p, a, g);
+        curve = CurveCreate(p, n, a, g);
 		
 		mpz_clears(p, gx, gy, a4, a6, n, r4, r6, NULL);
 		mpz_clears(a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);

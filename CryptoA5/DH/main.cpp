@@ -16,7 +16,17 @@
 using namespace sf;
 using namespace std;
 
-#define DH_PORT 4444
+#define DH_PORT 4445
+
+void secure_rand(mpz_t random, mpz_t max)
+{
+	// Is that a valid PRNG
+	mpz_init(random);
+	gmp_randstate_t rstate;
+	gmp_randinit_default(rstate);
+	gmp_randseed_ui(rstate, rand());
+	mpz_urandomm(random, rstate, max);
+}
 
 long limited_rand(long min, long max)
 {
@@ -67,6 +77,38 @@ void client()
 		return;
 	}
 	
+	Packet pkt;
+	socket.receive(pkt);
+	
+	string curveData;
+	pkt >> curveData;
+	
+	CurveRef curve = CurveCreateFromData(curveData.c_str());
+	mpz_t b;
+	secure_rand(b, curve->n);
+	
+	socket.disconnect();
+}
+
+void server()
+{
+	sf::TcpListener listener;
+	
+	// bind the listener to a port
+	if (listener.listen(DH_PORT) != sf::Socket::Done)
+	{
+		perror("error when listening");
+		return;
+	}
+	
+	// accept a new connection
+	sf::TcpSocket socket;
+	if (listener.accept(socket) != sf::Socket::Done)
+	{
+		perror("error when receiving new client");
+		return;
+	}
+	
 	string curveData = readRandomCurve();
 	Packet pkt;
 	pkt << curveData;
@@ -75,14 +117,10 @@ void client()
 	socket.send(pkt);
 	
 	// Load curve
-//	CurveRef curve = CurveCreateFromData(const char *data);
-	
-	socket.disconnect();
-}
-
-void server()
-{
-	
+	CurveRef curve = CurveCreateFromData(curveData.c_str());
+	mpz_t a;
+	gmp_printf("%Zd\n", curve->n);
+	secure_rand(a, curve->n);
 }
 
 void usage(const char *argv0)
@@ -92,7 +130,7 @@ void usage(const char *argv0)
 
 void init(int argc, const char * argv[])
 {
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 	PathInit(argv[0]);
 }
 

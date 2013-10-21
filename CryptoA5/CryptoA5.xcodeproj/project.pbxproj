@@ -75,6 +75,16 @@
 		F4DCC568180C4BCA002915DB /* path.c in Sources */ = {isa = PBXBuildFile; fileRef = 875935EA18069D5200DF5770 /* path.c */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		872850161813D1C600006F3A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 876848FF17FEC0E4005D03C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 876356831810872300AEAF8A;
+			remoteInfo = EC;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		8751F8CF1806A852001AC72F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -922,6 +932,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				872850171813D1C600006F3A /* PBXTargetDependency */,
 			);
 			name = DH;
 			productName = DH;
@@ -1158,6 +1169,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		872850171813D1C600006F3A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 876356831810872300AEAF8A /* EC */;
+			targetProxy = 872850161813D1C600006F3A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		8751F8D71806A852001AC72F /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1224,6 +1243,7 @@
 		876356861810872300AEAF8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DSTROOT = /;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1236,6 +1256,7 @@
 		876356871810872300AEAF8A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DSTROOT = /;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1434,6 +1455,7 @@
 				8763567E1810862900AEAF8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		876356851810872300AEAF8A /* Build configuration list for PBXNativeTarget "EC" */ = {
 			isa = XCConfigurationList;
@@ -1442,6 +1464,7 @@
 				876356871810872300AEAF8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8768490217FEC0E4005D03C4 /* Build configuration list for PBXProject "CryptoA5" */ = {
 			isa = XCConfigurationList;
