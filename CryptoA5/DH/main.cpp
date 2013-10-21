@@ -18,42 +18,6 @@
 using namespace sf;
 using namespace std;
 
-#define DH_PORT 4445
-
-
-string readFile(string filename)
-{
-	char *absoluteFilename = NULL;
-	PathForFile(filename.c_str(), &absoluteFilename);
-	
-	ifstream::pos_type size;
-	char * memblock;
-	string result;
-	
-	ifstream file (string(absoluteFilename), ios::in|ios::binary|ios::ate);
-	if (file.is_open())
-	{
-		size = file.tellg();
-		memblock = new char [size];
-		file.seekg (0, ios::beg);
-		file.read (memblock, size);
-		file.close();
-		result = memblock;
-		delete[] memblock;
-	}
-	
-	return result;
-}
-
-string readRandomCurve()
-{
-	long curveId = limited_rand(1, 18);
-	char filename[12];
-	sprintf(filename, "w256-%03ld.gp", curveId);
-	
-	return readFile(filename);
-}
-
 void usage(const char *argv0)
 {
 	cout << "Usage: " << argv0 << " client | server" << endl;
