@@ -86,7 +86,7 @@ void client()
 	CurveRef curve = CurveCreateFromData(curveData.c_str());
 	mpz_t b;
 	secure_rand(b, curve->n);
-	
+    
 	socket.disconnect();
 }
 
@@ -121,6 +121,43 @@ void server()
 	mpz_t a;
 	gmp_printf("%Zd\n", curve->n);
 	secure_rand(a, curve->n);
+    
+    char *bgxBuffer = NULL;
+    char *bgyBuffer = NULL;
+    string bgxString, bgyString;
+    PointRef q = PointCreateMultiple(curve->g, a, curve);
+    
+    gmp_asprintf(&bgxBuffer, "%Zd", q->x);
+    gmp_asprintf(&bgyBuffer, "%Zd", q->y);
+    
+    bgxString = string(bgxBuffer);
+    bgyString = string(bgyBuffer);
+    
+    pkt.clear();
+    pkt << bgxString;
+    pkt << bgyString;
+    
+    free(bgxBuffer);
+    free(bgyBuffer);
+    
+    socket.send(pkt);
+    pkt.clear();
+    
+    string peerXString, peerYString;
+    socket.receive(pkt);
+    
+    pkt >> peerXString;
+    pkt >> peerYString;
+    
+    mpz_t peerX, peerY;
+    mpz_inits(peerX, peerY, NULL);
+    
+    gmp_scanf(peerXString.c_str(), "%Zd", peerX);
+    gmp_scanf(peerYString.c_str(), "%Zd", peerY);
+    
+    mpz_clears(peerX, peerY, NULL);
+    
+    socket.disconnect();
 }
 
 void usage(const char *argv0)
