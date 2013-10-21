@@ -18,20 +18,6 @@ using namespace std;
 
 #define DH_PORT 4445
 
-void secure_rand(mpz_t random, mpz_t max)
-{
-	// Is that a valid PRNG
-	mpz_init(random);
-	gmp_randstate_t rstate;
-	gmp_randinit_default(rstate);
-	gmp_randseed_ui(rstate, rand());
-	mpz_urandomm(random, rstate, max);
-}
-
-long limited_rand(long min, long max)
-{
-	return min + rand() % (max - min + 1);
-}
 
 string readFile(string filename)
 {
