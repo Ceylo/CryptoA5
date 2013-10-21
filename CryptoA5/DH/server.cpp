@@ -106,7 +106,7 @@ void server()
     
     PointRef secret = PointCreateMultiple(remoteKey, a, curve);
     
-    cout << "Shared secret : " << PointCreateDescription(secret);
+    cout << "Shared secret : " << PointCreateDescription(secret) << endl;
     
     mpz_clear(a);
     
