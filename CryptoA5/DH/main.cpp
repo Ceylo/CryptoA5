@@ -12,6 +12,8 @@
 
 #include "ec_operations.h"
 #include "path.h"
+#include "client.h"
+#include "server.h"
 
 using namespace sf;
 using namespace std;
