@@ -60,6 +60,10 @@
 		87B948E6180AFCC8006259B5 /* EC_test_multiple.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87B948E5180AFCC8006259B5 /* EC_test_multiple.1 */; };
 		F43909F21806AC28006458A3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F43909F11806AC28006458A3 /* main.c */; };
 		F43909F41806AC28006458A3 /* EC_test_invert.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F43909F31806AC28006458A3 /* EC_test_invert.1 */; };
+		F44226441815BE8A004E0462 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44226431815BE8A004E0462 /* main.cpp */; };
+		F44226461815BE8A004E0462 /* ElGamal.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F44226451815BE8A004E0462 /* ElGamal.1 */; };
+		F442264C1815BF3B004E0462 /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F442264B1815BF3B004E0462 /* server.cpp */; };
+		F442264E1815C089004E0462 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F442264D1815C089004E0462 /* client.cpp */; };
 		F49624A81806B220008A5C34 /* ec_operation_invert.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D217FEC790005D03C4 /* ec_operation_invert.c */; };
 		F49624A91806B220008A5C34 /* ec_operations.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D417FEC790005D03C4 /* ec_operations.c */; };
 		F4CF40B618069E6D001823C1 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F4CF40B518069E6D001823C1 /* main.c */; };
@@ -153,6 +157,16 @@
 			dstSubfolderSpec = 0;
 			files = (
 				F43909F41806AC28006458A3 /* EC_test_invert.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		F442263F1815BE8A004E0462 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				F44226461815BE8A004E0462 /* ElGamal.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -401,6 +415,13 @@
 		F43909EF1806AC28006458A3 /* EC_test_invert */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EC_test_invert; sourceTree = BUILT_PRODUCTS_DIR; };
 		F43909F11806AC28006458A3 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		F43909F31806AC28006458A3 /* EC_test_invert.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = EC_test_invert.1; sourceTree = "<group>"; };
+		F44226411815BE8A004E0462 /* ElGamal */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ElGamal; sourceTree = BUILT_PRODUCTS_DIR; };
+		F44226431815BE8A004E0462 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		F44226451815BE8A004E0462 /* ElGamal.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ElGamal.1; sourceTree = "<group>"; };
+		F442264A1815BF17004E0462 /* server.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = server.h; sourceTree = "<group>"; };
+		F442264B1815BF3B004E0462 /* server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = server.cpp; sourceTree = "<group>"; };
+		F442264D1815C089004E0462 /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
+		F442264F1815C099004E0462 /* client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
 		F4CF40A318069E26001823C1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F4CF40B318069E6D001823C1 /* EC_test_addition */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EC_test_addition; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4CF40B518069E6D001823C1 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
@@ -446,6 +467,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F43909EC1806AC28006458A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F442263E1815BE8A004E0462 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -514,6 +542,7 @@
 				87B948E2180AFCC8006259B5 /* EC_test_multiple */,
 				F4DCC55D180C488C002915DB /* EC_test_readFile */,
 				876356781810862900AEAF8A /* DH */,
+				F44226421815BE8A004E0462 /* ElGamal */,
 				F4CF40A218069E26001823C1 /* Frameworks */,
 				8768490817FEC0E4005D03C4 /* Products */,
 			);
@@ -530,6 +559,7 @@
 				F4DCC55C180C488C002915DB /* EC_test_readFile */,
 				876356771810862900AEAF8A /* DH */,
 				876356841810872300AEAF8A /* libEC.dylib */,
+				F44226411815BE8A004E0462 /* ElGamal */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -868,6 +898,19 @@
 			path = EC_test_invert;
 			sourceTree = "<group>";
 		};
+		F44226421815BE8A004E0462 /* ElGamal */ = {
+			isa = PBXGroup;
+			children = (
+				F44226431815BE8A004E0462 /* main.cpp */,
+				F44226451815BE8A004E0462 /* ElGamal.1 */,
+				F442264A1815BF17004E0462 /* server.h */,
+				F442264B1815BF3B004E0462 /* server.cpp */,
+				F442264D1815C089004E0462 /* client.cpp */,
+				F442264F1815C099004E0462 /* client.h */,
+			);
+			path = ElGamal;
+			sourceTree = "<group>";
+		};
 		F4CF40A218069E26001823C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1005,6 +1048,23 @@
 			productReference = F43909EF1806AC28006458A3 /* EC_test_invert */;
 			productType = "com.apple.product-type.tool";
 		};
+		F44226401815BE8A004E0462 /* ElGamal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F44226491815BE8A004E0462 /* Build configuration list for PBXNativeTarget "ElGamal" */;
+			buildPhases = (
+				F442263D1815BE8A004E0462 /* Sources */,
+				F442263E1815BE8A004E0462 /* Frameworks */,
+				F442263F1815BE8A004E0462 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ElGamal;
+			productName = ElGamal;
+			productReference = F44226411815BE8A004E0462 /* ElGamal */;
+			productType = "com.apple.product-type.tool";
+		};
 		F4CF40B218069E6D001823C1 /* EC_test_addition */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F4CF40B918069E6D001823C1 /* Build configuration list for PBXNativeTarget "EC_test_addition" */;
@@ -1086,6 +1146,7 @@
 				87B948E0180AFCC8006259B5 /* EC_test_multiple */,
 				F4DCC55B180C488C002915DB /* EC_test_readFile */,
 				876356761810862900AEAF8A /* DH */,
+				F44226401815BE8A004E0462 /* ElGamal */,
 			);
 		};
 /* End PBXProject section */
@@ -1145,6 +1206,16 @@
 				F43909F21806AC28006458A3 /* main.c in Sources */,
 				F49624A81806B220008A5C34 /* ec_operation_invert.c in Sources */,
 				F49624A91806B220008A5C34 /* ec_operations.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F442263D1815BE8A004E0462 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F442264C1815BF3B004E0462 /* server.cpp in Sources */,
+				F44226441815BE8A004E0462 /* main.cpp in Sources */,
+				F442264E1815C089004E0462 /* client.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1400,6 +1471,24 @@
 			};
 			name = Release;
 		};
+		F44226471815BE8A004E0462 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F44226481815BE8A004E0462 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		F4CF40BA18069E6D001823C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1510,6 +1599,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		F44226491815BE8A004E0462 /* Build configuration list for PBXNativeTarget "ElGamal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F44226471815BE8A004E0462 /* Debug */,
+				F44226481815BE8A004E0462 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		F4CF40B918069E6D001823C1 /* Build configuration list for PBXNativeTarget "EC_test_addition" */ = {
 			isa = XCConfigurationList;
