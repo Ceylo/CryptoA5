@@ -80,6 +80,33 @@ PointRef server_receive_key(TcpSocket& stream)
 	return peerKey;
 }
 
+string client_decrypt_packet(Packet& pkt, mpz_t secret, CurveRef curve);
+{
+    string peerC1xString, peerC1yString, peerC2String;
+    pkt >> peerC1xString;
+    pkt >> peerC1yString;
+    pkt >> peerC2String;
+    
+    mpz_t peerC2;
+    mpz_t peerC1x, peerC1y;
+    
+    mpz_inits(peerC2, peerC1x, peerC1y, NULL);
+    gmp_sscanf(peerC1xString.c_str(), "%Zd", &peerC1x);
+    gmp_sscanf(peerC1yString.c_str(), "%Zd", &peerC1y);
+	gmp_sscanf(peerC2String.c_str(), "%Zd", &peerC2);
+    
+    PointRef peerC1 = PointCreateFromGMP(peerC1x, peerC1y);
+    mpz_clears(peerC1x, peerC1y, NULL);
+    
+    PointRef intermediaire = PointCreateMultiple(peerC1, secret, curve);
+    
+    mpz_t result;
+    mpz_init(result);
+    
+    mpz_sub(result, peerC2, intermediaire->x); //message
+    
+}
+
 void server()
 {
 	sf::TcpListener listener;
