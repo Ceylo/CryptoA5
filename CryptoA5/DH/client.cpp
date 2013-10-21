@@ -51,7 +51,7 @@ void client_send_key(TcpSocket& stream, PointRef p)
 	pkt << bgyString;
 	
 	stream.send(pkt);
-	cout << "Sent (" << bgxString << ", " << bgyString << ")" << endl;
+//	cout << "Sent (" << bgxString << ", " << bgyString << ")" << endl;
 }
 
 PointRef client_receive_key(TcpSocket& stream)
@@ -73,7 +73,7 @@ PointRef client_receive_key(TcpSocket& stream)
 	PointRef peerKey = PointCreateFromGMP(peerX, peerY);
 	mpz_clears(peerX, peerY, NULL);
 	
-	cout << "Received remote key: " << PointCreateDescription(peerKey) << endl;
+//	cout << "Received remote key: " << PointCreateDescription(peerKey) << endl;
 	
 	return peerKey;
 }
@@ -96,17 +96,17 @@ void client()
 	PointRef remoteKey = client_receive_key(socket);
 	PointRef sharedSecret = PointCreateMultiple(remoteKey, secret, curve);
 	
-	
+	cout << "Secret: " << PointCreateDescription(sharedSecret) << endl;
 	
 	socket.disconnect();
 }
 
-Packet client_encrypt_message(const string& message, PointRef sharedSecretKey, CurveRef curve)
-{
-	
-}
-
-string client_decrypt_packet(Packet& pkt)
-{
-	
-}
+//Packet client_encrypt_message(const string& message, PointRef sharedSecretKey, CurveRef curve)
+//{
+//	
+//}
+//
+//string client_decrypt_packet(Packet& pkt)
+//{
+//	
+//}
