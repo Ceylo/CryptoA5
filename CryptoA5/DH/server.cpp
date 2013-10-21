@@ -20,11 +20,10 @@ string server_send_random_curve(TcpSocket& stream)
 
 PointRef server_create_key(TcpSocket& stream, CurveRef curve, mpz_t& outA)
 {
-    mpz_t a;
 	gmp_printf("%Zd\n", curve->n);
-	secure_rand(a, curve->n);
+	secure_rand(outA, curve->n);
     
-    return PointCreateMultiple(curve->g, a, curve);
+    return PointCreateMultiple(curve->g, outA, curve);
 }
 
 void server_send_key(TcpSocket& stream, PointRef p)
