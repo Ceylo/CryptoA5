@@ -61,43 +61,12 @@ void encrypt_message(TcpSocket& stream, const string& msg, PointRef pubKey, Curv
 	PointRef p = curve->g;
 	PointRef kp = PointCreateMultiple(p, k, curve);
 	
-	// Send c1
-	char *kpxBuffer = NULL;
-	char *kpyBuffer = NULL;
-	string kpxString, kpyString;
-	Packet pkt;
-	
-	gmp_asprintf(&kpxBuffer, "%Zd", kp->x);
-	gmp_asprintf(&kpyBuffer, "%Zd", kp->y);
-	
-	kpxString = string(kpxBuffer);
-	kpyString = string(kpyBuffer);
-	free(kpxBuffer), kpxBuffer = NULL;
-	free(kpyBuffer), kpyBuffer = NULL;
-	
-	pkt << kpxString;
-	pkt << kpyString;
-	
-	PointRef kpub = PointCreateMultiple(pubKey, k, curve);
-	
-	for (size_t i = 0;i < msg.size();i++)
-	{
-		mpz_t a;
-		mpz_init(a);
-		mpz_add_ui(a, kpub->x, msg[i]);
-		mpz_mod(a, a, curve->mod);
-		
-		char *buffer = NULL;
-		gmp_asprintf(&buffer, "%Zd", a);
-		
-		cout << string(buffer) << " ";
-		pkt << string(buffer);
-		
-		free(buffer);
-		mpz_clear(a);
-	}
-	
-	cout << endl;
+	mpz_t u;
+    mpz_init(u);
+    mpz_mod(u, kp->x, curve->n);
+    
+    
+    
 	
 	stream.send(pkt);
 }

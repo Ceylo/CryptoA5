@@ -16,6 +16,8 @@ PointRef create_key(TcpSocket& stream, CurveRef curve, mpz_t& outA)
 	gmp_printf("%Zd\n", curve->n);
 	secure_rand(outA, curve->n);
     
+    
+    
     return PointCreateMultiple(curve->g, outA, curve);
 }
 
