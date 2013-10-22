@@ -71,6 +71,10 @@
 		87C509871816752600A2EC07 /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C5097F1816752600A2EC07 /* server.cpp */; };
 		87C509881816752600A2EC07 /* transmission.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C509811816752600A2EC07 /* transmission.cpp */; };
 		87C509891816752600A2EC07 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C509831816752600A2EC07 /* util.cpp */; };
+		87C5098A1816783700A2EC07 /* libEC.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 876356841810872300AEAF8A /* libEC.dylib */; };
+		87C5098C1816784D00A2EC07 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C5098B1816784D00A2EC07 /* libcrypto.dylib */; };
+		87C5098D1816786000A2EC07 /* sfml-network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569318108B8400AEAF8A /* sfml-network.framework */; };
+		87C5098E1816786000A2EC07 /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569418108B8400AEAF8A /* sfml-system.framework */; };
 		F43909F21806AC28006458A3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F43909F11806AC28006458A3 /* main.c */; };
 		F43909F41806AC28006458A3 /* EC_test_invert.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F43909F31806AC28006458A3 /* EC_test_invert.1 */; };
 		F44226441815BE8A004E0462 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44226431815BE8A004E0462 /* main.cpp */; };
@@ -461,6 +465,7 @@
 		87C509821816752600A2EC07 /* transmission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transmission.h; sourceTree = "<group>"; };
 		87C509831816752600A2EC07 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
 		87C509841816752600A2EC07 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		87C5098B1816784D00A2EC07 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		F43909EF1806AC28006458A3 /* EC_test_invert */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EC_test_invert; sourceTree = BUILT_PRODUCTS_DIR; };
 		F43909F11806AC28006458A3 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		F43909F31806AC28006458A3 /* EC_test_invert.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = EC_test_invert.1; sourceTree = "<group>"; };
@@ -519,6 +524,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87C5098D1816786000A2EC07 /* sfml-network.framework in Frameworks */,
+				87C5098E1816786000A2EC07 /* sfml-system.framework in Frameworks */,
+				87C5098C1816784D00A2EC07 /* libcrypto.dylib in Frameworks */,
+				87C5098A1816783700A2EC07 /* libEC.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,6 +1009,7 @@
 		F4CF40A218069E26001823C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87C5098B1816784D00A2EC07 /* libcrypto.dylib */,
 				F4CF40A318069E26001823C1 /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -1582,11 +1592,14 @@
 		87C50979181674FB00A2EC07 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1594,7 +1607,10 @@
 		87C5097A181674FB00A2EC07 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
