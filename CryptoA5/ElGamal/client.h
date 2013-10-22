@@ -9,6 +9,6 @@
 #ifndef CryptoA5_client_h
 #define CryptoA5_client_h
 
-
+void client();
 
 #endif

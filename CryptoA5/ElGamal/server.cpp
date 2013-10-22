@@ -8,6 +8,8 @@
 
 #include "server.h"
 #include "util.h"
+#include "cipher.h"
+#include "transmission.h"
 #include <string>
 #include <iostream>
 
@@ -26,107 +28,12 @@ string server_send_random_curve(TcpSocket& stream)
     return curveData;
 }
 
-PointRef server_create_key(TcpSocket& stream, CurveRef curve, mpz_t& outA)
-{
-	gmp_printf("%Zd\n", curve->n);
-	secure_rand(outA, curve->n);
-    
-    return PointCreateMultiple(curve->g, outA, curve);
-}
-
-void server_send_key(TcpSocket& stream, PointRef p)
-{
-	char *bgxBuffer = NULL;
-	char *bgyBuffer = NULL;
-	string bgxString, bgyString;
-	Packet pkt;
-	
-	gmp_asprintf(&bgxBuffer, "%Zd", p->x);
-	gmp_asprintf(&bgyBuffer, "%Zd", p->y);
-	
-	bgxString = string(bgxBuffer);
-	bgyString = string(bgyBuffer);
-	free(bgxBuffer), bgxBuffer = NULL;
-	free(bgyBuffer), bgyBuffer = NULL;
-	
-	pkt << bgxString;
-	pkt << bgyString;
-	
-	stream.send(pkt);
-	cout << "Sent (" << bgxString << ", " << bgyString << ")" << endl;
-}
-
-PointRef server_receive_key(TcpSocket& stream)
-{
-  	Packet pkt;
-	stream.receive(pkt);
-	
-	string peerXString, peerYString;
-	pkt >> peerXString;
-	pkt >> peerYString;
-	
-	mpz_t peerX;
-	mpz_t peerY;
-	
-	mpz_inits(peerX, peerY, NULL);
-	gmp_sscanf(peerXString.c_str(), "%Zd", &peerX);
-	gmp_sscanf(peerYString.c_str(), "%Zd", &peerY);
-	
-	PointRef peerKey = PointCreateFromGMP(peerX, peerY);
-	mpz_clears(peerX, peerY, NULL);
-	
-	cout << "Received remote key: " << PointCreateDescription(peerKey) << endl;
-	
-	return peerKey;
-}
-
-string server_decrypt_packet(Packet& pkt, mpz_t secret, CurveRef curve)
-{
-	// Extract c1 and c2
-    string peerC1xString, peerC1yString, peerC2String;
-    pkt >> peerC1xString;
-    pkt >> peerC1yString;
-    
-    mpz_t peerC1x, peerC1y;
-    
-    mpz_inits(peerC1x, peerC1y, NULL);
-    gmp_sscanf(peerC1xString.c_str(), "%Zd", &peerC1x);
-    gmp_sscanf(peerC1yString.c_str(), "%Zd", &peerC1y);
-    
-    PointRef peerC1 = PointCreateFromGMP(peerC1x, peerC1y);
-    mpz_clears(peerC1x, peerC1y, NULL);
-    
-	// a.c1
-    PointRef intermediaire = PointCreateMultiple(peerC1, secret, curve);
-	string result;
-    
-	while (pkt >> peerC2String)
-	{
-		mpz_t peerC2;
-		mpz_init(peerC2);
-		gmp_sscanf(peerC2String.c_str(), "%Zd", &peerC2);
-		
-		char s[2] = {'\0', '\0'};
-		mpz_t mpzChar;
-		mpz_init(mpzChar);
-		
-		// m = c2 - (a.c1)x
-		mpz_sub(mpzChar, peerC2, intermediaire->x); //message
-		s[0] = (char)mpz_get_ui(mpzChar);
-		
-		result.append(string(s));
-		mpz_clear(mpzChar);
-	}
-	
-	return result;
-}
-
 void server()
 {
 	sf::TcpListener listener;
 	
 	// bind the listener to a port
-	if (listener.listen(DH_PORT) != sf::Socket::Done)
+	if (listener.listen(EG_PORT) != sf::Socket::Done)
 	{
 		perror("error when listening");
 		return;
@@ -146,10 +53,14 @@ void server()
 	CurveRef curve = CurveCreateFromData(curveData.c_str());
 	mpz_t a;
     
-    PointRef q = server_create_key(socket, curve, a);
+    PointRef q = create_key(socket, curve, a);
     
-    server_send_key(socket, q);
+    send_key(socket, q);
+	
+	string msg = decrypt_message(socket, a, curve);
     
+	cout << "Received: " << msg << endl;
+	
     mpz_clear(a);
     
     socket.disconnect();

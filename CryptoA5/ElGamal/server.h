@@ -21,6 +21,6 @@ PointRef server_receive_key(TcpSocket& stream);
 
 /** Return the message decrypted from the given packet
  */
-string client_decrypt_packet(Packet& pkt, mpz_t secret, CurveRef curve);
+string client_decrypt_packet(Packet& pkt, mpz_t secret, PointRef pubKey, CurveRef curve);
 
 void server();

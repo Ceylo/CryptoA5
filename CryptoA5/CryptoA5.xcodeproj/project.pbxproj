@@ -58,6 +58,12 @@
 		8764582318155B840047B530 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8764581F18155B840047B530 /* util.cpp */; };
 		87B948E4180AFCC8006259B5 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 87B948E3180AFCC8006259B5 /* main.c */; };
 		87B948E6180AFCC8006259B5 /* EC_test_multiple.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87B948E5180AFCC8006259B5 /* EC_test_multiple.1 */; };
+		87C509621816697400A2EC07 /* cipher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C509601816697400A2EC07 /* cipher.cpp */; };
+		87C5096518166B1D00A2EC07 /* transmission.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C5096318166B1D00A2EC07 /* transmission.cpp */; };
+		87C5096618166DAA00A2EC07 /* libEC.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 876356841810872300AEAF8A /* libEC.dylib */; };
+		87C5096718166E0700A2EC07 /* sfml-network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569318108B8400AEAF8A /* sfml-network.framework */; };
+		87C5096818166E0700A2EC07 /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569418108B8400AEAF8A /* sfml-system.framework */; };
+		87C5096D18166E8400A2EC07 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C5096B18166E8400A2EC07 /* util.cpp */; };
 		F43909F21806AC28006458A3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F43909F11806AC28006458A3 /* main.c */; };
 		F43909F41806AC28006458A3 /* EC_test_invert.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F43909F31806AC28006458A3 /* EC_test_invert.1 */; };
 		F44226441815BE8A004E0462 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44226431815BE8A004E0462 /* main.cpp */; };
@@ -84,6 +90,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		872850161813D1C600006F3A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 876848FF17FEC0E4005D03C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 876356831810872300AEAF8A;
+			remoteInfo = EC;
+		};
+		87C5096918166E2600A2EC07 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 876848FF17FEC0E4005D03C4 /* Project object */;
 			proxyType = 1;
@@ -412,6 +425,12 @@
 		87B948E1180AFCC8006259B5 /* EC_test_multiple */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EC_test_multiple; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B948E3180AFCC8006259B5 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		87B948E5180AFCC8006259B5 /* EC_test_multiple.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = EC_test_multiple.1; sourceTree = "<group>"; };
+		87C509601816697400A2EC07 /* cipher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cipher.cpp; sourceTree = "<group>"; };
+		87C509611816697400A2EC07 /* cipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cipher.h; sourceTree = "<group>"; };
+		87C5096318166B1D00A2EC07 /* transmission.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = transmission.cpp; sourceTree = "<group>"; };
+		87C5096418166B1D00A2EC07 /* transmission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transmission.h; sourceTree = "<group>"; };
+		87C5096B18166E8400A2EC07 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
+		87C5096C18166E8400A2EC07 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		F43909EF1806AC28006458A3 /* EC_test_invert */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EC_test_invert; sourceTree = BUILT_PRODUCTS_DIR; };
 		F43909F11806AC28006458A3 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		F43909F31806AC28006458A3 /* EC_test_invert.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = EC_test_invert.1; sourceTree = "<group>"; };
@@ -477,6 +496,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87C5096718166E0700A2EC07 /* sfml-network.framework in Frameworks */,
+				87C5096818166E0700A2EC07 /* sfml-system.framework in Frameworks */,
+				87C5096618166DAA00A2EC07 /* libEC.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,11 +539,11 @@
 			isa = PBXGroup;
 			children = (
 				8764581B18155B840047B530 /* client.cpp */,
+				8764581F18155B840047B530 /* util.cpp */,
+				8764582018155B840047B530 /* util.h */,
 				8764581C18155B840047B530 /* client.h */,
 				8764581D18155B840047B530 /* server.cpp */,
 				8764581E18155B840047B530 /* server.h */,
-				8764581F18155B840047B530 /* util.cpp */,
-				8764582018155B840047B530 /* util.h */,
 				8763569318108B8400AEAF8A /* sfml-network.framework */,
 				8763569418108B8400AEAF8A /* sfml-system.framework */,
 				876356791810862900AEAF8A /* main.cpp */,
@@ -901,12 +923,18 @@
 		F44226421815BE8A004E0462 /* ElGamal */ = {
 			isa = PBXGroup;
 			children = (
+				87C5096B18166E8400A2EC07 /* util.cpp */,
+				87C5096C18166E8400A2EC07 /* util.h */,
 				F44226431815BE8A004E0462 /* main.cpp */,
 				F44226451815BE8A004E0462 /* ElGamal.1 */,
 				F442264A1815BF17004E0462 /* server.h */,
 				F442264B1815BF3B004E0462 /* server.cpp */,
 				F442264D1815C089004E0462 /* client.cpp */,
 				F442264F1815C099004E0462 /* client.h */,
+				87C509601816697400A2EC07 /* cipher.cpp */,
+				87C509611816697400A2EC07 /* cipher.h */,
+				87C5096318166B1D00A2EC07 /* transmission.cpp */,
+				87C5096418166B1D00A2EC07 /* transmission.h */,
 			);
 			path = ElGamal;
 			sourceTree = "<group>";
@@ -1059,6 +1087,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				87C5096A18166E2600A2EC07 /* PBXTargetDependency */,
 			);
 			name = ElGamal;
 			productName = ElGamal;
@@ -1214,8 +1243,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F442264C1815BF3B004E0462 /* server.cpp in Sources */,
+				87C5096518166B1D00A2EC07 /* transmission.cpp in Sources */,
 				F44226441815BE8A004E0462 /* main.cpp in Sources */,
+				87C509621816697400A2EC07 /* cipher.cpp in Sources */,
 				F442264E1815C089004E0462 /* client.cpp in Sources */,
+				87C5096D18166E8400A2EC07 /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1263,6 +1295,11 @@
 			isa = PBXTargetDependency;
 			target = 876356831810872300AEAF8A /* EC */;
 			targetProxy = 872850161813D1C600006F3A /* PBXContainerItemProxy */;
+		};
+		87C5096A18166E2600A2EC07 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 876356831810872300AEAF8A /* EC */;
+			targetProxy = 87C5096918166E2600A2EC07 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1615,6 +1652,7 @@
 				F44226481815BE8A004E0462 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4CF40B918069E6D001823C1 /* Build configuration list for PBXNativeTarget "EC_test_addition" */ = {
 			isa = XCConfigurationList;

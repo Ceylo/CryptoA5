@@ -10,9 +10,12 @@
 #include <stdlib.h>
 #include "path.h"
 #include <fstream>
+#include <assert.h>
 
 void secure_rand(mpz_t random, mpz_t max)
 {
+	assert(mpz_cmp_si(max, 0) != 0);
+	
 	// Is that a valid PRNG
 	mpz_init(random);
 	gmp_randstate_t rstate;
