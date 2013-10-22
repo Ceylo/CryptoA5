@@ -29,3 +29,5 @@ string readFile(string filename);
 /** Read some curve file and return its content
  */
 string readRandomCurve();
+
+string sha256(const string& str);
