@@ -30,4 +30,6 @@ string readFile(string filename);
  */
 string readRandomCurve();
 
-string sha256(const string& str);
+/** Return a GMP hash of str
+ */
+void sha256(mpz_t h, const string& str);
