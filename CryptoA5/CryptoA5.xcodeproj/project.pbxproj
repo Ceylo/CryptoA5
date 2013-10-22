@@ -64,6 +64,13 @@
 		87C5096718166E0700A2EC07 /* sfml-network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569318108B8400AEAF8A /* sfml-network.framework */; };
 		87C5096818166E0700A2EC07 /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569418108B8400AEAF8A /* sfml-system.framework */; };
 		87C5096D18166E8400A2EC07 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C5096B18166E8400A2EC07 /* util.cpp */; };
+		87C50975181674FA00A2EC07 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C50974181674FA00A2EC07 /* main.cpp */; };
+		87C50977181674FA00A2EC07 /* ECDSA.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87C50976181674FA00A2EC07 /* ECDSA.1 */; };
+		87C509851816752600A2EC07 /* cipher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C5097B1816752600A2EC07 /* cipher.cpp */; };
+		87C509861816752600A2EC07 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C5097D1816752600A2EC07 /* client.cpp */; };
+		87C509871816752600A2EC07 /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C5097F1816752600A2EC07 /* server.cpp */; };
+		87C509881816752600A2EC07 /* transmission.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C509811816752600A2EC07 /* transmission.cpp */; };
+		87C509891816752600A2EC07 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C509831816752600A2EC07 /* util.cpp */; };
 		F43909F21806AC28006458A3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F43909F11806AC28006458A3 /* main.c */; };
 		F43909F41806AC28006458A3 /* EC_test_invert.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F43909F31806AC28006458A3 /* EC_test_invert.1 */; };
 		F44226441815BE8A004E0462 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44226431815BE8A004E0462 /* main.cpp */; };
@@ -160,6 +167,16 @@
 			dstSubfolderSpec = 0;
 			files = (
 				87B948E6180AFCC8006259B5 /* EC_test_multiple.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		87C50970181674FA00A2EC07 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				87C50977181674FA00A2EC07 /* ECDSA.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -431,6 +448,19 @@
 		87C5096418166B1D00A2EC07 /* transmission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transmission.h; sourceTree = "<group>"; };
 		87C5096B18166E8400A2EC07 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
 		87C5096C18166E8400A2EC07 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		87C50972181674FA00A2EC07 /* ECDSA */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ECDSA; sourceTree = BUILT_PRODUCTS_DIR; };
+		87C50974181674FA00A2EC07 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		87C50976181674FA00A2EC07 /* ECDSA.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ECDSA.1; sourceTree = "<group>"; };
+		87C5097B1816752600A2EC07 /* cipher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cipher.cpp; sourceTree = "<group>"; };
+		87C5097C1816752600A2EC07 /* cipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cipher.h; sourceTree = "<group>"; };
+		87C5097D1816752600A2EC07 /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
+		87C5097E1816752600A2EC07 /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
+		87C5097F1816752600A2EC07 /* server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = server.cpp; sourceTree = "<group>"; };
+		87C509801816752600A2EC07 /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = server.h; sourceTree = "<group>"; };
+		87C509811816752600A2EC07 /* transmission.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = transmission.cpp; sourceTree = "<group>"; };
+		87C509821816752600A2EC07 /* transmission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transmission.h; sourceTree = "<group>"; };
+		87C509831816752600A2EC07 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
+		87C509841816752600A2EC07 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		F43909EF1806AC28006458A3 /* EC_test_invert */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EC_test_invert; sourceTree = BUILT_PRODUCTS_DIR; };
 		F43909F11806AC28006458A3 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		F43909F31806AC28006458A3 /* EC_test_invert.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = EC_test_invert.1; sourceTree = "<group>"; };
@@ -479,6 +509,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		87B948DE180AFCC8006259B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87C5096F181674FA00A2EC07 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -565,6 +602,7 @@
 				F4DCC55D180C488C002915DB /* EC_test_readFile */,
 				876356781810862900AEAF8A /* DH */,
 				F44226421815BE8A004E0462 /* ElGamal */,
+				87C50973181674FA00A2EC07 /* ECDSA */,
 				F4CF40A218069E26001823C1 /* Frameworks */,
 				8768490817FEC0E4005D03C4 /* Products */,
 			);
@@ -582,6 +620,7 @@
 				876356771810862900AEAF8A /* DH */,
 				876356841810872300AEAF8A /* libEC.dylib */,
 				F44226411815BE8A004E0462 /* ElGamal */,
+				87C50972181674FA00A2EC07 /* ECDSA */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -911,6 +950,25 @@
 			path = EC_test_multiple;
 			sourceTree = "<group>";
 		};
+		87C50973181674FA00A2EC07 /* ECDSA */ = {
+			isa = PBXGroup;
+			children = (
+				87C50974181674FA00A2EC07 /* main.cpp */,
+				87C50976181674FA00A2EC07 /* ECDSA.1 */,
+				87C5097B1816752600A2EC07 /* cipher.cpp */,
+				87C5097C1816752600A2EC07 /* cipher.h */,
+				87C5097D1816752600A2EC07 /* client.cpp */,
+				87C5097E1816752600A2EC07 /* client.h */,
+				87C5097F1816752600A2EC07 /* server.cpp */,
+				87C509801816752600A2EC07 /* server.h */,
+				87C509811816752600A2EC07 /* transmission.cpp */,
+				87C509821816752600A2EC07 /* transmission.h */,
+				87C509831816752600A2EC07 /* util.cpp */,
+				87C509841816752600A2EC07 /* util.h */,
+			);
+			path = ECDSA;
+			sourceTree = "<group>";
+		};
 		F43909F01806AC28006458A3 /* EC_test_invert */ = {
 			isa = PBXGroup;
 			children = (
@@ -1059,6 +1117,23 @@
 			productReference = 87B948E1180AFCC8006259B5 /* EC_test_multiple */;
 			productType = "com.apple.product-type.tool";
 		};
+		87C50971181674FA00A2EC07 /* ECDSA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87C50978181674FB00A2EC07 /* Build configuration list for PBXNativeTarget "ECDSA" */;
+			buildPhases = (
+				87C5096E181674FA00A2EC07 /* Sources */,
+				87C5096F181674FA00A2EC07 /* Frameworks */,
+				87C50970181674FA00A2EC07 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ECDSA;
+			productName = ECDSA;
+			productReference = 87C50972181674FA00A2EC07 /* ECDSA */;
+			productType = "com.apple.product-type.tool";
+		};
 		F43909EE1806AC28006458A3 /* EC_test_invert */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F43909F71806AC28006458A3 /* Build configuration list for PBXNativeTarget "EC_test_invert" */;
@@ -1176,6 +1251,7 @@
 				F4DCC55B180C488C002915DB /* EC_test_readFile */,
 				876356761810862900AEAF8A /* DH */,
 				F44226401815BE8A004E0462 /* ElGamal */,
+				87C50971181674FA00A2EC07 /* ECDSA */,
 			);
 		};
 /* End PBXProject section */
@@ -1225,6 +1301,19 @@
 				87623F2B180C41D200B722E2 /* ec_operation_invert.c in Sources */,
 				872EECB7180B3CB900D5F9B4 /* ec_operations.c in Sources */,
 				87B948E4180AFCC8006259B5 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87C5096E181674FA00A2EC07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87C509851816752600A2EC07 /* cipher.cpp in Sources */,
+				87C509881816752600A2EC07 /* transmission.cpp in Sources */,
+				87C50975181674FA00A2EC07 /* main.cpp in Sources */,
+				87C509871816752600A2EC07 /* server.cpp in Sources */,
+				87C509861816752600A2EC07 /* client.cpp in Sources */,
+				87C509891816752600A2EC07 /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1490,6 +1579,26 @@
 			};
 			name = Release;
 		};
+		87C50979181674FB00A2EC07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		87C5097A181674FB00A2EC07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		F43909F51806AC28006458A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1635,6 +1744,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		87C50978181674FB00A2EC07 /* Build configuration list for PBXNativeTarget "ECDSA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87C50979181674FB00A2EC07 /* Debug */,
+				87C5097A181674FB00A2EC07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		F43909F71806AC28006458A3 /* Build configuration list for PBXNativeTarget "EC_test_invert" */ = {
 			isa = XCConfigurationList;
