@@ -304,3 +304,40 @@ bool PointCongruent(PointRef p, PointRef q, CurveRef curve)
 	return result;
 }
 
+//y^2 = x^3 + a4 x + a6
+bool PointVerificationOnCurve(PointRef p, CurveRef curve)
+{
+    mpz_t intermediaire, intermediaire2;
+    mpz_inits(intermediaire, intermediaire2, NULL);
+    
+    //a4 * x
+    mpz_mul(intermediaire, curve->a[4], p->x);
+    mpz_mod(intermediaire, intermediaire, curve->mod);
+    
+    //a4 * x + a6
+    mpz_add(intermediaire, intermediaire, curve->a[6]);
+    mpz_mod(intermediaire, intermediaire, curve->mod);
+
+    //x^3
+    mpz_pow_ui(intermediaire2, p->x, 3);
+    mpz_mod(intermediaire2, intermediaire2, curve->mod);
+    
+    //x^3 + a4 * x + a6
+    mpz_add(intermediaire, intermediaire, intermediaire2);
+    mpz_mod(intermediaire, intermediaire, curve->mod);
+    
+    //y^2
+    mpz_pow_ui(intermediaire2, p->y, 2);
+    mpz_mod(intermediaire2, intermediaire2, curve->mod);
+    
+    if(mpz_cmp(intermediaire, intermediaire2) == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
