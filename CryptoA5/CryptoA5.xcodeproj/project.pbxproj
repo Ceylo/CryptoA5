@@ -633,7 +633,7 @@
 			isa = PBXGroup;
 			children = (
 				8768491417FEC72D005D03C4 /* ARCANA_ECDB */,
-				8768490917FEC0E4005D03C4 /* CryptoA5 */,
+				8768490917FEC0E4005D03C4 /* EC */,
 				F4CF40B418069E6D001823C1 /* EC_test_addition */,
 				F4CF40C31806A54C001823C1 /* EC_test_doublement */,
 				F43909F01806AC28006458A3 /* EC_test_invert */,
@@ -667,7 +667,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8768490917FEC0E4005D03C4 /* CryptoA5 */ = {
+		8768490917FEC0E4005D03C4 /* EC */ = {
 			isa = PBXGroup;
 			children = (
 				876849D017FEC790005D03C4 /* ec_operation_add.c */,
@@ -680,6 +680,7 @@
 				875935EA18069D5200DF5770 /* path.c */,
 				875935EC18069D5F00DF5770 /* path.h */,
 			);
+			name = EC;
 			path = CryptoA5;
 			sourceTree = "<group>";
 		};
