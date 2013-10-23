@@ -85,6 +85,7 @@
 		F49624A91806B220008A5C34 /* ec_operations.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D417FEC790005D03C4 /* ec_operations.c */; };
 		F4CC61081817B46100037384 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F4CC61071817B46100037384 /* main.c */; };
 		F4CC610A1817B46100037384 /* EC_test_on_curve.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4CC61091817B46100037384 /* EC_test_on_curve.1 */; };
+		F4CC610E1817B6A000037384 /* libEC.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 876356841810872300AEAF8A /* libEC.dylib */; };
 		F4CF40B618069E6D001823C1 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F4CF40B518069E6D001823C1 /* main.c */; };
 		F4CF40B818069E6D001823C1 /* EC_test_addition.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4CF40B718069E6D001823C1 /* EC_test_addition.1 */; };
 		F4CF40BC1806A24B001823C1 /* ec_operations.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D417FEC790005D03C4 /* ec_operations.c */; };
@@ -110,6 +111,13 @@
 			remoteInfo = EC;
 		};
 		87C5096918166E2600A2EC07 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 876848FF17FEC0E4005D03C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 876356831810872300AEAF8A;
+			remoteInfo = EC;
+		};
+		F4CC610F1817B6AF00037384 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 876848FF17FEC0E4005D03C4 /* Project object */;
 			proxyType = 1;
@@ -567,6 +575,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4CC610E1817B6A000037384 /* libEC.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1224,6 +1233,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F4CC61101817B6AF00037384 /* PBXTargetDependency */,
 			);
 			name = EC_test_on_curve;
 			productName = EC_test_on_curve;
@@ -1459,6 +1469,11 @@
 			isa = PBXTargetDependency;
 			target = 876356831810872300AEAF8A /* EC */;
 			targetProxy = 87C5096918166E2600A2EC07 /* PBXContainerItemProxy */;
+		};
+		F4CC61101817B6AF00037384 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 876356831810872300AEAF8A /* EC */;
+			targetProxy = F4CC610F1817B6AF00037384 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

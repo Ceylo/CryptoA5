@@ -81,9 +81,7 @@ static void addPoints(PointRef p, PointRef q, CurveRef curve) {
     
 	assert(mpz_cmp_si(r->x, 4) == 0);
 	assert(mpz_cmp_si(r->y, 2) == 0);
-    
-    assert(PointIsOnCurve(r, curve));
-    
+        
     PointDestroy(r);
 }
 
