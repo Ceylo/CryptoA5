@@ -10,48 +10,15 @@
 #include "util.h"
 #include <iostream>
 
-string decrypt_message(TcpSocket& stream, mpz_t secret, CurveRef curve)
+bool verify_message(TcpSocket& stream, mpz_t secret, CurveRef curve)
 {
-	Packet pkt;
-	stream.receive(pkt);
+	bool verified = false;
 	
-	// Extract c1 and c2
-    string peerC1xString, peerC1yString, peerC2String;
-    pkt >> peerC1xString;
-    pkt >> peerC1yString;
-    
-    mpz_t peerC1x, peerC1y;
-    
-    mpz_inits(peerC1x, peerC1y, NULL);
-    gmp_sscanf(peerC1xString.c_str(), "%Zd", &peerC1x);
-    gmp_sscanf(peerC1yString.c_str(), "%Zd", &peerC1y);
-    
-    PointRef peerC1 = PointCreateFromGMP(peerC1x, peerC1y);
-    mpz_clears(peerC1x, peerC1y, NULL);
-    
-	// a.c1
-    PointRef intermediaire = PointCreateMultiple(peerC1, secret, curve);
-	string result;
-    
-	while (pkt >> peerC2String)
-	{
-		mpz_t peerC2;
-		mpz_init(peerC2);
-		gmp_sscanf(peerC2String.c_str(), "%Zd", &peerC2);
-		
-		char s[2] = {'\0', '\0'};
-		mpz_t mpzChar;
-		mpz_init(mpzChar);
-		
-		// m = c2 - (a.c1)x
-		mpz_sub(mpzChar, peerC2, intermediaire->x); //message
-		s[0] = (char)mpz_get_ui(mpzChar);
-		
-		result.append(string(s));
-		mpz_clear(mpzChar);
-	}
+	// message (string)
+	// u (mpz_t)
+	// v (mpz_t)
 	
-	return result;
+	return verified;
 }
 
 void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, PointRef pubKey, CurveRef curve)
