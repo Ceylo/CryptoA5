@@ -117,6 +117,55 @@
 			remoteGlobalIDString = 876356831810872300AEAF8A;
 			remoteInfo = EC;
 		};
+		87F4DA9B1817B7FE0008377C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 876848FF17FEC0E4005D03C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 876356831810872300AEAF8A;
+			remoteInfo = EC;
+		};
+		87F4DA9D1817B8050008377C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 876848FF17FEC0E4005D03C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 876356831810872300AEAF8A;
+			remoteInfo = EC;
+		};
+		87F4DA9F1817B8080008377C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 876848FF17FEC0E4005D03C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 876356831810872300AEAF8A;
+			remoteInfo = EC;
+		};
+		87F4DAA11817B80B0008377C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 876848FF17FEC0E4005D03C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 876356831810872300AEAF8A;
+			remoteInfo = EC;
+		};
+		87F4DAA31817B80E0008377C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 876848FF17FEC0E4005D03C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 876356831810872300AEAF8A;
+			remoteInfo = EC;
+		};
+		87F4DAA51817B8120008377C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 876848FF17FEC0E4005D03C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 876356831810872300AEAF8A;
+			remoteInfo = EC;
+		};
+		87F4DAA71817B8190008377C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 876848FF17FEC0E4005D03C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 876356831810872300AEAF8A;
+			remoteInfo = EC;
+		};
 		F4CC610F1817B6AF00037384 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 876848FF17FEC0E4005D03C4 /* Project object */;
@@ -1111,6 +1160,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				87F4DAA21817B80B0008377C /* PBXTargetDependency */,
 			);
 			name = EC_test_path;
 			productName = EC_test_path;
@@ -1164,6 +1214,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				87F4DAA41817B80E0008377C /* PBXTargetDependency */,
 			);
 			name = EC_test_multiple;
 			productName = EC_test_multiple;
@@ -1181,6 +1232,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				87F4DAA81817B8190008377C /* PBXTargetDependency */,
 			);
 			name = ECDSA;
 			productName = ECDSA;
@@ -1198,6 +1250,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				87F4DAA01817B8080008377C /* PBXTargetDependency */,
 			);
 			name = EC_test_invert;
 			productName = EC_test_invert;
@@ -1251,6 +1304,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				87F4DA9C1817B7FE0008377C /* PBXTargetDependency */,
 			);
 			name = EC_test_addition;
 			productName = EC_test_addition;
@@ -1268,6 +1322,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				87F4DA9E1817B8050008377C /* PBXTargetDependency */,
 			);
 			name = EC_test_doublement;
 			productName = EC_test_doublement;
@@ -1286,6 +1341,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				87F4DAA61817B8120008377C /* PBXTargetDependency */,
 			);
 			name = EC_test_readFile;
 			productName = EC_test_readFile;
@@ -1320,10 +1376,10 @@
 				8751F8D01806A852001AC72F /* EC_test_path */,
 				87B948E0180AFCC8006259B5 /* EC_test_multiple */,
 				F4DCC55B180C488C002915DB /* EC_test_readFile */,
+				F4CC61041817B46100037384 /* EC_test_on_curve */,
 				876356761810862900AEAF8A /* DH */,
 				F44226401815BE8A004E0462 /* ElGamal */,
 				87C50971181674FA00A2EC07 /* ECDSA */,
-				F4CC61041817B46100037384 /* EC_test_on_curve */,
 			);
 		};
 /* End PBXProject section */
@@ -1469,6 +1525,41 @@
 			isa = PBXTargetDependency;
 			target = 876356831810872300AEAF8A /* EC */;
 			targetProxy = 87C5096918166E2600A2EC07 /* PBXContainerItemProxy */;
+		};
+		87F4DA9C1817B7FE0008377C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 876356831810872300AEAF8A /* EC */;
+			targetProxy = 87F4DA9B1817B7FE0008377C /* PBXContainerItemProxy */;
+		};
+		87F4DA9E1817B8050008377C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 876356831810872300AEAF8A /* EC */;
+			targetProxy = 87F4DA9D1817B8050008377C /* PBXContainerItemProxy */;
+		};
+		87F4DAA01817B8080008377C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 876356831810872300AEAF8A /* EC */;
+			targetProxy = 87F4DA9F1817B8080008377C /* PBXContainerItemProxy */;
+		};
+		87F4DAA21817B80B0008377C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 876356831810872300AEAF8A /* EC */;
+			targetProxy = 87F4DAA11817B80B0008377C /* PBXContainerItemProxy */;
+		};
+		87F4DAA41817B80E0008377C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 876356831810872300AEAF8A /* EC */;
+			targetProxy = 87F4DAA31817B80E0008377C /* PBXContainerItemProxy */;
+		};
+		87F4DAA61817B8120008377C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 876356831810872300AEAF8A /* EC */;
+			targetProxy = 87F4DAA51817B8120008377C /* PBXContainerItemProxy */;
+		};
+		87F4DAA81817B8190008377C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 876356831810872300AEAF8A /* EC */;
+			targetProxy = 87F4DAA71817B8190008377C /* PBXContainerItemProxy */;
 		};
 		F4CC61101817B6AF00037384 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1888,6 +1979,7 @@
 				F4CC610C1817B46100037384 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4CF40B918069E6D001823C1 /* Build configuration list for PBXNativeTarget "EC_test_addition" */ = {
 			isa = XCConfigurationList;
