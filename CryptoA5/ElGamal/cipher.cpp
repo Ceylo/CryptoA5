@@ -22,9 +22,8 @@ string decrypt_message(TcpSocket& stream, mpz_t secret, CurveRef curve)
     
     mpz_t peerC1x, peerC1y;
     
-    mpz_inits(peerC1x, peerC1y, NULL);
-    gmp_sscanf(peerC1xString.c_str(), "%Zd", &peerC1x);
-    gmp_sscanf(peerC1yString.c_str(), "%Zd", &peerC1y);
+	mpz_init_set_str(peerC1x, peerC1xString.c_str());
+	mpz_init_set_str(peerC1y, peerC1yString.c_str());
     
     PointRef peerC1 = PointCreateFromGMP(peerC1x, peerC1y);
     mpz_clears(peerC1x, peerC1y, NULL);
@@ -36,8 +35,7 @@ string decrypt_message(TcpSocket& stream, mpz_t secret, CurveRef curve)
 	while (pkt >> peerC2String)
 	{
 		mpz_t peerC2;
-		mpz_init(peerC2);
-		gmp_sscanf(peerC2String.c_str(), "%Zd", &peerC2);
+		mpz_init_set_str(peerC2, peerC2String.c_str());
 		
 		char s[2] = {'\0', '\0'};
 		mpz_t mpzChar;
