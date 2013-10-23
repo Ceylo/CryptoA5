@@ -58,6 +58,7 @@ PointRef		PointCreateInvert(PointRef p, CurveRef curve);
 PointRef		PointCreateAdd(PointRef p, PointRef q, CurveRef curve);
 PointRef		PointCreateDouble(PointRef p, CurveRef curve);
 PointRef		PointCreateMultiple(PointRef p, mpz_t scalar, CurveRef curve);
+bool            PointVerificationOnCurve(PointRef p, CurveRef curve);
 
 #ifdef __cplusplus
 }
