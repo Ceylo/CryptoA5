@@ -61,6 +61,7 @@ bool verify_message(TcpSocket& stream, mpz_t secret, CurveRef curve, PointRef pu
 		mpz_mul(rmon, u, invV);
 		mpz_mod(rmon, rmon, curve->n);
 		p2 = PointCreateMultiple(q, rmon, curve);
+		
 		xy = PointCreateAdd(p1, p2, curve);
 		
 		PointDestroy(p1), p1 = NULL;
@@ -73,16 +74,18 @@ bool verify_message(TcpSocket& stream, mpz_t secret, CurveRef curve, PointRef pu
 			
 			if (PointEqual(nullPoint, q) == false)
 			{
-				// Missing: q on curve?
-				
-				PointRef m = PointCreateMultiple(q, curve->n, curve);
-				
-				if (PointEqual(m, nullPoint))
+				if (PointVerificationOnCurve(q, curve))
 				{
-					verified = true;
+					
+					PointRef m = PointCreateMultiple(q, curve->n, curve);
+					
+					if (PointEqual(m, nullPoint))
+					{
+						verified = true;
+					}
+					
+					PointDestroy(m), m = NULL;
 				}
-				
-				PointDestroy(m), m = NULL;
 			}
 			
 			PointDestroy(nullPoint), nullPoint = NULL;
