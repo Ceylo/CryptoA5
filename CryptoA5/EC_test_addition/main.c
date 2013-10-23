@@ -29,10 +29,11 @@ static void addResultTeta(PointRef p, PointRef q, CurveRef curve);
 
 int main(int argc, const char * argv[])
 {
-    mpz_t a[7], mod;
-    mpz_inits(a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
+    mpz_t a[7], mod, n;
+    mpz_inits(a[0], a[1], a[2], a[3], a[4], a[5], a[6], n, NULL);
     mpz_init_set_si(mod, 5);
     mpz_set_si(a[4], 1);
+    mpz_set_si(n, 5);
     
     PointRef g = PointCreateFromInt(0,1);
     PointRef p = PointCreateFromInt(2,4);
@@ -43,7 +44,7 @@ int main(int argc, const char * argv[])
     PointRef p2Inv = PointCreateFromInt(3,3);
 
     
-    CurveRef curve = CurveCreate(mod, a, g);
+    CurveRef curve = CurveCreate(mod, n, a, g);
     
     assert(curve != NULL);
 	assert(curve->a[4] != NULL);
@@ -80,6 +81,8 @@ static void addPoints(PointRef p, PointRef q, CurveRef curve) {
     
 	assert(mpz_cmp_si(r->x, 4) == 0);
 	assert(mpz_cmp_si(r->y, 2) == 0);
+    
+    assert(PointIsOnCurve(r, curve));
     
     PointDestroy(r);
 }

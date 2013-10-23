@@ -305,7 +305,7 @@ bool PointCongruent(PointRef p, PointRef q, CurveRef curve)
 }
 
 //y^2 = x^3 + a4 x + a6
-bool PointVerificationOnCurve(PointRef p, CurveRef curve)
+bool PointIsOnCurve(PointRef p, CurveRef curve)
 {
     mpz_t intermediaire, intermediaire2;
     mpz_inits(intermediaire, intermediaire2, NULL);
