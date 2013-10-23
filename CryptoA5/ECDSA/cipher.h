@@ -19,6 +19,6 @@ using namespace std;
 
 string decrypt_message(TcpSocket& stream, mpz_t secret, CurveRef curve);
 
-void encrypt_message(TcpSocket& stream, const string& msg, PointRef pubKey, CurveRef curve);
+void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, PointRef pubKey, CurveRef curve);
 
 #endif /* defined(__CryptoA5__cipher__) */
