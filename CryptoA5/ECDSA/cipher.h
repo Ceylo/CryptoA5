@@ -17,7 +17,7 @@
 using namespace sf;
 using namespace std;
 
-bool verify_message(TcpSocket& stream, mpz_t secret, CurveRef curve);
+bool verify_message(TcpSocket& stream, CurveRef curve, PointRef pubKey);
 
 void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, PointRef pubKey, CurveRef curve);
 

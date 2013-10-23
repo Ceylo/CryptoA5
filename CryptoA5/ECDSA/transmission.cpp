@@ -55,8 +55,8 @@ PointRef receive_key(TcpSocket& stream)
 	mpz_t peerX;
 	mpz_t peerY;
 	
-	mpz_init_set_str(peerX, peerXString.c_str());
-	mpz_init_set_str(peerY, peerYString.c_str());
+	mpz_init_set_str(peerX, peerXString.c_str(), 10);
+	mpz_init_set_str(peerY, peerYString.c_str(), 10);
 	
 	PointRef peerKey = PointCreateFromGMP(peerX, peerY);
 	mpz_clears(peerX, peerY, NULL);

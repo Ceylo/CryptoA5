@@ -10,7 +10,7 @@
 #include "util.h"
 #include <iostream>
 
-bool verify_message(TcpSocket& stream, mpz_t secret, CurveRef curve, PointRef pubKey)
+bool verify_message(TcpSocket& stream, CurveRef curve, PointRef pubKey)
 {
 	bool verified = false;
 	
@@ -74,7 +74,7 @@ bool verify_message(TcpSocket& stream, mpz_t secret, CurveRef curve, PointRef pu
 			
 			if (PointEqual(nullPoint, q) == false)
 			{
-				if (PointVerificationOnCurve(q, curve))
+				if (PointIsOnCurve(q, curve))
 				{
 					
 					PointRef m = PointCreateMultiple(q, curve->n, curve);
@@ -97,17 +97,18 @@ bool verify_message(TcpSocket& stream, mpz_t secret, CurveRef curve, PointRef pu
 
 void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, PointRef pubKey, CurveRef curve)
 {
+	mpz_t u, v;
+	
     do {
         mpz_t k;
         secure_rand(k, curve->n);
         PointRef p = curve->g;
         PointRef kp = PointCreateMultiple(p, k, curve);
         
-        mpz_t u;
         mpz_init(u);
         mpz_mod(u, kp->x, curve->n);
         
-        mpz_t v, msgHashed;
+        mpz_t msgHashed;
         mpz_inits(v, msgHashed, NULL);
         
         sha256(msgHashed, msg);

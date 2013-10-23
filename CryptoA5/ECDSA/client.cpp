@@ -13,6 +13,8 @@
 #include <string>
 #include <iostream>
 
+using namespace std;
+
 CurveRef client_receive_curve(TcpSocket& stream)
 {
 	Packet pkt;
@@ -37,7 +39,8 @@ void client()
     
 	CurveRef curve = client_receive_curve(socket);
     PointRef pubKey = receive_key(socket);
-	encrypt_message(socket, "There once was a little guy named Nino running in a large land freely. But one day he met a wolf and got eaten. END :] êœæÂê", pubKey, curve);
+	bool r = verify_message(socket, curve, pubKey);
+	cout << "Result: " << r << endl;
     
     socket.disconnect();
 }
