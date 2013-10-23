@@ -80,7 +80,10 @@ void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, PointRef p
         mpz_t kinv;
         mpz_init(kinv);
         
-        mpz_invert(k,
+        mpz_invert(kinv, k, curve->n);
+        
+        mpz_mul(v, v, kinv);
+        mpz_mod(v, v, curve->n);
 
     } while ((mpz_cmp_ui(u, 0) == 0) && (mpz_cmp_ui(v, 0) == 0));
 
@@ -99,6 +102,7 @@ void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, PointRef p
 	free(uBuffer), uBuffer = NULL;
 	free(vBuffer), vBuffer = NULL;
 	
+    pkt << msg;
 	pkt << uString;
 	pkt << vString;
 	
