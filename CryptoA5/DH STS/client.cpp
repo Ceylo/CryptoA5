@@ -45,6 +45,8 @@ void client()
     PointRef q = create_key(socket, curve, y);
     send_key(socket, q);
     
+    PointRef sharedSecret = PointCreateMultiple(pubKey, y, curve);
+    
     mpz_clear(y);
     socket.disconnect();
 }

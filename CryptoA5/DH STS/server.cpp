@@ -44,6 +44,9 @@ void server()
     send_key(socket, q);
 	
 	PointRef pubKey = receive_key(socket);
+    
+    PointRef sharedSecret = PointCreateMultiple(pubKey, x, curve);
+
 	
     mpz_clear(x);
     socket.disconnect();
