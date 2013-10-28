@@ -38,15 +38,19 @@ void server()
 	
 	// Load curve
 	CurveRef curve = CurveCreateFromData(curveData.c_str());
-	mpz_t x;
+	mpz_t x, secretDSA;
     
+    PointRef pubDSA = create_key(curve, secretDSA);
     PointRef q = create_key(curve, x);
+    send_key(socket, pubDSA);
     send_key(socket, q);
 	
-	PointRef pubKey = receive_key(socket);
+    PointRef pubDSA_peer = receive_key(socket);
+	PointRef pubKey_peer = receive_key(socket);
     
-    PointRef sharedSecret = PointCreateMultiple(pubKey, x, curve);
+    PointRef sharedSecret = PointCreateMultiple(pubKey_peer, x, curve);
 
+    //string concatenatedExponential = concatenate(<#__mpz_struct *p#>, <#__mpz_struct *q#>)
 	
     mpz_clear(x);
     socket.disconnect();

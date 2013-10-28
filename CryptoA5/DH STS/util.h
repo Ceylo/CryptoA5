@@ -32,3 +32,5 @@ string readRandomCurve();
 /** Return a GMP hash of str
  */
 void sha256(mpz_t h, const string& str);
+
+string concatenate(PointRef p, PointRef q);

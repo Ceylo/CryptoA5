@@ -9,6 +9,7 @@
 #include "util.h"
 #include <stdlib.h>
 #include "path.h"
+#include "ec_operations.h"
 #include <fstream>
 #include <assert.h>
 #include <openssl/sha.h>
@@ -76,4 +77,12 @@ void sha256(mpz_t h, const string& str)
 	
 	mpz_init(h);
 	mpz_import (h, 256/8, 1, sizeof(hash[0]), 1, 0, hash);
+}
+
+string concatenate(PointRef p, PointRef q) {
+    string first_part = PointCreateDescription(p);
+    string second_part = PointCreateDescription(q);
+
+   
+    return first_part + ";" + second_part;
 }
