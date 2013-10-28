@@ -7,6 +7,7 @@
 //
 
 #include <gmp.h>
+#include "ec_operations.h"
 #include <string>
 
 #define DHSTS_PORT 4445

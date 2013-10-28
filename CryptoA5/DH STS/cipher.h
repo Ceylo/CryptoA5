@@ -19,6 +19,6 @@ using namespace std;
 
 bool verify_message(TcpSocket& stream, CurveRef curve, PointRef pubKey);
 
-void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, PointRef pubKey, CurveRef curve);
+void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, CurveRef curve);
 
 #endif /* defined(__CryptoA5__cipher__) */
