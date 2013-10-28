@@ -10,8 +10,10 @@
 #include "util.h"
 #include "cipher.h"
 #include "transmission.h"
+#include "SymCipher.h"
 #include <string>
 #include <iostream>
+#include <cassert>
 
 using namespace std;
 
@@ -54,8 +56,30 @@ void client()
 	PointRef peerDhPubKey = receive_key(socket);
     
     PointRef k = PointCreateMultiple(peerDhPubKey, dhRand, curve);
-    
+    void *bits = pointToKey(k);
+	SymCipherRef cipher = SymCipherCreateWithKey((const unsigned char *)bits);
+	free(bits);
 	
+	// IN cipher:
+	// signature of concat(g^x, g^y)
+	Packet pkt;
+	Uint32 encryptedSignatureLength;
+	size_t receivedLength;
+	pkt >> encryptedSignatureLength;
+	
+	// Get signature
+	void *encryptedSignature = malloc(encryptedSignatureLength);
+	bzero(encryptedSignature, encryptedSignatureLength);
+	socket.receive(encryptedSignature, (size_t)encryptedSignatureLength, receivedLength);
+	
+	assert(encryptedSignatureLength == receivedLength);
+	
+	// Decrypt signature
+	unsigned int decipheredLength = 0;
+	void *signature = SymCipherDecrypt(cipher, encryptedSignature, (unsigned)receivedLength, &decipheredLength);
+	free(encryptedSignature), encryptedSignature = NULL;
+	
+	// verify signature
 	
     mpz_clear(dsaRand);
 	mpz_clear(dhRand);

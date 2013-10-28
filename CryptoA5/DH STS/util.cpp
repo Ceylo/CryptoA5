@@ -67,12 +67,12 @@ string readRandomCurve()
 	return readFile(filename);
 }
 
-void sha256(mpz_t h, const string& str)
+void sha256(mpz_t h, const void *data, size_t dataLength)
 {
     unsigned char hash[SHA256_DIGEST_LENGTH];
     SHA256_CTX sha256;
     SHA256_Init(&sha256);
-    SHA256_Update(&sha256, str.c_str(), str.size());
+    SHA256_Update(&sha256, data, dataLength);
     SHA256_Final(hash, &sha256);
 	
 	mpz_init(h);
@@ -80,12 +80,33 @@ void sha256(mpz_t h, const string& str)
 }
 
 string concatenate(PointRef p, PointRef q) {
-    string first_part = PointCreateDescription(p);
-    string second_part = PointCreateDescription(q);
-
-   
-    return first_part + ";" + second_part;
+    char * first_part = PointCreateDescription(p);
+    char * second_part = PointCreateDescription(q);
+	string concat = string(first_part) + ";" + string(second_part);
+	free(first_part);
+	free(second_part);
+	
+    return concat;
 }
+
+//mpz_t u, v;
+//string us, vs;
+//us = string(u);
+//vs = string(v);
+//
+//buffer[us + 1 + vs + 1];
+//buffer[0 .. us] = us;
+//buffer[us+1] = 0
+//buffer[us + 1 .. us + 1 + vs] = vs;
+//buffer[us + 1 + vs + 1] = 0
+//
+//==========
+//
+//string u = string(buffer);
+//buffer += u.size() + 1;
+//string v = string(buffer);
+
+
 
 void * pointToKey(PointRef p)
 {
