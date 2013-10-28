@@ -19,4 +19,5 @@ using namespace std;
 PointRef create_key(TcpSocket& stream, CurveRef curve, mpz_t& outA);
 void send_key(TcpSocket& stream, PointRef p);
 PointRef receive_key(TcpSocket& stream);
+string send_random_curve(TcpSocket& stream);
 #endif /* defined(__CryptoA5__transmission__) */

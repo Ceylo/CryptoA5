@@ -15,19 +15,6 @@
 
 using namespace std;
 
-
-string server_send_random_curve(TcpSocket& stream)
-{
-    string curveData = readRandomCurve();
-	Packet pkt;
-	pkt << curveData;
-	
-	// Send curve
-	stream.send(pkt);
-    
-    return curveData;
-}
-
 void server()
 {
 	sf::TcpListener listener;

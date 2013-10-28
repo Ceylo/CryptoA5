@@ -63,3 +63,15 @@ PointRef receive_key(TcpSocket& stream)
 	
 	return peerKey;
 }
+
+string send_random_curve(TcpSocket& stream)
+{
+    string curveData = readRandomCurve();
+	Packet pkt;
+	pkt << curveData;
+	
+	// Send curve
+	stream.send(pkt);
+    
+    return curveData;
+}

@@ -9,6 +9,6 @@
 #ifndef __CryptoA5__server__
 #define __CryptoA5__server__
 
-#include <iostream>
+void server();
 
 #endif /* defined(__CryptoA5__server__) */
