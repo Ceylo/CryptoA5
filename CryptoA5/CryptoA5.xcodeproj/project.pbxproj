@@ -103,6 +103,8 @@
 		F4D2B8C8181E7BCA005B5EBC /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D2B8C6181E7BCA005B5EBC /* client.cpp */; };
 		F4D2B8CB181E7BE6005B5EBC /* cipher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D2B8C9181E7BE6005B5EBC /* cipher.cpp */; };
 		F4D2B8CE181E82A0005B5EBC /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D2B8CC181E82A0005B5EBC /* util.cpp */; };
+		F4D2B8CF181E840D005B5EBC /* sfml-network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569318108B8400AEAF8A /* sfml-network.framework */; };
+		F4D2B8D0181E8410005B5EBC /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569418108B8400AEAF8A /* sfml-system.framework */; };
 		F4DCC55F180C488C002915DB /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC55E180C488C002915DB /* main.c */; };
 		F4DCC561180C488C002915DB /* EC_test_readFile.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4DCC560180C488C002915DB /* EC_test_readFile.1 */; };
 		F4DCC566180C4B64002915DB /* w256-001.gp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8768499117FEC72D005D03C4 /* w256-001.gp */; };
@@ -684,7 +686,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4D2B8D0181E8410005B5EBC /* sfml-system.framework in Frameworks */,
 				F4D2B8BF181E798E005B5EBC /* libEC.dylib in Frameworks */,
+				F4D2B8CF181E840D005B5EBC /* sfml-network.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1989,6 +1993,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
+					/Users/baptiste/Documents/Library/Frameworks,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -2004,6 +2009,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
+					/Users/baptiste/Documents/Library/Frameworks,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
