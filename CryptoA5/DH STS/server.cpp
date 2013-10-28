@@ -52,7 +52,15 @@ void server()
 
     string concatenatedExponential = concatenate(myPubKey, pubKey_peer);
     
-    sign_message(socket, concatenatedExponential, sharedSecret, curve);
+    sign_message(socket, concatenatedExponential, secretDSA, curve);
+    
+    //encrypt with AES
+    
+    //receive alice signature
+    
+    //decrypt alice message with AES
+    
+    //Verify her signature
 	
     mpz_clear(x);
     socket.disconnect();
