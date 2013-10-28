@@ -20,7 +20,7 @@ void server()
 	sf::TcpListener listener;
 	
 	// bind the listener to a port
-	if (listener.listen(EG_PORT) != sf::Socket::Done)
+	if (listener.listen(DHSTS_PORT) != sf::Socket::Done)
 	{
 		perror("error when listening");
 		return;
@@ -38,17 +38,13 @@ void server()
 	
 	// Load curve
 	CurveRef curve = CurveCreateFromData(curveData.c_str());
-	mpz_t a;
+	mpz_t x;
     
-    PointRef q = create_key(socket, curve, a);
-    
+    PointRef q = create_key(socket, curve, x);
     send_key(socket, q);
 	
-	string msg = decrypt_message(socket, a, curve);
-    
-	cout << "Received: " << msg << endl;
+	PointRef pubKey = receive_key(socket);
 	
-    mpz_clear(a);
-    
+    mpz_clear(x);
     socket.disconnect();
 }

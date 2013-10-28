@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Yalir. All rights reserved.
 //
 
-#ifndef __CryptoA5__client__
-#define __CryptoA5__client__
+#ifndef CryptoA5_client_h
+#define CryptoA5_client_h
 
-#include <iostream>
+void client();
 
-#endif /* defined(__CryptoA5__client__) */
+#endif
