@@ -86,3 +86,24 @@ string concatenate(PointRef p, PointRef q) {
    
     return first_part + ";" + second_part;
 }
+
+void * pointToKey(PointRef p)
+{
+	mpz_t big;
+	mpz_t exp;
+	
+	mpz_init(big);
+	mpz_init(exp);
+	
+	mpz_set_ui(exp, 2);
+	mpz_mul_ui(exp, exp, 256);
+	
+	mpz_mul(big, p->x, p->y);
+	mpz_mod(big, big, exp);
+	
+	void *buffer = mpz_export(NULL, NULL, 1, 1, 1, 0, big);
+	mpz_clear(big);
+	mpz_clear(exp);
+	
+	return buffer;
+}
