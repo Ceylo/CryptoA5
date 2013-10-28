@@ -37,15 +37,27 @@ void client()
 		return;
 	}
     
-    mpz_t y;
+    mpz_t dsaRand, dhRand;
     
 	CurveRef curve = client_receive_curve(socket);
-    PointRef pubKey = receive_key(socket);
+	
+	// Create our key pairs
+	PointRef myDsaPubKey = create_key(curve, dsaRand);
+	PointRef myDhPubKey = create_key(curve, dhRand);
+	
+	// Send them
+	send_key(socket, myDsaPubKey);
+	send_key(socket, myDhPubKey);
+	
+	// Receive the peer pub keys (probably sent while we were sending ours)
+    PointRef peerDsaPubKey = receive_key(socket);
+	PointRef peerDhPubKey = receive_key(socket);
     
-    PointRef q = create_key(curve, y);
+    PointRef k = PointCreateMultiple(peerDhPubKey, dhRand, curve);
     
-    PointRef sharedSecret = PointCreateMultiple(pubKey, y, curve);
-    
-    mpz_clear(y);
+	
+	
+    mpz_clear(dsaRand);
+	mpz_clear(dhRand);
     socket.disconnect();
 }

@@ -76,6 +76,7 @@
 		87C5098D1816786000A2EC07 /* sfml-network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569318108B8400AEAF8A /* sfml-network.framework */; };
 		87C5098E1816786000A2EC07 /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569418108B8400AEAF8A /* sfml-system.framework */; };
 		87EA4736181EAF3500B7D2B0 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C5098B1816784D00A2EC07 /* libcrypto.dylib */; };
+		87EA4739181EB8B200B7D2B0 /* SymCipher.c in Sources */ = {isa = PBXBuildFile; fileRef = 87EA4737181EB8B200B7D2B0 /* SymCipher.c */; };
 		F43909F21806AC28006458A3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F43909F11806AC28006458A3 /* main.c */; };
 		F43909F41806AC28006458A3 /* EC_test_invert.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F43909F31806AC28006458A3 /* EC_test_invert.1 */; };
 		F44226441815BE8A004E0462 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44226431815BE8A004E0462 /* main.cpp */; };
@@ -563,6 +564,8 @@
 		87C509831816752600A2EC07 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
 		87C509841816752600A2EC07 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		87C5098B1816784D00A2EC07 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
+		87EA4737181EB8B200B7D2B0 /* SymCipher.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SymCipher.c; sourceTree = "<group>"; };
+		87EA4738181EB8B200B7D2B0 /* SymCipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SymCipher.h; sourceTree = "<group>"; };
 		F43909EF1806AC28006458A3 /* EC_test_invert */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EC_test_invert; sourceTree = BUILT_PRODUCTS_DIR; };
 		F43909F11806AC28006458A3 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		F43909F31806AC28006458A3 /* EC_test_invert.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = EC_test_invert.1; sourceTree = "<group>"; };
@@ -1192,6 +1195,8 @@
 				F4D2B8C7181E7BCA005B5EBC /* client.h */,
 				F4D2B8C9181E7BE6005B5EBC /* cipher.cpp */,
 				F4D2B8CA181E7BE6005B5EBC /* cipher.h */,
+				87EA4737181EB8B200B7D2B0 /* SymCipher.c */,
+				87EA4738181EB8B200B7D2B0 /* SymCipher.h */,
 				F4D2B8CC181E82A0005B5EBC /* util.cpp */,
 				F4D2B8CD181E82A0005B5EBC /* util.h */,
 			);
@@ -1597,6 +1602,7 @@
 			files = (
 				F4D2B8C5181E7BBF005B5EBC /* server.cpp in Sources */,
 				F4D2B8B7181E7968005B5EBC /* main.cpp in Sources */,
+				87EA4739181EB8B200B7D2B0 /* SymCipher.c in Sources */,
 				F4D2B8CB181E7BE6005B5EBC /* cipher.cpp in Sources */,
 				F4D2B8C8181E7BCA005B5EBC /* client.cpp in Sources */,
 				F4D2B8C2181E7AC2005B5EBC /* transmission.cpp in Sources */,
