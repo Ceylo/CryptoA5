@@ -57,7 +57,6 @@ void server()
     
     //encrypt with AES
     
-    
     //receive alice signature
     
     //decrypt alice message with AES
