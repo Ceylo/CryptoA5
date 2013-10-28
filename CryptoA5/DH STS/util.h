@@ -34,6 +34,8 @@ string readRandomCurve();
  */
 void sha256(mpz_t h, const void *data, size_t dataLength);
 
+/** Concatenate 2 points and return a string of it
+ */
 string concatenate(PointRef p, PointRef q);
 
 /** Returns a binary representation of point @a p
