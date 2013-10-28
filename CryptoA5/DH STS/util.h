@@ -37,3 +37,12 @@ void sha256(mpz_t h, const string& str);
 /** Concatenate 2 points and return a string of it
  */
 string concatenate(PointRef p, PointRef q);
+
+/** Returns a binary representation of point @a p
+ *
+ * Note: the conversion from p to binary is not lossless thus it's not reversible
+ *
+ * @parameter p the point to convert to binary
+ * @return a 256 buffer representing p, you're responsible for freeing it
+ */
+void * pointToKey(PointRef p);
