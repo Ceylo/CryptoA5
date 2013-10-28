@@ -43,7 +43,6 @@ void client()
     PointRef pubKey = receive_key(socket);
     
     PointRef q = create_key(socket, curve, y);
-    send_key(socket, q);
     
     PointRef sharedSecret = PointCreateMultiple(pubKey, y, curve);
     

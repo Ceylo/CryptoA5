@@ -11,6 +11,10 @@
 #include "path.h"
 #include <fstream>
 #include <assert.h>
+#include <openssl/sha.h>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
 
 void secure_rand(mpz_t random, mpz_t max)
 {
@@ -60,4 +64,16 @@ string readRandomCurve()
 	sprintf(filename, "w256-%03ld.gp", curveId);
 	
 	return readFile(filename);
+}
+
+void sha256(mpz_t h, const string& str)
+{
+    unsigned char hash[SHA256_DIGEST_LENGTH];
+    SHA256_CTX sha256;
+    SHA256_Init(&sha256);
+    SHA256_Update(&sha256, str.c_str(), str.size());
+    SHA256_Final(hash, &sha256);
+	
+	mpz_init(h);
+	mpz_import (h, 256/8, 1, sizeof(hash[0]), 1, 0, hash);
 }

@@ -28,3 +28,7 @@ string readFile(string filename);
 /** Read some curve file and return its content
  */
 string readRandomCurve();
+
+/** Return a GMP hash of str
+ */
+void sha256(mpz_t h, const string& str);
