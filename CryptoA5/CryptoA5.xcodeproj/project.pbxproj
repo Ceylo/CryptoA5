@@ -75,6 +75,7 @@
 		87C5098C1816784D00A2EC07 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C5098B1816784D00A2EC07 /* libcrypto.dylib */; };
 		87C5098D1816786000A2EC07 /* sfml-network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569318108B8400AEAF8A /* sfml-network.framework */; };
 		87C5098E1816786000A2EC07 /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569418108B8400AEAF8A /* sfml-system.framework */; };
+		87EA4736181EAF3500B7D2B0 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C5098B1816784D00A2EC07 /* libcrypto.dylib */; };
 		F43909F21806AC28006458A3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F43909F11806AC28006458A3 /* main.c */; };
 		F43909F41806AC28006458A3 /* EC_test_invert.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F43909F31806AC28006458A3 /* EC_test_invert.1 */; };
 		F44226441815BE8A004E0462 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44226431815BE8A004E0462 /* main.cpp */; };
@@ -686,6 +687,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87EA4736181EAF3500B7D2B0 /* libcrypto.dylib in Frameworks */,
 				F4D2B8D0181E8410005B5EBC /* sfml-system.framework in Frameworks */,
 				F4D2B8BF181E798E005B5EBC /* libEC.dylib in Frameworks */,
 				F4D2B8CF181E840D005B5EBC /* sfml-network.framework in Frameworks */,
@@ -2142,6 +2144,7 @@
 				F4D2B8BB181E7968005B5EBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4DCC564180C488C002915DB /* Build configuration list for PBXNativeTarget "EC_test_readFile" */ = {
 			isa = XCConfigurationList;

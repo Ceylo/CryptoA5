@@ -11,7 +11,7 @@
 #include "util.h"
 #include <iostream>
 
-PointRef create_key(TcpSocket& stream, CurveRef curve, mpz_t& outA)
+PointRef create_key(CurveRef curve, mpz_t& outA)
 {
 	gmp_printf("%Zd\n", curve->n);
 	secure_rand(outA, curve->n);

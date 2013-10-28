@@ -40,7 +40,7 @@ void server()
 	CurveRef curve = CurveCreateFromData(curveData.c_str());
 	mpz_t x;
     
-    PointRef q = create_key(socket, curve, x);
+    PointRef q = create_key(curve, x);
     send_key(socket, q);
 	
 	PointRef pubKey = receive_key(socket);

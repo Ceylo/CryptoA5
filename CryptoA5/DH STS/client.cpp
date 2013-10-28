@@ -42,7 +42,7 @@ void client()
 	CurveRef curve = client_receive_curve(socket);
     PointRef pubKey = receive_key(socket);
     
-    PointRef q = create_key(socket, curve, y);
+    PointRef q = create_key(curve, y);
     
     PointRef sharedSecret = PointCreateMultiple(pubKey, y, curve);
     
