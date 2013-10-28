@@ -76,10 +76,10 @@ bool verify_message(void *data, size_t dataLength, mpz_t u, mpz_t v, CurveRef cu
 	return verified;
 }
 
-void * sign_message(const void *data, size_t dataLength, mpz_t secret, CurveRef curve)
+void sign_message(const void *data, size_t data_length, mpz_t& u, mpz_t& v, mpz_t secret, CurveRef curve)
 {
-	mpz_t u, v;
-	
+    mpz_inits(u, v, NULL);
+    
     do {
         mpz_t k;
         secure_rand(k, curve->n);
@@ -92,7 +92,7 @@ void * sign_message(const void *data, size_t dataLength, mpz_t secret, CurveRef 
         mpz_t msgHashed;
         mpz_inits(v, msgHashed, NULL);
         
-        sha256(msgHashed, msg);
+        sha256(msgHashed, data, data_length);
         
         mpz_mul(v, secret, u);
         mpz_mod(v,v,curve->n);
@@ -109,25 +109,4 @@ void * sign_message(const void *data, size_t dataLength, mpz_t secret, CurveRef 
         mpz_mod(v, v, curve->n);
         
     } while ((mpz_cmp_ui(u, 0) == 0) && (mpz_cmp_ui(v, 0) == 0));
-    
-    
-    // Send u and v
-	char *uBuffer = NULL;
-	char *vBuffer = NULL;
-	string uString, vString;
-	Packet pkt;
-	
-	gmp_asprintf(&uBuffer, "%Zd", u);
-	gmp_asprintf(&vBuffer, "%Zd", v);
-	
-	uString = string(uBuffer);
-	vString = string(vBuffer);
-	free(uBuffer), uBuffer = NULL;
-	free(vBuffer), vBuffer = NULL;
-	
-    pkt << msg;
-	pkt << uString;
-	pkt << vString;
-	
-	stream.send(pkt);
 }
