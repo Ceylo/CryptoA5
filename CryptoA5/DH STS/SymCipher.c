@@ -15,15 +15,6 @@ struct SymCipher_t {
 	unsigned char salt[SYMCIPHER_SALT_LENGTH];
 };
 
-void SecureRandFill(unsigned char *buffer, size_t l) {
-	// TODO: replace with RAND_bytes and feed the generator with a good entropy
-	// source
-	if (!RAND_pseudo_bytes(buffer, l)) {
-		fprintf(stderr, "Warning: the generated pseudo random number is not"
-				" cryptographically strong\n");
-	}
-}
-
 /**
  * Create an 128 bit key and IV using the supplied key_data. salt can be added for taste.
  * Fills in the encryption and decryption ctx objects and returns 0 on success
