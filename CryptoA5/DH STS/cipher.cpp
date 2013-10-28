@@ -10,28 +10,9 @@
 #include "util.h"
 #include <iostream>
 
-bool verify_message(TcpSocket& stream, CurveRef curve, PointRef pubKey)
+bool verify_message(void *data, size_t dataLength, mpz_t u, mpz_t v, CurveRef curve, PointRef pubKey)
 {
 	bool verified = false;
-	
-	// message (string)
-	// u (mpz_t)
-	// v (mpz_t)
-	
-	string messageString;
-	string uString;
-	string vString;
-	
-	Packet pkt;
-	stream.receive(pkt);
-	
-	pkt >> messageString;
-	pkt >> uString;
-	pkt >> vString;
-	
-	mpz_t u, v;
-	mpz_init_set_str(u, uString.c_str(), 10);
-	mpz_init_set_str(v, vString.c_str(), 10);
 	
 	bool uvInBound = true;
 	uvInBound = uvInBound && mpz_cmp_si(u, 0) > 0;
@@ -51,7 +32,7 @@ bool verify_message(TcpSocket& stream, CurveRef curve, PointRef pubKey)
 		mpz_inits(hm, invV, lmon, rmon, NULL);
 		
 		// Compute left monomial: (H(m)/v mod n).P
-		sha256(hm, messageString);
+		sha256(hm, data, dataLength);
 		mpz_invert(invV, v, curve->n);
 		mpz_mul(lmon, hm, invV);
 		mpz_mod(lmon, lmon, curve->n);
@@ -95,7 +76,7 @@ bool verify_message(TcpSocket& stream, CurveRef curve, PointRef pubKey)
 	return verified;
 }
 
-void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, CurveRef curve)
+void * sign_message(const void *data, size_t dataLength, mpz_t secret, CurveRef curve)
 {
 	mpz_t u, v;
 	
