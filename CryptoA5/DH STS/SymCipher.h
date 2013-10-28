@@ -101,4 +101,11 @@ void *			SymCipherDecrypt(SymCipherRef aSymCipher,
 								 unsigned int inputLength,
 								 unsigned int *outputLength);
 
+/** @brief Securely fill a @buffer of size @l with random buffer
+ *
+ * @param buffer the buffer that receive the random number
+ * @param l the size of the buffer
+ */
+void SecureRandFill(unsigned char *buffer, size_t l);
+
 #endif

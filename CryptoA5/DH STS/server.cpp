@@ -9,6 +9,7 @@
 #include "server.h"
 #include "util.h"
 #include "cipher.h"
+#include "SymCipher.h"
 #include "transmission.h"
 #include <string>
 #include <iostream>
@@ -55,6 +56,7 @@ void server()
     sign_message(socket, concatenatedExponential, secretDSA, curve);
     
     //encrypt with AES
+    
     
     //receive alice signature
     
