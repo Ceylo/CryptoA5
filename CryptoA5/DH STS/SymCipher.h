@@ -6,14 +6,7 @@
 
 typedef struct SymCipher_t *SymCipherRef;
 
-#define SYMCIPHER_KEY_LENGTH	256
-#define SYMCIPHER_SALT_LENGTH	8
-
-/** @brief Create a new symetric cipher handle and generate a secret key
- *
- * @return a ready to used cipher object, or NULL is an error occured
- */
-SymCipherRef	SymCipherCreateWithGeneratedKey(void);
+#define SYMCIPHER_KEY_LENGTH	(256 / 8)
 
 /** @brief Create a new symetric cipher handle with the key @a keyData
  *
@@ -22,12 +15,9 @@ SymCipherRef	SymCipherCreateWithGeneratedKey(void);
  *
  * @param keyHex the SYMCIPHER_KEY_LENGTH bytes key to use for secret key generation
  * for the symetric cipher, as binary data
- * @param saltHex the SYMCIPHER_SALT_LENGTH bytes salt to use for secret key
- * generation for the symetric cipher, as binary data
  * @return a valid symetric cipher handle
  */
-SymCipherRef	SymCipherCreateWithKey(const unsigned char *key,
-									   const unsigned char *salt);
+SymCipherRef	SymCipherCreateWithKey(const unsigned char *key);
 
 
 /** @brief Destroy a symetric cipher handle
@@ -49,17 +39,6 @@ void			SymCipherDestroy(SymCipherRef aSymCipher);
  * @return the SYMCIPHER_KEY_LENGTH bytes generation key as binary data,
  */
 unsigned char *	SymCipherGetKey(SymCipherRef aSymCipher);
-
-
-/** @brief Return the salt used to generate the secret as an hexadecimal string
- *
- * Preconditions:
- * - aSymCipher must be a valid cipher handle
- *
- * @param aSymCipher the cipher handle to get the salt from
- * @return the SYMCIPHER_SALT_LENGTH bytes salt as binary data
- */
-unsigned char *	SymCipherGetSalt(SymCipherRef aSymCipher);
 
 
 /** @brief Encrypt the given data @a data of length @a inputLength
