@@ -53,8 +53,8 @@ PointRef receive_key(TcpSocket& stream)
 	mpz_t peerX;
 	mpz_t peerY;
 	
-	mpz_init_set_str(peerX, peerXString.c_str());
-	mpz_init_set_str(peerY, peerYString.c_str());
+	mpz_init_set_str(peerX, peerXString.c_str(), 10);
+	mpz_init_set_str(peerY, peerYString.c_str(), 10);
 	
 	PointRef peerKey = PointCreateFromGMP(peerX, peerY);
 	mpz_clears(peerX, peerY, NULL);
@@ -62,4 +62,16 @@ PointRef receive_key(TcpSocket& stream)
 	cout << "Received remote key: " << PointCreateDescription(peerKey) << endl;
 	
 	return peerKey;
+}
+
+string send_random_curve(TcpSocket& stream)
+{
+    string curveData = readRandomCurve();
+	Packet pkt;
+	pkt << curveData;
+	
+	// Send curve
+	stream.send(pkt);
+    
+    return curveData;
 }

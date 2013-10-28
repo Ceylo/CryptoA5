@@ -47,7 +47,7 @@ void server()
 		return;
 	}
     
-    string curveData = server_send_random_curve(socket);
+    string curveData = send_random_curve(socket);
 	
 	// Load curve
 	CurveRef curve = CurveCreateFromData(curveData.c_str());
