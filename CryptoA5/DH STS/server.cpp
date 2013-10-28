@@ -56,6 +56,17 @@ void server()
     sign_message(socket, concatenatedExponential, secretDSA, curve);
     
     //encrypt with AES
+    void *bits = pointToKey(sharedSecret);
+    SymCipherRef cipher = SymCipherCreateWithKey((const unsigned char *) bits);
+    free(bits);
+    Uint32 outputLength;
+    void *encryptedData = SymCipherEncrypt(cipher, concatenatedExponential.c_str(), (unsigned int)concatenatedExponential.length(), &outputLength);
+    
+    Packet pkt;
+    pkt << outputLength;
+    pkt << encryptedData;
+    
+    socket.send(pkt);
     
     //receive alice signature
     
