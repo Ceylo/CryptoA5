@@ -12,7 +12,6 @@ struct SymCipher_t {
 	EVP_CIPHER_CTX encryption_ctx;
 	EVP_CIPHER_CTX decryption_ctx;
 	unsigned char keyData[SYMCIPHER_KEY_LENGTH];
-	unsigned char salt[SYMCIPHER_SALT_LENGTH];
 };
 
 /**
@@ -22,8 +21,7 @@ struct SymCipher_t {
 static int aes_init(EVP_CIPHER_CTX *encryption_ctx,
 					EVP_CIPHER_CTX *decryption_ctx,
 					const unsigned char *keyData,
-					unsigned int keyDataLength,
-					const unsigned char salt[SYMCIPHER_SALT_LENGTH])
+					unsigned int keyDataLength)
 {
 	int i, nrounds = 5;
 	unsigned char key[16];
@@ -35,10 +33,10 @@ static int aes_init(EVP_CIPHER_CTX *encryption_ctx,
 	 * are more secure but slower.
 	 */
 	i = EVP_BytesToKey(EVP_aes_256_cbc(), EVP_sha256(),
-					   salt, keyData, keyDataLength,
+					   NULL, keyData, keyDataLength,
 					   nrounds, key, iv);
-	if (i * 8 != 256) {
-		printf("Key size is %d bits - should be 256 bits\n", i * 8);
+	if (i != 256) {
+		printf("Key size is %d bits - should be 256 bits\n", i);
 		return -1;
 	}
 	
@@ -95,31 +93,7 @@ static void *aes_decrypt(EVP_CIPHER_CTX *decryption_ctx, const void *ciphertext,
 	return plaintext;
 }
 
-SymCipherRef SymCipherCreateWithGeneratedKey(void)
-{
-	SymCipherRef newCipher = malloc(sizeof(*newCipher));
-	bzero(newCipher, sizeof(*newCipher));
-	
-	if (newCipher != NULL)
-	{
-		SecureRandFill(newCipher->keyData, sizeof(newCipher->keyData));
-		SecureRandFill(newCipher->salt, sizeof(newCipher->salt));
-		
-		int err = aes_init(&newCipher->encryption_ctx, &newCipher->decryption_ctx,
-						   newCipher->keyData, sizeof(newCipher->keyData),
-						   newCipher->salt);
-		
-		if (err != 0)
-		{
-			free(newCipher), newCipher = NULL;
-		}
-	}
-	
-	return newCipher;
-}
-
-SymCipherRef SymCipherCreateWithKey(const unsigned char *key,
-									const unsigned char *salt)
+SymCipherRef SymCipherCreateWithKey(const unsigned char *key)
 {
 	SymCipherRef newCipher = malloc(sizeof(*newCipher));
 	bzero(newCipher, sizeof(*newCipher));
@@ -127,11 +101,9 @@ SymCipherRef SymCipherCreateWithKey(const unsigned char *key,
 	if (newCipher != NULL)
 	{
 		memcpy(newCipher->keyData, key, SYMCIPHER_KEY_LENGTH);
-		memcpy(newCipher->salt, salt, SYMCIPHER_SALT_LENGTH);
 		
 		int err = aes_init(&newCipher->encryption_ctx, &newCipher->decryption_ctx,
-						   newCipher->keyData, sizeof(newCipher->keyData),
-						   newCipher->salt);
+						   newCipher->keyData, sizeof(newCipher->keyData));
 		
 		if (err != 0)
 		{
@@ -156,13 +128,6 @@ unsigned char* SymCipherGetKey(SymCipherRef aSymCipher)
 	assert(aSymCipher != NULL);
 	
 	return aSymCipher->keyData;
-}
-
-unsigned char* SymCipherGetSalt(SymCipherRef aSymCipher)
-{
-	assert(aSymCipher != NULL);
-	
-	return aSymCipher->salt;
 }
 
 void * SymCipherEncrypt(SymCipherRef aSymCipher,
