@@ -9,6 +9,7 @@
 #include "server.h"
 #include "util.h"
 #include "cipher.h"
+#include "SymCipher.h"
 #include "transmission.h"
 #include <string>
 #include <iostream>
@@ -52,7 +53,16 @@ void server()
 
     string concatenatedExponential = concatenate(myPubKey, pubKey_peer);
     
-    sign_message(socket, concatenatedExponential, sharedSecret, curve);
+    sign_message(socket, concatenatedExponential, secretDSA, curve);
+    
+    //encrypt with AES
+    
+    
+    //receive alice signature
+    
+    //decrypt alice message with AES
+    
+    //Verify her signature
 	
     mpz_clear(x);
     socket.disconnect();
