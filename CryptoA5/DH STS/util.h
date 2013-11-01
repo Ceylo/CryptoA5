@@ -46,3 +46,24 @@ string concatenate(PointRef p, PointRef q);
  * @return a 256 buffer representing p, you're responsible for freeing it
  */
 void * pointToKey(PointRef p);
+
+/** Returns a buffer containing decimal representation of u and v,
+ * concatenated and separated by a null character
+ *
+ * @param u the first mpz_t to encode
+ * @param v the second mpz_t to encode
+ * @param outputLength the length of the returned buffer, in bytes
+ * @return the buffer containing u + null + v + null, you're responsible
+ * for freeing this buffer
+ */
+void * uvToData(mpz_t u, mpz_t v, size_t& outputLength);
+
+/** Extract u and v from the data created by uvToData
+ *
+ * @param data the data to use for decoding
+ * @param u the first mpz_t to decode (output)
+ * @param v the second mpz_t to decode (output)
+ */
+void dataToUV(const void *data, mpz_t outU, mpz_t outV);
+
+

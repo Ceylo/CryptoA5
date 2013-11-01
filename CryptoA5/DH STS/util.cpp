@@ -89,6 +89,21 @@ string concatenate(PointRef p, PointRef q) {
     return concat;
 }
 
+void * pointToKey(PointRef p)
+{
+	mpz_t hash;
+	size_t exportedBytes = 0;
+	void *x = mpz_export(NULL, &exportedBytes, 1, 1, 1, 0, p->x);
+	sha256(hash, x, exportedBytes);
+	void *buffer = mpz_export(NULL, &exportedBytes, 1, 1, 1, 0, hash);
+	assert(exportedBytes == 256 / 8);
+	free(x);
+	
+	return buffer;
+}
+
+// Algorithm for uv <=> data conversion
+//
 //mpz_t u, v;
 //string us, vs;
 //us = string(u);
@@ -106,17 +121,16 @@ string concatenate(PointRef p, PointRef q) {
 //buffer += u.size() + 1;
 //string v = string(buffer);
 
-
-
-void * pointToKey(PointRef p)
+void * uvToData(mpz_t u, mpz_t v, size_t& outputLength)
 {
-	mpz_t hash;
-	size_t exportedBytes = 0;
-	void *x = mpz_export(NULL, &exportedBytes, 1, 1, 1, 0, p->x);
-	sha256(hash, x, exportedBytes);
-	void *buffer = mpz_export(NULL, &exportedBytes, 1, 1, 1, 0, hash);
-	assert(exportedBytes == 256 / 8);
-	free(x);
-	
-	return buffer;
+#error TODO for Baptiste
 }
+
+void dataToUV(const void *data, mpz_t outU, mpz_t outV)
+{
+	string u = string((char *)data);
+	string v = string((char *)data + u.size() + 1);
+	mpz_init_set_str(outU, u.c_str(), 10);
+	mpz_init_set_str(outV, v.c_str(), 10);
+}
+
