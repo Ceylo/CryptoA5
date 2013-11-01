@@ -4,6 +4,10 @@
 
 #include <stdlib.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct SymCipher_t *SymCipherRef;
 
 #define SYMCIPHER_KEY_LENGTH	(256 / 8)
@@ -80,4 +84,8 @@ void *			SymCipherDecrypt(SymCipherRef aSymCipher,
 								 unsigned int inputLength,
 								 unsigned int *outputLength);
 
+#ifdef __cplusplus
+}
+#endif
+	
 #endif
