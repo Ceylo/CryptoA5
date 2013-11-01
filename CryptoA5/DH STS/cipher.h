@@ -17,7 +17,7 @@
 using namespace sf;
 using namespace std;
 
-bool verify_message(void *data, size_t dataLength, mpz_t u, mpz_t v, CurveRef curve, PointRef pubKey);
+bool verify_message(const void *data, size_t dataLength, mpz_t u, mpz_t v, CurveRef curve, PointRef pubKey);
 
 void sign_message(const void *data, size_t data_length, mpz_t& u, mpz_t& v, mpz_t secret, CurveRef curve);
 

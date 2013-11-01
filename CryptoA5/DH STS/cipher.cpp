@@ -10,7 +10,7 @@
 #include "util.h"
 #include <iostream>
 
-bool verify_message(void *data, size_t dataLength, mpz_t u, mpz_t v, CurveRef curve, PointRef pubKey)
+bool verify_message(const void *data, size_t dataLength, mpz_t u, mpz_t v, CurveRef curve, PointRef pubKey)
 {
 	bool verified = false;
 	
