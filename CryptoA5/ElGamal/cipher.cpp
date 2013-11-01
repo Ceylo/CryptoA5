@@ -49,6 +49,10 @@ string decrypt_message(TcpSocket& stream, mpz_t secret, CurveRef curve)
 		mpz_clear(mpzChar);
 	}
 	
+    mpz_clears(peerC1x, peerC1y);
+    PointDestroy(peerC1);
+    PointDestroy(intermediaire);
+    
 	return result;
 }
 
@@ -96,6 +100,8 @@ void encrypt_message(TcpSocket& stream, const string& msg, PointRef pubKey, Curv
 	}
 	
 	cout << endl;
+    
+    PointDestroy(kp);
 	
 	stream.send(pkt);
 }

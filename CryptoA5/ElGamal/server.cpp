@@ -49,6 +49,8 @@ void server()
 	cout << "Received: " << msg << endl;
 	
     mpz_clear(a);
+    CurveDestroy(curve);
+    PointDestroy(q);
     
     socket.disconnect();
 }
