@@ -110,21 +110,13 @@ string concatenate(PointRef p, PointRef q) {
 
 void * pointToKey(PointRef p)
 {
-	mpz_t big;
-	mpz_t exp;
-	
-	mpz_init(big);
-	mpz_init(exp);
-	
-	mpz_set_ui(exp, 2);
-	mpz_mul_ui(exp, exp, 256);
-	
-	mpz_mul(big, p->x, p->y);
-	mpz_mod(big, big, exp);
-	
-	void *buffer = mpz_export(NULL, NULL, 1, 1, 1, 0, big);
-	mpz_clear(big);
-	mpz_clear(exp);
+	mpz_t hash;
+	size_t exportedBytes = 0;
+	void *x = mpz_export(NULL, &exportedBytes, 1, 1, 1, 0, p->x);
+	sha256(hash, x, exportedBytes);
+	void *buffer = mpz_export(NULL, &exportedBytes, 1, 1, 1, 0, hash);
+	assert(exportedBytes == 256 / 8);
+	free(x);
 	
 	return buffer;
 }
