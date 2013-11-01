@@ -55,6 +55,7 @@ string readFile(string filename)
 		delete[] memblock;
 	}
 	
+    free(absoluteFilename);
 	return result;
 }
 
@@ -83,6 +84,7 @@ string concatenate(PointRef p, PointRef q) {
     char * first_part = PointCreateDescription(p);
     char * second_part = PointCreateDescription(q);
 	string concat = string(first_part) + ";" + string(second_part);
+    
 	free(first_part);
 	free(second_part);
 	
@@ -116,7 +118,35 @@ void * pointToKey(PointRef p)
 	sha256(hash, x, exportedBytes);
 	void *buffer = mpz_export(NULL, &exportedBytes, 1, 1, 1, 0, hash);
 	assert(exportedBytes == 256 / 8);
-	free(x);
+	
+    free(x);
+    mpz_clear(hash);
 	
 	return buffer;
+}
+
+string concatenateMpz_t(mpz_t u, mpz_t v)
+{
+    // Send u and v
+	char *uBuffer = NULL;
+	char *vBuffer = NULL;
+	
+	gmp_asprintf(&uBuffer, "%Zd", u);
+	gmp_asprintf(&vBuffer, "%Zd", v);
+    
+    char concatenateBuffer[strlen(uBuffer) + strlen(vBuffer)+ 2];
+    
+    memcpy(concatenateBuffer, uBuffer, strlen(uBuffer));
+    
+    concatenateBuffer[strlen(uBuffer)] = 0;
+    
+    memcpy(concatenateBuffer + strlen(uBuffer) + 1, vBuffer, strlen(vBuffer));
+    
+    concatenateBuffer[sizeof(uBuffer) + sizeof(vBuffer)+ 1] = 0;
+    
+    string concatenateString = string(concatenateBuffer);
+	free(uBuffer), uBuffer = NULL;
+	free(vBuffer), vBuffer = NULL;
+    
+    return concatenateString;
 }

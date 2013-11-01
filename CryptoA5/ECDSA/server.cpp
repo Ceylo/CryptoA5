@@ -44,9 +44,11 @@ void server()
     
     send_key(socket, q);
 	
-	sign_message(socket, "There once was a little guy named Nino running in a large land freely. But one day he met a wolf and got eaten. END :] êœæÂê", a, q, curve);
+	sign_message(socket, "There once was a little guy named Nino running in a large land freely. But one day he met a wolf and got eaten. END :] êœæÂê", a, curve);
 	
     mpz_clear(a);
+    CurveDestroy(curve);
+    PointDestroy(q);
     
     socket.disconnect();
 }

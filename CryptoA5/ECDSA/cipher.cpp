@@ -95,7 +95,7 @@ bool verify_message(TcpSocket& stream, CurveRef curve, PointRef pubKey)
 	return verified;
 }
 
-void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, PointRef pubKey, CurveRef curve)
+void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, CurveRef curve)
 {
 	mpz_t u, v;
 	
@@ -126,6 +126,9 @@ void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, PointRef p
         
         mpz_mul(v, v, kinv);
         mpz_mod(v, v, curve->n);
+        
+        mpz_clears(k, msgHashed, NULL);
+        PointDestroy(kp);
 
     } while ((mpz_cmp_ui(u, 0) == 0) && (mpz_cmp_ui(v, 0) == 0));
 

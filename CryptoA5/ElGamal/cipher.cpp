@@ -49,7 +49,7 @@ string decrypt_message(TcpSocket& stream, mpz_t secret, CurveRef curve)
 		mpz_clear(mpzChar);
 	}
 	
-    mpz_clears(peerC1x, peerC1y);
+    mpz_clears(peerC1x, peerC1y, NULL);
     PointDestroy(peerC1);
     PointDestroy(intermediaire);
     

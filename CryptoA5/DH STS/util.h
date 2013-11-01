@@ -35,6 +35,7 @@ string readRandomCurve();
 void sha256(mpz_t h, const void *data, size_t dataLength);
 
 /** Concatenate 2 points and return it like a block of data
+ * Between the 2 points there is a ';' to separate them
  */
 string concatenate(PointRef p, PointRef q);
 
@@ -46,3 +47,7 @@ string concatenate(PointRef p, PointRef q);
  * @return a 256 buffer representing p, you're responsible for freeing it
  */
 void * pointToKey(PointRef p);
+
+/** Concatenate 2 mpz_t and return it like a block of data
+ */
+string concatenateMpz_t(mpz_t u, mpz_t v);
