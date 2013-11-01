@@ -96,16 +96,12 @@ void client()
 	PointRef sharedSecret = PointCreateMultiple(remoteKey, secret, curve);
 	
 	cout << "Secret: " << PointCreateDescription(sharedSecret) << endl;
+    
+    mpz_clear(secret);
+    CurveDestroy(curve);
+    PointDestroy(p);
+    PointDestroy(remoteKey);
+    PointDestroy(sharedSecret);
 	
 	socket.disconnect();
 }
-
-//Packet client_encrypt_message(const string& message, PointRef sharedSecretKey, CurveRef curve)
-//{
-//	
-//}
-//
-//string client_decrypt_packet(Packet& pkt)
-//{
-//	
-//}

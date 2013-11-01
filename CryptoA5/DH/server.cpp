@@ -107,6 +107,10 @@ void server()
     cout << "Shared secret : " << PointCreateDescription(secret) << endl;
     
     mpz_clear(a);
+    CurveDestroy(curve);
+    PointDestroy(q);
+    PointDestroy(remoteKey);
+    PointDestroy(secret);
     
     socket.disconnect();
 }
