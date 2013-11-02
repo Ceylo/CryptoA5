@@ -134,22 +134,18 @@ void * uvToData(mpz_t u, mpz_t v, size_t& outputLength)
 	gmp_asprintf(&vBuffer, "%Zd", v);
     
     outputLength = strlen(uBuffer) + strlen(vBuffer)+ 2;
-    char concatenateBuffer[outputLength];
-    void *data;
+    void *concatenateBuffer = malloc(outputLength);
+	assert(concatenateBuffer != NULL);
     
     memcpy(concatenateBuffer, uBuffer, strlen(uBuffer));
-    
-    concatenateBuffer[strlen(uBuffer)] = 0;
-    
-    memcpy(&concatenateBuffer[strlen(uBuffer) + 1], vBuffer, strlen(vBuffer));  //it's now working in my test program
-    
-    concatenateBuffer[strlen(uBuffer) + strlen(vBuffer)+ 1] = 0;
-    
-    data = (char *)concatenateBuffer;
+	memset((char *)concatenateBuffer + strlen(uBuffer), 0, 1);
+    memcpy((char *)concatenateBuffer + strlen(uBuffer) + 1, vBuffer, strlen(vBuffer));  //it's now working in my test program
+    memset((char *)concatenateBuffer + strlen(uBuffer) + strlen(vBuffer) + 1, 0, 1);
+	
     free(uBuffer), uBuffer = NULL;
     free(vBuffer), vBuffer = NULL;
     
-    return data;
+    return concatenateBuffer;
 }
 
 void dataToUV(const void *data, mpz_t outU, mpz_t outV)
