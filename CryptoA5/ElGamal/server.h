@@ -9,6 +9,8 @@
 #ifndef CryptoA5_server_h
 #define CryptoA5_server_h
 
+/** Run server
+*/
 void server();
 
 #endif

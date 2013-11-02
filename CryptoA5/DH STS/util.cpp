@@ -55,6 +55,7 @@ string readFile(string filename)
 		delete[] memblock;
 	}
 	
+    free(absoluteFilename);
 	return result;
 }
 
@@ -83,6 +84,7 @@ string concatenate(PointRef p, PointRef q) {
     char * first_part = PointCreateDescription(p);
     char * second_part = PointCreateDescription(q);
 	string concat = string(first_part) + ";" + string(second_part);
+    
 	free(first_part);
 	free(second_part);
 	

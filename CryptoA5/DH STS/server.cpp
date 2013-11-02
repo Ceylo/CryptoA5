@@ -57,36 +57,16 @@ void server()
     mpz_t u, v;
     sign_message(concatenatedExponential.data(), concatenatedExponential.length(), u, v, secretDSA, curve);
     
-    // Send u and v
-	char *uBuffer = NULL;
-	char *vBuffer = NULL;
-	
-	gmp_asprintf(&uBuffer, "%Zd", u);
-	gmp_asprintf(&vBuffer, "%Zd", v);
-    
-    char concatenateBuffer[sizeof(uBuffer) + sizeof(vBuffer)+ 2];
-    
-    int i;
-    for(i = 0; i < sizeof(uBuffer); ++i)
-        concatenateBuffer[i] = uBuffer[i];
-    
-    concatenateBuffer[sizeof(uBuffer)] = 0;
-
-    for(i = sizeof(uBuffer) + 1; i < sizeof(uBuffer) + sizeof(vBuffer)+ 1; ++i)
-        concatenateBuffer[i] = uBuffer[i];
-    
-    concatenateBuffer[sizeof(uBuffer) + sizeof(vBuffer)+ 1] = 0;
-    
-    string concatenateString = string(concatenateBuffer);
-	free(uBuffer), uBuffer = NULL;
-	free(vBuffer), vBuffer = NULL;
+    unsigned int inputLength;
+    void *concatenateData = concatenateMpz_t(u, v, &inputLength);
     
     //encrypt with AES
     void *bits = pointToKey(sharedSecret);
     SymCipherRef cipher = SymCipherCreateWithKey((const unsigned char *) bits);
     free(bits);
     Uint32 outputLength;
-    void *encryptedData = SymCipherEncrypt(cipher, concatenateString.data(), (unsigned int)concatenateString.length(), &outputLength);
+    void *encryptedData = SymCipherEncrypt(cipher, concatenateData, inputLength, &outputLength);
+    free(concatenateData);
     
     Packet pkt;
     pkt << outputLength;
@@ -126,6 +106,14 @@ void server()
         cout << "ok" << endl;
 
 	
-    mpz_clear(x);
+    mpz_clears(x, u, v, NULL);
+    free(signature), signature = NULL;
+    free(signatureBuffer), signatureBuffer = NULL;
+    CurveDestroy(curve);
+    PointDestroy(myPubDSA);
+    PointDestroy(myPubKey);
+    PointDestroy(pubDSA_peer);
+    PointDestroy(pubKey_peer);
+
     socket.disconnect();
 }

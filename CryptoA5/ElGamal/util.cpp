@@ -50,6 +50,7 @@ string readFile(string filename)
 		delete[] memblock;
 	}
 	
+    free(absoluteFilename);
 	return result;
 }
 

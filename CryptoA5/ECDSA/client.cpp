@@ -42,5 +42,8 @@ void client()
 	bool r = verify_message(socket, curve, pubKey);
 	cout << "Result: " << r << endl;
     
+    CurveDestroy(curve);
+    PointDestroy(pubKey);
+    
     socket.disconnect();
 }

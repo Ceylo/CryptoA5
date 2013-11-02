@@ -17,8 +17,14 @@
 using namespace sf;
 using namespace std;
 
+/**
+ * Verify the signature of the message from the peer with is public key
+ */
 bool verify_message(TcpSocket& stream, CurveRef curve, PointRef pubKey);
 
-void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, PointRef pubKey, CurveRef curve);
+/**
+ * Sign the message and send it to the peer with your private key
+ */
+void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, CurveRef curve);
 
 #endif /* defined(__CryptoA5__cipher__) */
