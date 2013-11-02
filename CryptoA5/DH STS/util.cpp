@@ -106,7 +106,7 @@ void * pointToKey(PointRef p)
 	return buffer;
 }
 
-void* concatenateMpz_t(mpz_t u, mpz_t v)
+void* concatenateMpz_t(mpz_t u, mpz_t v, unsigned int* length)
 {
     // Send u and v
 	char *uBuffer = NULL;
@@ -115,7 +115,8 @@ void* concatenateMpz_t(mpz_t u, mpz_t v)
 	gmp_asprintf(&uBuffer, "%Zd", u);
 	gmp_asprintf(&vBuffer, "%Zd", v);
     
-    char concatenateBuffer[strlen(uBuffer) + strlen(vBuffer)+ 2];
+    *length = strlen(uBuffer) + strlen(vBuffer)+ 2;
+    char concatenateBuffer[*length];
     void *data;
     
     memcpy(concatenateBuffer, uBuffer, strlen(uBuffer));
