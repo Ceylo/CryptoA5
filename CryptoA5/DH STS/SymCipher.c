@@ -15,7 +15,7 @@ struct SymCipher_t {
 };
 
 /**
- * Create an 128 bit key and IV using the supplied key_data. salt can be added for taste.
+ * Create an 256 bit key and IV using the supplied key_data. salt can be added for taste.
  * Fills in the encryption and decryption ctx objects and returns 0 on success
  **/
 static int aes_init(EVP_CIPHER_CTX *encryption_ctx,
@@ -35,7 +35,7 @@ static int aes_init(EVP_CIPHER_CTX *encryption_ctx,
 	i = EVP_BytesToKey(EVP_aes_256_cbc(), EVP_sha256(),
 					   NULL, keyData, keyDataLength,
 					   nrounds, key, iv);
-	if (i != 256) {
+	if (i != 256 / 8) {
 		printf("Key size is %d bits - should be 256 bits\n", i);
 		return -1;
 	}
