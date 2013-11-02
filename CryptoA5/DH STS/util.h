@@ -50,4 +50,4 @@ void * pointToKey(PointRef p);
 
 /** Concatenate 2 mpz_t and return it like a block of data
  */
-string concatenateMpz_t(mpz_t u, mpz_t v);
+void* concatenateMpz_t(mpz_t u, mpz_t v);
