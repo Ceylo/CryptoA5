@@ -106,7 +106,7 @@ void * pointToKey(PointRef p)
 	return buffer;
 }
 
-string concatenateMpz_t(mpz_t u, mpz_t v)
+void* concatenateMpz_t(mpz_t u, mpz_t v)
 {
     // Send u and v
 	char *uBuffer = NULL;
@@ -116,6 +116,7 @@ string concatenateMpz_t(mpz_t u, mpz_t v)
 	gmp_asprintf(&vBuffer, "%Zd", v);
     
     char concatenateBuffer[strlen(uBuffer) + strlen(vBuffer)+ 2];
+    void *data;
     
     memcpy(concatenateBuffer, uBuffer, strlen(uBuffer));
     
@@ -125,9 +126,9 @@ string concatenateMpz_t(mpz_t u, mpz_t v)
     
     concatenateBuffer[strlen(uBuffer) + strlen(vBuffer)+ 1] = 0;
     
-    string concatenateString = string(concatenateBuffer);  //problem could be here, with the 0 used between the two numbers, can't test now
-	free(uBuffer), uBuffer = NULL;
-	free(vBuffer), vBuffer = NULL;
+    data = (char *)concatenateBuffer;
+    free(uBuffer), uBuffer = NULL;
+    free(vBuffer), vBuffer = NULL;
     
-    return concatenateString;
+    return data;
 }
