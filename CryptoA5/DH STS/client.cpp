@@ -101,11 +101,13 @@ void client()
 		void * bits = uvToData(myU, myV, bitsLength);
 		
 		Uint32 cipherLength = 0;
-		SymCipherEncrypt(cipher, bits, (unsigned int)bitsLength, &cipherLength);
+		void *encryptedData = SymCipherEncrypt(cipher, bits, (unsigned int)bitsLength, &cipherLength);
+		free(bits), bits = NULL;
 		
 		pkt.clear();
 		pkt << cipherLength;
-//		pkt << 
+		socket.send(pkt);
+		socket.send(encryptedData, cipherLength);
 	}
 	
     mpz_clear(dsaRand);
