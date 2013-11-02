@@ -91,25 +91,6 @@ string concatenate(PointRef p, PointRef q) {
     return concat;
 }
 
-//mpz_t u, v;
-//string us, vs;
-//us = string(u);
-//vs = string(v);
-//
-//buffer[us + 1 + vs + 1];
-//buffer[0 .. us] = us;
-//buffer[us+1] = 0
-//buffer[us + 1 .. us + 1 + vs] = vs;
-//buffer[us + 1 + vs + 1] = 0
-//
-//==========
-//
-//string u = string(buffer);
-//buffer += u.size() + 1;
-//string v = string(buffer);
-
-
-
 void * pointToKey(PointRef p)
 {
 	mpz_t hash;
@@ -140,9 +121,9 @@ string concatenateMpz_t(mpz_t u, mpz_t v)
     
     concatenateBuffer[strlen(uBuffer)] = 0;
     
-    memcpy(concatenateBuffer + strlen(uBuffer) + 1, vBuffer, strlen(vBuffer));
+    memcpy(concatenateBuffer + strlen(uBuffer) + 1, vBuffer, strlen(vBuffer));  //not sure of concatenateBuffer + strlen(uBuffer) + 1, here
     
-    concatenateBuffer[sizeof(uBuffer) + sizeof(vBuffer)+ 1] = 0;
+    concatenateBuffer[strlen(uBuffer) + strlen(vBuffer)+ 1] = 0;
     
     string concatenateString = string(concatenateBuffer);
 	free(uBuffer), uBuffer = NULL;
