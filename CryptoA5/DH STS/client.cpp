@@ -74,12 +74,39 @@ void client()
 	
 	assert(encryptedSignatureLength == receivedLength);
 	
-	// Decrypt signature
+	// Decrypt signature (u,v)
 	unsigned int decipheredLength = 0;
 	void *signature = SymCipherDecrypt(cipher, encryptedSignature, (unsigned)receivedLength, &decipheredLength);
 	free(encryptedSignature), encryptedSignature = NULL;
 	
-	// verify signature
+	// verify signature (u, v)
+	string u = string((char *)signature);
+	string v = string((char *)signature + u.size() + 1);
+	mpz_t uz, vz;
+	mpz_init_set_str(uz, u.c_str(), 10);
+	mpz_init_set_str(vz, v.c_str(), 10);
+	
+	string dataToVerify = concatenate(myDhPubKey, peerDhPubKey);
+	bool signatureOk = verify_message(dataToVerify.data(), dataToVerify.size(), uz, vz, curve, peerDsaPubKey);
+	
+	cout << "Peer's signature ok? " << signatureOk << endl;
+	
+	if (signatureOk)
+	{
+		// Send our signature
+		mpz_t myU, myV;
+		sign_message(dataToVerify.data(), dataToVerify.size(), myU, myV, dsaRand, curve);
+		
+		size_t bitsLength = 0;
+		void * bits = uvToData(myU, myV, bitsLength);
+		
+		Uint32 cipherLength = 0;
+		SymCipherEncrypt(cipher, bits, (unsigned int)bitsLength, &cipherLength);
+		
+		pkt.clear();
+		pkt << cipherLength;
+//		pkt << 
+	}
 	
     mpz_clear(dsaRand);
 	mpz_clear(dhRand);
