@@ -145,12 +145,13 @@ void sts_priv_verify_peer_identity(STSContext& context)
 	void *encryptedSignature = malloc(encryptedSignatureLength);
 	memset(encryptedSignature, 0, encryptedSignatureLength);
 	size_t offset = 0;
+	Socket::Status connectionStatus;
 	
 	// Read stream until we got the whole signature
-	while (offset < encryptedSignatureLength)
+	while (offset < encryptedSignatureLength && connectionStatus != Socket::Status::Disconnected && connectionStatus != Socket::Status::Error)
 	{
 		size_t receivedLength = 0;
-		context.stream.receive((char *)encryptedSignature + offset, (size_t)encryptedSignatureLength - offset, receivedLength);
+		connectionStatus = context.stream.receive((char *)encryptedSignature + offset, (size_t)encryptedSignatureLength - offset, receivedLength);
 		
 		offset += receivedLength;
 	}
@@ -168,7 +169,7 @@ void sts_priv_verify_peer_identity(STSContext& context)
 	free(signature), signature = NULL;
 	SymCipherDestroy(cipher), cipher = NULL;
 	
-	string dataToVerify = concatenate(context.myDhPubKey, context.peerDhPubKey);
+	string dataToVerify = concatenate(context.peerDhPubKey, context.myDhPubKey);
 	bool signatureOk = verify_message(dataToVerify.data(), dataToVerify.size(), u, v, context.curve, context.peerDsaPubKey);
 	
 	// So?
