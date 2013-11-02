@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8712C66C182591FE008F02F2 /* sts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8712C66A182591FE008F02F2 /* sts.cpp */; };
 		872EECB6180B3CB900D5F9B4 /* ec_operation_multiple.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D317FEC790005D03C4 /* ec_operation_multiple.c */; };
 		872EECB7180B3CB900D5F9B4 /* ec_operations.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D417FEC790005D03C4 /* ec_operations.c */; };
 		872EECB8180B3CC900D5F9B4 /* ec_operation_add.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D017FEC790005D03C4 /* ec_operation_add.c */; };
@@ -345,6 +346,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8712C66A182591FE008F02F2 /* sts.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sts.cpp; sourceTree = "<group>"; };
+		8712C66B182591FE008F02F2 /* sts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sts.h; sourceTree = "<group>"; };
 		8751F8D11806A852001AC72F /* EC_test_path */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EC_test_path; sourceTree = BUILT_PRODUCTS_DIR; };
 		8751F8D31806A852001AC72F /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		8751F8D51806A852001AC72F /* EC_test_path.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = EC_test_path.1; sourceTree = "<group>"; };
@@ -1199,6 +1202,8 @@
 				87EA4738181EB8B200B7D2B0 /* SymCipher.h */,
 				F4D2B8CC181E82A0005B5EBC /* util.cpp */,
 				F4D2B8CD181E82A0005B5EBC /* util.h */,
+				8712C66A182591FE008F02F2 /* sts.cpp */,
+				8712C66B182591FE008F02F2 /* sts.h */,
 			);
 			path = "DH STS";
 			sourceTree = "<group>";
@@ -1607,6 +1612,7 @@
 				F4D2B8C8181E7BCA005B5EBC /* client.cpp in Sources */,
 				F4D2B8C2181E7AC2005B5EBC /* transmission.cpp in Sources */,
 				F4D2B8CE181E82A0005B5EBC /* util.cpp in Sources */,
+				8712C66C182591FE008F02F2 /* sts.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
