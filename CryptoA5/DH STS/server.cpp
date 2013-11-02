@@ -57,15 +57,15 @@ void server()
     mpz_t u, v;
     sign_message(concatenatedExponential.data(), concatenatedExponential.length(), u, v, secretDSA, curve);
     
-    unsigned int inputLength;
-    void *concatenateData = concatenateMpz_t(u, v, &inputLength);
+    size_t inputLength;
+    void *concatenateData = uvToData(u, v, inputLength);
     
     //encrypt with AES
     void *bits = pointToKey(sharedSecret);
     SymCipherRef cipher = SymCipherCreateWithKey((const unsigned char *) bits);
     free(bits);
     Uint32 outputLength;
-    void *encryptedData = SymCipherEncrypt(cipher, concatenateData, inputLength, &outputLength);
+    void *encryptedData = SymCipherEncrypt(cipher, concatenateData, (unsigned int)inputLength, &outputLength);
     free(concatenateData);
     
     Packet pkt;

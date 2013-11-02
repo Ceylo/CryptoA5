@@ -99,7 +99,9 @@ void * pointToKey(PointRef p)
 	sha256(hash, x, exportedBytes);
 	void *buffer = mpz_export(NULL, &exportedBytes, 1, 1, 1, 0, hash);
 	assert(exportedBytes == 256 / 8);
+	
 	free(x);
+	mpz_clear(hash);
 	
 	return buffer;
 }
@@ -125,7 +127,29 @@ void * pointToKey(PointRef p)
 
 void * uvToData(mpz_t u, mpz_t v, size_t& outputLength)
 {
-#error TODO for Baptiste
+	char *uBuffer = NULL;
+	char *vBuffer = NULL;
+	
+	gmp_asprintf(&uBuffer, "%Zd", u);
+	gmp_asprintf(&vBuffer, "%Zd", v);
+    
+    outputLength = strlen(uBuffer) + strlen(vBuffer)+ 2;
+    char concatenateBuffer[outputLength];
+    void *data;
+    
+    memcpy(concatenateBuffer, uBuffer, strlen(uBuffer));
+    
+    concatenateBuffer[strlen(uBuffer)] = 0;
+    
+    memcpy(&concatenateBuffer[strlen(uBuffer) + 1], vBuffer, strlen(vBuffer));  //it's now working in my test program
+    
+    concatenateBuffer[strlen(uBuffer) + strlen(vBuffer)+ 1] = 0;
+    
+    data = (char *)concatenateBuffer;
+    free(uBuffer), uBuffer = NULL;
+    free(vBuffer), vBuffer = NULL;
+    
+    return data;
 }
 
 void dataToUV(const void *data, mpz_t outU, mpz_t outV)
@@ -135,4 +159,3 @@ void dataToUV(const void *data, mpz_t outU, mpz_t outV)
 	mpz_init_set_str(outU, u.c_str(), 10);
 	mpz_init_set_str(outV, v.c_str(), 10);
 }
-
