@@ -104,7 +104,7 @@
 		F4D2B8C2181E7AC2005B5EBC /* transmission.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D2B8C0181E7AC2005B5EBC /* transmission.cpp */; };
 		F4D2B8C5181E7BBF005B5EBC /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D2B8C3181E7BBF005B5EBC /* server.cpp */; };
 		F4D2B8C8181E7BCA005B5EBC /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D2B8C6181E7BCA005B5EBC /* client.cpp */; };
-		F4D2B8CB181E7BE6005B5EBC /* cipher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D2B8C9181E7BE6005B5EBC /* cipher.cpp */; };
+		F4D2B8CB181E7BE6005B5EBC /* dsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D2B8C9181E7BE6005B5EBC /* dsa.cpp */; };
 		F4D2B8CE181E82A0005B5EBC /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D2B8CC181E82A0005B5EBC /* util.cpp */; };
 		F4D2B8CF181E840D005B5EBC /* sfml-network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569318108B8400AEAF8A /* sfml-network.framework */; };
 		F4D2B8D0181E8410005B5EBC /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569418108B8400AEAF8A /* sfml-system.framework */; };
@@ -598,8 +598,8 @@
 		F4D2B8C4181E7BBF005B5EBC /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = server.h; sourceTree = "<group>"; };
 		F4D2B8C6181E7BCA005B5EBC /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
 		F4D2B8C7181E7BCA005B5EBC /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
-		F4D2B8C9181E7BE6005B5EBC /* cipher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cipher.cpp; sourceTree = "<group>"; };
-		F4D2B8CA181E7BE6005B5EBC /* cipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cipher.h; sourceTree = "<group>"; };
+		F4D2B8C9181E7BE6005B5EBC /* dsa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dsa.cpp; sourceTree = "<group>"; };
+		F4D2B8CA181E7BE6005B5EBC /* dsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsa.h; sourceTree = "<group>"; };
 		F4D2B8CC181E82A0005B5EBC /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
 		F4D2B8CD181E82A0005B5EBC /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		F4DCC55C180C488C002915DB /* EC_test_readFile */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EC_test_readFile; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1196,8 +1196,8 @@
 				F4D2B8C4181E7BBF005B5EBC /* server.h */,
 				F4D2B8C6181E7BCA005B5EBC /* client.cpp */,
 				F4D2B8C7181E7BCA005B5EBC /* client.h */,
-				F4D2B8C9181E7BE6005B5EBC /* cipher.cpp */,
-				F4D2B8CA181E7BE6005B5EBC /* cipher.h */,
+				F4D2B8C9181E7BE6005B5EBC /* dsa.cpp */,
+				F4D2B8CA181E7BE6005B5EBC /* dsa.h */,
 				87EA4737181EB8B200B7D2B0 /* SymCipher.c */,
 				87EA4738181EB8B200B7D2B0 /* SymCipher.h */,
 				F4D2B8CC181E82A0005B5EBC /* util.cpp */,
@@ -1608,7 +1608,7 @@
 				F4D2B8C5181E7BBF005B5EBC /* server.cpp in Sources */,
 				F4D2B8B7181E7968005B5EBC /* main.cpp in Sources */,
 				87EA4739181EB8B200B7D2B0 /* SymCipher.c in Sources */,
-				F4D2B8CB181E7BE6005B5EBC /* cipher.cpp in Sources */,
+				F4D2B8CB181E7BE6005B5EBC /* dsa.cpp in Sources */,
 				F4D2B8C8181E7BCA005B5EBC /* client.cpp in Sources */,
 				F4D2B8C2181E7AC2005B5EBC /* transmission.cpp in Sources */,
 				F4D2B8CE181E82A0005B5EBC /* util.cpp in Sources */,

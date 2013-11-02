@@ -1,5 +1,5 @@
 //
-//  cipher.h
+//  dsa.h
 //  CryptoA5
 //
 //  Created by Baptiste on 28/10/13.

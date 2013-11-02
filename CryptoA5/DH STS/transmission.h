@@ -16,6 +16,8 @@
 using namespace sf;
 using namespace std;
 
+#define DHSTS_PORT 4445
+
 /** Create the a.P key and send it to the peer
  *
  * The resulting point is returned and the a used to generate the key
@@ -34,5 +36,13 @@ PointRef receive_key(TcpSocket& stream);
 /** Send the curve data (raw representation of the curve file) from a random choosen curve
  */
 string send_random_curve(TcpSocket& stream);
+
+/** Receive the curve data (raw representation of the curve file) and
+ * create a curve object from it
+ *
+ * @param stream the network stream to read
+ * @return the received curve
+ */
+CurveRef receive_curve(TcpSocket& stream);
 
 #endif /* defined(__CryptoA5__transmission__) */

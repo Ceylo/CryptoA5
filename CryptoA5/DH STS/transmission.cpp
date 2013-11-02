@@ -75,3 +75,14 @@ string send_random_curve(TcpSocket& stream)
     
     return curveData;
 }
+
+CurveRef receive_curve(TcpSocket& stream)
+{
+	Packet pkt;
+	stream.receive(pkt);
+	
+	string curveData;
+	pkt >> curveData;
+	
+	return CurveCreateFromData(curveData.c_str());
+}

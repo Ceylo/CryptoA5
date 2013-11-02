@@ -10,8 +10,6 @@
 #include "ec_operations.h"
 #include <string>
 
-#define DHSTS_PORT 4445
-
 using namespace std;
 
 /** Create a random number within [0, max[
