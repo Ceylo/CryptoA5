@@ -121,11 +121,11 @@ string concatenateMpz_t(mpz_t u, mpz_t v)
     
     concatenateBuffer[strlen(uBuffer)] = 0;
     
-    memcpy(concatenateBuffer + strlen(uBuffer) + 1, vBuffer, strlen(vBuffer));  //not sure of concatenateBuffer + strlen(uBuffer) + 1, here
+    memcpy(&concatenateBuffer[strlen(uBuffer) + 1], vBuffer, strlen(vBuffer));  //it's now working in my test program
     
     concatenateBuffer[strlen(uBuffer) + strlen(vBuffer)+ 1] = 0;
     
-    string concatenateString = string(concatenateBuffer);
+    string concatenateString = string(concatenateBuffer);  //problem could be here, with the 0 used between the two numbers, can't test now
 	free(uBuffer), uBuffer = NULL;
 	free(vBuffer), vBuffer = NULL;
     
