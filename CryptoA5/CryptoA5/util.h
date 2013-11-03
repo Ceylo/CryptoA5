@@ -1,14 +1,17 @@
 //
 //  util.h
-//  CryptoA5
+//  libEC
 //
-//  Created by Baptiste on 28/10/13.
+//  Created by Ceylo on 17/10/2013.
 //  Copyright (c) 2013 Yalir. All rights reserved.
 //
 
 #include <gmp.h>
-#include "ec_operations.h"
 #include <string>
+#include "ec_operations.h"
+
+#define DH_PORT 4444
+#define EG_PORT 4445
 
 using namespace std;
 
@@ -28,7 +31,7 @@ string readFile(string filename);
  */
 string readRandomCurve();
 
-/** Return a GMP hash of str
+/** Return a GMP hash of data
  */
 void sha256(mpz_t h, const void *data, size_t dataLength);
 
@@ -64,5 +67,3 @@ void * uvToData(mpz_t u, mpz_t v, size_t& outputLength);
  * @param v the second mpz_t to decode (output)
  */
 void dataToUV(const void *data, mpz_t outU, mpz_t outV);
-
-

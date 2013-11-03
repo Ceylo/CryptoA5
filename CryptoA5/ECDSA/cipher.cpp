@@ -51,7 +51,7 @@ bool verify_message(TcpSocket& stream, CurveRef curve, PointRef pubKey)
 		mpz_inits(hm, invV, lmon, rmon, NULL);
 		
 		// Compute left monomial: (H(m)/v mod n).P
-		sha256(hm, messageString);
+		sha256(hm, messageString.data(), messageString.size());
 		mpz_invert(invV, v, curve->n);
 		mpz_mul(lmon, hm, invV);
 		mpz_mod(lmon, lmon, curve->n);
@@ -111,7 +111,7 @@ void sign_message(TcpSocket& stream, const string& msg, mpz_t secret, CurveRef c
         mpz_t msgHashed;
         mpz_inits(v, msgHashed, NULL);
         
-        sha256(msgHashed, msg);
+        sha256(msgHashed, msg.data(), msg.size());
         
         mpz_mul(v, secret, u);
         mpz_mod(v,v,curve->n);

@@ -40,6 +40,9 @@
 		8715905C1826BC7D00090EC5 /* SymCipher.c in Sources */ = {isa = PBXBuildFile; fileRef = 87EA4737181EB8B200B7D2B0 /* SymCipher.c */; };
 		8715905D1826BC9E00090EC5 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C5098B1816784D00A2EC07 /* libcrypto.dylib */; };
 		8715907D1826E19300090EC5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8715907C1826E19300090EC5 /* CoreFoundation.framework */; };
+		871590801826EA0B00090EC5 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8715907E1826EA0B00090EC5 /* util.cpp */; };
+		871590811826EA0B00090EC5 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 8715907F1826EA0B00090EC5 /* util.h */; };
+		871590821826EAB200090EC5 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C5098B1816784D00A2EC07 /* libcrypto.dylib */; };
 		872EECB6180B3CB900D5F9B4 /* ec_operation_multiple.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D317FEC790005D03C4 /* ec_operation_multiple.c */; };
 		872EECB7180B3CB900D5F9B4 /* ec_operations.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D417FEC790005D03C4 /* ec_operations.c */; };
 		872EECB8180B3CC900D5F9B4 /* ec_operation_add.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D017FEC790005D03C4 /* ec_operation_add.c */; };
@@ -88,7 +91,6 @@
 		876356B118112A1A00AEAF8A /* path.c in Sources */ = {isa = PBXBuildFile; fileRef = 875935EA18069D5200DF5770 /* path.c */; };
 		8764582118155B840047B530 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8764581B18155B840047B530 /* client.cpp */; };
 		8764582218155B840047B530 /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8764581D18155B840047B530 /* server.cpp */; };
-		8764582318155B840047B530 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8764581F18155B840047B530 /* util.cpp */; };
 		87B948E4180AFCC8006259B5 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 87B948E3180AFCC8006259B5 /* main.c */; };
 		87B948E6180AFCC8006259B5 /* EC_test_multiple.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87B948E5180AFCC8006259B5 /* EC_test_multiple.1 */; };
 		87C509621816697400A2EC07 /* cipher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C509601816697400A2EC07 /* cipher.cpp */; };
@@ -96,14 +98,12 @@
 		87C5096618166DAA00A2EC07 /* libEC.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 876356841810872300AEAF8A /* libEC.dylib */; };
 		87C5096718166E0700A2EC07 /* sfml-network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569318108B8400AEAF8A /* sfml-network.framework */; };
 		87C5096818166E0700A2EC07 /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569418108B8400AEAF8A /* sfml-system.framework */; };
-		87C5096D18166E8400A2EC07 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C5096B18166E8400A2EC07 /* util.cpp */; };
 		87C50975181674FA00A2EC07 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C50974181674FA00A2EC07 /* main.cpp */; };
 		87C50977181674FA00A2EC07 /* ECDSA.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87C50976181674FA00A2EC07 /* ECDSA.1 */; };
 		87C509851816752600A2EC07 /* cipher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C5097B1816752600A2EC07 /* cipher.cpp */; };
 		87C509861816752600A2EC07 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C5097D1816752600A2EC07 /* client.cpp */; };
 		87C509871816752600A2EC07 /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C5097F1816752600A2EC07 /* server.cpp */; };
 		87C509881816752600A2EC07 /* transmission.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C509811816752600A2EC07 /* transmission.cpp */; };
-		87C509891816752600A2EC07 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C509831816752600A2EC07 /* util.cpp */; };
 		87C5098A1816783700A2EC07 /* libEC.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 876356841810872300AEAF8A /* libEC.dylib */; };
 		87C5098C1816784D00A2EC07 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C5098B1816784D00A2EC07 /* libcrypto.dylib */; };
 		87C5098D1816786000A2EC07 /* sfml-network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569318108B8400AEAF8A /* sfml-network.framework */; };
@@ -137,7 +137,6 @@
 		F4D2B8C5181E7BBF005B5EBC /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D2B8C3181E7BBF005B5EBC /* server.cpp */; };
 		F4D2B8C8181E7BCA005B5EBC /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D2B8C6181E7BCA005B5EBC /* client.cpp */; };
 		F4D2B8CB181E7BE6005B5EBC /* dsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D2B8C9181E7BE6005B5EBC /* dsa.cpp */; };
-		F4D2B8CE181E82A0005B5EBC /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D2B8CC181E82A0005B5EBC /* util.cpp */; };
 		F4D2B8CF181E840D005B5EBC /* sfml-network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569318108B8400AEAF8A /* sfml-network.framework */; };
 		F4D2B8D0181E8410005B5EBC /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8763569418108B8400AEAF8A /* sfml-system.framework */; };
 		F4DCC55F180C488C002915DB /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC55E180C488C002915DB /* main.c */; };
@@ -485,6 +484,8 @@
 		871590541826BAE900090EC5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		871590561826BAE900090EC5 /* EC_test_symcipher.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = EC_test_symcipher.1; sourceTree = "<group>"; };
 		8715907C1826E19300090EC5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		8715907E1826EA0B00090EC5 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
+		8715907F1826EA0B00090EC5 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		8751F8D11806A852001AC72F /* EC_test_path */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EC_test_path; sourceTree = BUILT_PRODUCTS_DIR; };
 		8751F8D31806A852001AC72F /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		8751F8D51806A852001AC72F /* EC_test_path.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = EC_test_path.1; sourceTree = "<group>"; };
@@ -500,8 +501,6 @@
 		8764581C18155B840047B530 /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
 		8764581D18155B840047B530 /* server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = server.cpp; sourceTree = "<group>"; };
 		8764581E18155B840047B530 /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = server.h; sourceTree = "<group>"; };
-		8764581F18155B840047B530 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
-		8764582018155B840047B530 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		8768490C17FEC0E4005D03C4 /* CryptoA5.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = CryptoA5.1; sourceTree = "<group>"; };
 		8768491317FEC383005D03C4 /* ec_operations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ec_operations.h; sourceTree = "<group>"; };
 		8768491617FEC72D005D03C4 /* curve-base.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "curve-base.pdf"; sourceTree = "<group>"; };
@@ -688,8 +687,6 @@
 		87C509611816697400A2EC07 /* cipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cipher.h; sourceTree = "<group>"; };
 		87C5096318166B1D00A2EC07 /* transmission.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = transmission.cpp; sourceTree = "<group>"; };
 		87C5096418166B1D00A2EC07 /* transmission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transmission.h; sourceTree = "<group>"; };
-		87C5096B18166E8400A2EC07 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
-		87C5096C18166E8400A2EC07 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		87C50972181674FA00A2EC07 /* ECDSA */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ECDSA; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C50974181674FA00A2EC07 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		87C50976181674FA00A2EC07 /* ECDSA.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ECDSA.1; sourceTree = "<group>"; };
@@ -701,8 +698,6 @@
 		87C509801816752600A2EC07 /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = server.h; sourceTree = "<group>"; };
 		87C509811816752600A2EC07 /* transmission.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = transmission.cpp; sourceTree = "<group>"; };
 		87C509821816752600A2EC07 /* transmission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transmission.h; sourceTree = "<group>"; };
-		87C509831816752600A2EC07 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
-		87C509841816752600A2EC07 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		87C5098B1816784D00A2EC07 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		87EA4737181EB8B200B7D2B0 /* SymCipher.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SymCipher.c; sourceTree = "<group>"; };
 		87EA4738181EB8B200B7D2B0 /* SymCipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SymCipher.h; sourceTree = "<group>"; };
@@ -737,8 +732,6 @@
 		F4D2B8C7181E7BCA005B5EBC /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
 		F4D2B8C9181E7BE6005B5EBC /* dsa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dsa.cpp; sourceTree = "<group>"; };
 		F4D2B8CA181E7BE6005B5EBC /* dsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsa.h; sourceTree = "<group>"; };
-		F4D2B8CC181E82A0005B5EBC /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
-		F4D2B8CD181E82A0005B5EBC /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		F4DCC55C180C488C002915DB /* EC_test_readFile */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EC_test_readFile; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4DCC55E180C488C002915DB /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		F4DCC560180C488C002915DB /* EC_test_readFile.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = EC_test_readFile.1; sourceTree = "<group>"; };
@@ -775,6 +768,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				871590821826EAB200090EC5 /* libcrypto.dylib in Frameworks */,
 				8715907D1826E19300090EC5 /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -880,8 +874,6 @@
 			children = (
 				8764581B18155B840047B530 /* client.cpp */,
 				8764581C18155B840047B530 /* client.h */,
-				8764581F18155B840047B530 /* util.cpp */,
-				8764582018155B840047B530 /* util.h */,
 				8764581D18155B840047B530 /* server.cpp */,
 				8764581E18155B840047B530 /* server.h */,
 				8763569318108B8400AEAF8A /* sfml-network.framework */,
@@ -946,6 +938,8 @@
 				8768491317FEC383005D03C4 /* ec_operations.h */,
 				875935EA18069D5200DF5770 /* path.c */,
 				875935EC18069D5F00DF5770 /* path.h */,
+				8715907E1826EA0B00090EC5 /* util.cpp */,
+				8715907F1826EA0B00090EC5 /* util.h */,
 			);
 			name = EC;
 			path = CryptoA5;
@@ -1273,8 +1267,6 @@
 				87C509801816752600A2EC07 /* server.h */,
 				87C509811816752600A2EC07 /* transmission.cpp */,
 				87C509821816752600A2EC07 /* transmission.h */,
-				87C509831816752600A2EC07 /* util.cpp */,
-				87C509841816752600A2EC07 /* util.h */,
 			);
 			path = ECDSA;
 			sourceTree = "<group>";
@@ -1291,8 +1283,6 @@
 		F44226421815BE8A004E0462 /* ElGamal */ = {
 			isa = PBXGroup;
 			children = (
-				87C5096B18166E8400A2EC07 /* util.cpp */,
-				87C5096C18166E8400A2EC07 /* util.h */,
 				F44226431815BE8A004E0462 /* main.cpp */,
 				F44226451815BE8A004E0462 /* ElGamal.1 */,
 				F442264A1815BF17004E0462 /* server.h */,
@@ -1359,8 +1349,6 @@
 				F4D2B8CA181E7BE6005B5EBC /* dsa.h */,
 				87EA4737181EB8B200B7D2B0 /* SymCipher.c */,
 				87EA4738181EB8B200B7D2B0 /* SymCipher.h */,
-				F4D2B8CC181E82A0005B5EBC /* util.cpp */,
-				F4D2B8CD181E82A0005B5EBC /* util.h */,
 				8712C66A182591FE008F02F2 /* sts.cpp */,
 				8712C66B182591FE008F02F2 /* sts.h */,
 			);
@@ -1383,6 +1371,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				871590811826EA0B00090EC5 /* util.h in Headers */,
 				876356911810880E00AEAF8A /* ec_operations.h in Headers */,
 				876356921810881100AEAF8A /* path.h in Headers */,
 			);
@@ -1690,7 +1679,6 @@
 				8764582218155B840047B530 /* server.cpp in Sources */,
 				8764582118155B840047B530 /* client.cpp in Sources */,
 				8763567A1810862900AEAF8A /* main.cpp in Sources */,
-				8764582318155B840047B530 /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1700,6 +1688,7 @@
 			files = (
 				876356881810873D00AEAF8A /* ec_operation_add.c in Sources */,
 				876356891810873D00AEAF8A /* ec_operation_double.c in Sources */,
+				871590801826EA0B00090EC5 /* util.cpp in Sources */,
 				8763568A1810873D00AEAF8A /* ec_operation_invert.c in Sources */,
 				8763568B1810873D00AEAF8A /* ec_operation_multiple.c in Sources */,
 				8763568C1810873D00AEAF8A /* ec_operations.c in Sources */,
@@ -1730,7 +1719,6 @@
 				87C50975181674FA00A2EC07 /* main.cpp in Sources */,
 				87C509871816752600A2EC07 /* server.cpp in Sources */,
 				87C509861816752600A2EC07 /* client.cpp in Sources */,
-				87C509891816752600A2EC07 /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1753,7 +1741,6 @@
 				F44226441815BE8A004E0462 /* main.cpp in Sources */,
 				87C509621816697400A2EC07 /* cipher.cpp in Sources */,
 				F442264E1815C089004E0462 /* client.cpp in Sources */,
-				87C5096D18166E8400A2EC07 /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1798,7 +1785,6 @@
 				F4D2B8CB181E7BE6005B5EBC /* dsa.cpp in Sources */,
 				F4D2B8C8181E7BCA005B5EBC /* client.cpp in Sources */,
 				F4D2B8C2181E7AC2005B5EBC /* transmission.cpp in Sources */,
-				F4D2B8CE181E82A0005B5EBC /* util.cpp in Sources */,
 				8712C66C182591FE008F02F2 /* sts.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,17 +1,16 @@
 //
 //  util.cpp
-//  CryptoA5
+//  libEC
 //
-//  Created by Baptiste on 28/10/13.
+//  Created by Ceylo on 21/10/2013.
 //  Copyright (c) 2013 Yalir. All rights reserved.
 //
 
 #include "util.h"
 #include <stdlib.h>
 #include "path.h"
-#include "ec_operations.h"
 #include <fstream>
-#include <assert.h>
+#include <cassert>
 #include <openssl/sha.h>
 #include <sstream>
 #include <iostream>
@@ -39,7 +38,6 @@ string readFile(string filename)
 	char *absoluteFilename = NULL;
 	PathForFile(filename.c_str(), &absoluteFilename);
 	
-	ifstream::pos_type size;
 	char * memblock;
 	string result;
 	
@@ -48,8 +46,9 @@ string readFile(string filename)
 	
 	if (file.is_open())
 	{
-		size = file.tellg();
-		memblock = new char [size];
+		size_t size = file.tellg();
+		memblock = new char [size+1];
+		memset(memblock, 0, size+1);
 		file.seekg (0, ios::beg);
 		file.read (memblock, size);
 		file.close();
