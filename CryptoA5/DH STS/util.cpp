@@ -44,6 +44,8 @@ string readFile(string filename)
 	string result;
 	
 	ifstream file (string(absoluteFilename), ios::in|ios::binary|ios::ate);
+	free(absoluteFilename);
+	
 	if (file.is_open())
 	{
 		size = file.tellg();
@@ -55,7 +57,6 @@ string readFile(string filename)
 		delete[] memblock;
 	}
 	
-    free(absoluteFilename);
 	return result;
 }
 

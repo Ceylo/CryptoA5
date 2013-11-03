@@ -59,7 +59,9 @@ PointRef receive_key(TcpSocket& stream)
 	PointRef peerKey = PointCreateFromGMP(peerX, peerY);
 	mpz_clears(peerX, peerY, NULL);
 	
-	cout << "Received remote key: " << PointCreateDescription(peerKey) << endl;
+	char *desc = PointCreateDescription(peerKey);
+	cout << "Received remote key: " << desc << endl;
+	free(desc);
 	
 	return peerKey;
 }
