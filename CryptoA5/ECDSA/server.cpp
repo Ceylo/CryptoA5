@@ -8,7 +8,7 @@
 
 #include "server.h"
 #include "util.h"
-#include "cipher.h"
+#include "crypto.h"
 #include "transmission.h"
 #include <string>
 #include <iostream>
@@ -44,7 +44,7 @@ void server()
     
     send_key(socket, q);
 	
-	sign_and_send_message(socket, "There once was a little guy named Nino running in a large land freely. But one day he met a wolf and got eaten. END :] êœæÂê", a, curve);
+	dsa_sign_and_send_message(socket, "There once was a little guy named Nino running in a large land freely. But one day he met a wolf and got eaten. END :] êœæÂê", a, curve);
 	
     mpz_clear(a);
     CurveDestroy(curve);

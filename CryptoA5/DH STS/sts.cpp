@@ -10,7 +10,7 @@
 #include "transmission.h"
 #include "util.h"
 #include "SymCipher.h"
-#include "dsa.h"
+#include "crypto.h"
 #include <cassert>
 #include <iostream>
 
@@ -105,7 +105,7 @@ void sts_priv_show_my_idendity(STSContext& context)
 	// Create a signature
 	mpz_t u, v;
 	string dataToVerify = concatenate(context.myDhPubKey, context.peerDhPubKey);
-	sign_message(dataToVerify.data(), dataToVerify.size(), u, v, context.dsaRand, context.curve);
+	dsa_sign_message(dataToVerify.data(), dataToVerify.size(), u, v, context.dsaRand, context.curve);
 	
 	// Create raw data from the signature
 	size_t bitsLength = 0;
@@ -170,7 +170,7 @@ void sts_priv_verify_peer_identity(STSContext& context)
 	SymCipherDestroy(cipher), cipher = NULL;
 	
 	string dataToVerify = concatenate(context.peerDhPubKey, context.myDhPubKey);
-	bool signatureOk = verify_message(dataToVerify.data(), dataToVerify.size(), u, v, context.curve, context.peerDsaPubKey);
+	bool signatureOk = dsa_verify_message(dataToVerify.data(), dataToVerify.size(), u, v, context.curve, context.peerDsaPubKey);
 	
 	// So?
 	cout << "Peer's signature ok? " << signatureOk << endl;

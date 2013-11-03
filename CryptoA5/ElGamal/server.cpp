@@ -8,7 +8,7 @@
 
 #include "server.h"
 #include "util.h"
-#include "cipher.h"
+#include "crypto.h"
 #include "transmission.h"
 #include <string>
 #include <iostream>
