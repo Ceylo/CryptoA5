@@ -95,8 +95,10 @@ void client()
 	PointRef remoteKey = client_receive_key(socket);
 	PointRef sharedSecret = PointCreateMultiple(remoteKey, secret, curve);
 	
-	cout << "Secret: " << PointCreateDescription(sharedSecret) << endl;
-    
+	char *desc = PointCreateDescription(sharedSecret);
+	cout << "Secret: " << desc << endl;
+    free(desc);
+	
     mpz_clear(secret);
     CurveDestroy(curve);
     PointDestroy(p);

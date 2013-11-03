@@ -31,6 +31,7 @@ PointRef PointCreateAdd(PointRef p, PointRef q, CurveRef curve)
 		PointDestroy(inv);
 		return PointCreateTeta();
 	}
+	PointDestroy(inv);
 	
     PointRef r;
     mpz_t lambda;

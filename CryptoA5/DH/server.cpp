@@ -66,7 +66,9 @@ PointRef server_receive_key(TcpSocket& stream)
 	PointRef peerKey = PointCreateFromGMP(peerX, peerY);
 	mpz_clears(peerX, peerY, NULL);
 	
-	cout << "Received remote key: " << PointCreateDescription(peerKey) << endl;
+	char *desc = PointCreateDescription(peerKey);
+	cout << "Received remote key: " << desc << endl;
+	free(desc);
 	
 	return peerKey;
 }
@@ -82,35 +84,40 @@ void server()
 		return;
 	}
 	
-	// accept a new connection
-	sf::TcpSocket socket;
-	if (listener.accept(socket) != sf::Socket::Done)
+	while (true)
 	{
-		perror("error when receiving new client");
-		return;
+		// accept a new connection
+		sf::TcpSocket socket;
+		if (listener.accept(socket) != sf::Socket::Done)
+		{
+			perror("error when receiving new client");
+			return;
+		}
+		
+		string curveData = server_send_random_curve(socket);
+		
+		// Load curve
+		CurveRef curve = CurveCreateFromData(curveData.c_str());
+		mpz_t a;
+		
+		PointRef q = server_create_key(socket, curve, a);
+		
+		server_send_key(socket, q);
+		
+		PointRef remoteKey = server_receive_key(socket);
+		
+		PointRef secret = PointCreateMultiple(remoteKey, a, curve);
+		
+		char *desc = PointCreateDescription(secret);
+		cout << "Shared secret : " << desc << endl;
+		free(desc);
+		
+		mpz_clear(a);
+		CurveDestroy(curve);
+		PointDestroy(q);
+		PointDestroy(remoteKey);
+		PointDestroy(secret);
+		
+		socket.disconnect();
 	}
-    
-    string curveData = server_send_random_curve(socket);
-	
-	// Load curve
-	CurveRef curve = CurveCreateFromData(curveData.c_str());
-	mpz_t a;
-    
-    PointRef q = server_create_key(socket, curve, a);
-    
-    server_send_key(socket, q);
-    
-    PointRef remoteKey = server_receive_key(socket);
-    
-    PointRef secret = PointCreateMultiple(remoteKey, a, curve);
-    
-    cout << "Shared secret : " << PointCreateDescription(secret) << endl;
-    
-    mpz_clear(a);
-    CurveDestroy(curve);
-    PointDestroy(q);
-    PointDestroy(remoteKey);
-    PointDestroy(secret);
-    
-    socket.disconnect();
 }

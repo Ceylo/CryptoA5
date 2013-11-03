@@ -92,6 +92,7 @@ CurveRef CurveCreateFromData(const char *input)
 	
 	mpz_clears(p, gx, gy, a4, a6, n, r4, r6, NULL);
 	mpz_clears(a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
+	PointDestroy(g);
 	
 	return curve;
 }
@@ -138,6 +139,7 @@ CurveRef CurveCreateFromFile(const char *filename)
 		
 		mpz_clears(p, gx, gy, a4, a6, n, r4, r6, NULL);
 		mpz_clears(a[0], a[1], a[2], a[3], a[4], a[5], a[6], NULL);
+		PointDestroy(g);
 		
 		fclose(input);
     }
@@ -152,6 +154,12 @@ void CurveDestroy(CurveRef curve)
 	
 	// Free data
 	mpz_clear(curve->mod);
+	
+	int i;
+	for (i = 0; i < 7;i++)
+		mpz_clear(curve->a[i]);
+	
+	mpz_clear(curve->n);
 	PointDestroy(curve->g);
 	free(curve);
 }
@@ -193,7 +201,7 @@ PointRef PointCreate()
 	PointRef newPoint = malloc(sizeof(*newPoint));
     assert(newPoint != NULL);
 	
-	bzero(newPoint, sizeof((*newPoint)));
+	memset(newPoint, 0, sizeof((*newPoint)));
 	mpz_inits(newPoint->x, newPoint->y, NULL);
 	
 	assert(newPoint->x != NULL);
@@ -330,14 +338,9 @@ bool PointIsOnCurve(PointRef p, CurveRef curve)
     mpz_pow_ui(intermediaire2, p->y, 2);
     mpz_mod(intermediaire2, intermediaire2, curve->mod);
     
-    if(mpz_cmp(intermediaire, intermediaire2) == 0)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+	bool equal = (mpz_cmp(intermediaire, intermediaire2) == 0);
+    mpz_clears(intermediaire, intermediaire2, NULL);
+	return equal;
 }
 
 

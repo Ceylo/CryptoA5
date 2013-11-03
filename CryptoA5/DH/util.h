@@ -10,7 +10,7 @@
 #include <gmp.h>
 #include <string>
 
-#define DH_PORT 4445
+#define DH_PORT 4444
 
 using namespace std;
 

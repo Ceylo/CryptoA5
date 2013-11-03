@@ -10,9 +10,12 @@
 #include <stdlib.h>
 #include "path.h"
 #include <fstream>
+#include <cassert>
 
 void secure_rand(mpz_t random, mpz_t max)
 {
+	assert(mpz_cmp_si(max, 0) != 0);
+	
 	// Is that a valid PRNG
 	mpz_init(random);
 	gmp_randstate_t rstate;
@@ -31,15 +34,17 @@ string readFile(string filename)
 	char *absoluteFilename = NULL;
 	PathForFile(filename.c_str(), &absoluteFilename);
 	
-	ifstream::pos_type size;
 	char * memblock;
 	string result;
 	
 	ifstream file (string(absoluteFilename), ios::in|ios::binary|ios::ate);
+	free(absoluteFilename);
+	
 	if (file.is_open())
 	{
-		size = file.tellg();
-		memblock = new char [size];
+		size_t size = file.tellg();
+		memblock = new char [size+1];
+		memset(memblock, 0, size+1);
 		file.seekg (0, ios::beg);
 		file.read (memblock, size);
 		file.close();
