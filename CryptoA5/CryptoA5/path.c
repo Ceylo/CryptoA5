@@ -49,6 +49,4 @@ void PathForFile(const char *path, char **absolutePath)
 	strcpy(result + dirPathLen, path);
 	
 	*absolutePath = result;
-    free(directoryPath);
-    directoryPath = NULL;
 }
