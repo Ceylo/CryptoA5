@@ -39,7 +39,7 @@ void client()
     
 	CurveRef curve = client_receive_curve(socket);
     PointRef pubKey = receive_key(socket);
-	bool r = verify_message(socket, curve, pubKey);
+	bool r = receive_and_verify_message(socket, curve, pubKey);
 	cout << "Result: " << r << endl;
     
     CurveDestroy(curve);
