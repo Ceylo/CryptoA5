@@ -233,9 +233,9 @@ char *			PointCreateDescription(PointRef p)
 	char *buffer = NULL;
 	
 	if (p->infinite)
-		gmp_asprintf(&buffer, "%p = teta", p);
+		gmp_asprintf(&buffer, "teta");
 	else
-		gmp_asprintf(&buffer, "%p = (%Zd, %Zd)", p, p->x, p->y);
+		gmp_asprintf(&buffer, "(%Zd, %Zd)", p->x, p->y);
 	
 	return buffer;
 }
