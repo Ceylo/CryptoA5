@@ -44,7 +44,7 @@ void server()
     
     send_key(socket, q);
 	
-	string msg = decrypt_message(socket, a, curve);
+	string msg = eg_receive_and_decrypt_message(socket, a, curve);
     
 	cout << "Received: " << msg << endl;
 	

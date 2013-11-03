@@ -37,7 +37,7 @@ void client()
     
 	CurveRef curve = client_receive_curve(socket);
     PointRef pubKey = receive_key(socket);
-	encrypt_message(socket, "There once was a little guy named Nino running in a large land freely. But one day he met a wolf and got eaten. END :] êœæÂê", pubKey, curve);
+	eg_encrypt_and_send_message(socket, "There once was a little guy named Nino running in a large land freely. But one day he met a wolf and got eaten. END :] êœæÂê", pubKey, curve);
     
     CurveDestroy(curve);
     PointDestroy(pubKey);

@@ -10,7 +10,7 @@
 #include "util.h"
 #include <iostream>
 
-string decrypt_message(TcpSocket& stream, mpz_t secret, CurveRef curve)
+string eg_receive_and_decrypt_message(TcpSocket& stream, mpz_t secret, CurveRef curve)
 {
 	Packet pkt;
 	stream.receive(pkt);
@@ -56,7 +56,7 @@ string decrypt_message(TcpSocket& stream, mpz_t secret, CurveRef curve)
 	return result;
 }
 
-void encrypt_message(TcpSocket& stream, const string& msg, PointRef pubKey, CurveRef curve)
+void eg_encrypt_and_send_message(TcpSocket& stream, const string& msg, PointRef pubKey, CurveRef curve)
 {
 	mpz_t k;
 	secure_rand(k, curve->n);
