@@ -2,16 +2,16 @@
 //  transmission.cpp
 //  CryptoA5
 //
-//  Created by Ceylo on 22/10/2013.
+//  Created by Baptiste on 28/10/13.
 //  Copyright (c) 2013 Yalir. All rights reserved.
 //
 
-#include "transmission.h"
+#include "network.h"
 #include <string>
 #include "util.h"
 #include <iostream>
 
-PointRef create_key(TcpSocket& stream, CurveRef curve, mpz_t& outA)
+PointRef create_key(CurveRef curve, mpz_t& outA)
 {
 	gmp_printf("%Zd\n", curve->n);
 	secure_rand(outA, curve->n);
@@ -76,4 +76,15 @@ string send_random_curve(TcpSocket& stream)
 	stream.send(pkt);
     
     return curveData;
+}
+
+CurveRef receive_curve(TcpSocket& stream)
+{
+	Packet pkt;
+	stream.receive(pkt);
+	
+	string curveData;
+	pkt >> curveData;
+	
+	return CurveCreateFromData(curveData.c_str());
 }

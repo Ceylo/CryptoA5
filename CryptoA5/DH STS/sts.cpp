@@ -7,7 +7,7 @@
 //
 
 #include "sts.h"
-#include "transmission.h"
+#include "network.h"
 #include "util.h"
 #include "SymCipher.h"
 #include "crypto.h"

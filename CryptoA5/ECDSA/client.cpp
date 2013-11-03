@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "util.h"
 #include "crypto.h"
-#include "transmission.h"
+#include "network.h"
 #include <string>
 #include <iostream>
 

@@ -9,7 +9,7 @@
 #include "server.h"
 #include "util.h"
 #include "crypto.h"
-#include "transmission.h"
+#include "network.h"
 #include <string>
 #include <iostream>
 
@@ -40,7 +40,7 @@ void server()
 	CurveRef curve = CurveCreateFromData(curveData.c_str());
 	mpz_t a;
     
-    PointRef q = create_key(socket, curve, a);
+    PointRef q = create_key(curve, a);
     
     send_key(socket, q);
 	
