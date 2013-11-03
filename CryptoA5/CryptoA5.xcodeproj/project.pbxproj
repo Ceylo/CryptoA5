@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8712C66C182591FE008F02F2 /* sts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8712C66A182591FE008F02F2 /* sts.cpp */; };
+		871590551826BAE900090EC5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 871590541826BAE900090EC5 /* main.cpp */; };
+		871590571826BAE900090EC5 /* EC_test_symcipher.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 871590561826BAE900090EC5 /* EC_test_symcipher.1 */; };
+		8715905B1826BC7300090EC5 /* libEC.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 876356841810872300AEAF8A /* libEC.dylib */; };
+		8715905C1826BC7D00090EC5 /* SymCipher.c in Sources */ = {isa = PBXBuildFile; fileRef = 87EA4737181EB8B200B7D2B0 /* SymCipher.c */; };
+		8715905D1826BC9E00090EC5 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C5098B1816784D00A2EC07 /* libcrypto.dylib */; };
 		872EECB6180B3CB900D5F9B4 /* ec_operation_multiple.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D317FEC790005D03C4 /* ec_operation_multiple.c */; };
 		872EECB7180B3CB900D5F9B4 /* ec_operations.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D417FEC790005D03C4 /* ec_operations.c */; };
 		872EECB8180B3CC900D5F9B4 /* ec_operation_add.c in Sources */ = {isa = PBXBuildFile; fileRef = 876849D017FEC790005D03C4 /* ec_operation_add.c */; };
@@ -196,6 +201,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		871590501826BAE800090EC5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				871590571826BAE900090EC5 /* EC_test_symcipher.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		8751F8CF1806A852001AC72F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -348,6 +363,9 @@
 /* Begin PBXFileReference section */
 		8712C66A182591FE008F02F2 /* sts.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sts.cpp; sourceTree = "<group>"; };
 		8712C66B182591FE008F02F2 /* sts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sts.h; sourceTree = "<group>"; };
+		871590521826BAE800090EC5 /* EC_test_symcipher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EC_test_symcipher; sourceTree = BUILT_PRODUCTS_DIR; };
+		871590541826BAE900090EC5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		871590561826BAE900090EC5 /* EC_test_symcipher.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = EC_test_symcipher.1; sourceTree = "<group>"; };
 		8751F8D11806A852001AC72F /* EC_test_path */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EC_test_path; sourceTree = BUILT_PRODUCTS_DIR; };
 		8751F8D31806A852001AC72F /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		8751F8D51806A852001AC72F /* EC_test_path.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = EC_test_path.1; sourceTree = "<group>"; };
@@ -608,6 +626,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8715904F1826BAE800090EC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8715905D1826BC9E00090EC5 /* libcrypto.dylib in Frameworks */,
+				8715905B1826BC7300090EC5 /* libEC.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8751F8CE1806A852001AC72F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -710,6 +737,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		871590531826BAE800090EC5 /* EC_test_symcipher */ = {
+			isa = PBXGroup;
+			children = (
+				871590541826BAE900090EC5 /* main.cpp */,
+				871590561826BAE900090EC5 /* EC_test_symcipher.1 */,
+			);
+			path = EC_test_symcipher;
+			sourceTree = "<group>";
+		};
 		8751F8D21806A852001AC72F /* EC_test_path */ = {
 			isa = PBXGroup;
 			children = (
@@ -748,6 +784,7 @@
 				87B948E2180AFCC8006259B5 /* EC_test_multiple */,
 				F4DCC55D180C488C002915DB /* EC_test_readFile */,
 				F4CC61061817B46100037384 /* EC_test_on_curve */,
+				871590531826BAE800090EC5 /* EC_test_symcipher */,
 				876356781810862900AEAF8A /* DH */,
 				F44226421815BE8A004E0462 /* ElGamal */,
 				87C50973181674FA00A2EC07 /* ECDSA */,
@@ -772,6 +809,7 @@
 				87C50972181674FA00A2EC07 /* ECDSA */,
 				F4CC61051817B46100037384 /* EC_test_on_curve */,
 				F4D2B8B4181E7968005B5EBC /* DH STS */,
+				871590521826BAE800090EC5 /* EC_test_symcipher */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1232,6 +1270,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		871590511826BAE800090EC5 /* EC_test_symcipher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8715905A1826BAE900090EC5 /* Build configuration list for PBXNativeTarget "EC_test_symcipher" */;
+			buildPhases = (
+				8715904E1826BAE800090EC5 /* Sources */,
+				8715904F1826BAE800090EC5 /* Frameworks */,
+				871590501826BAE800090EC5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EC_test_symcipher;
+			productName = EC_test_symcipher;
+			productReference = 871590521826BAE800090EC5 /* EC_test_symcipher */;
+			productType = "com.apple.product-type.tool";
+		};
 		8751F8D01806A852001AC72F /* EC_test_path */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8751F8D91806A852001AC72F /* Build configuration list for PBXNativeTarget "EC_test_path" */;
@@ -1478,6 +1533,7 @@
 				87B948E0180AFCC8006259B5 /* EC_test_multiple */,
 				F4DCC55B180C488C002915DB /* EC_test_readFile */,
 				F4CC61041817B46100037384 /* EC_test_on_curve */,
+				871590511826BAE800090EC5 /* EC_test_symcipher */,
 				876356761810862900AEAF8A /* DH */,
 				F44226401815BE8A004E0462 /* ElGamal */,
 				87C50971181674FA00A2EC07 /* ECDSA */,
@@ -1487,6 +1543,15 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8715904E1826BAE800090EC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8715905C1826BC7D00090EC5 /* SymCipher.c in Sources */,
+				871590551826BAE900090EC5 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8751F8CD1806A852001AC72F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1691,6 +1756,26 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		871590581826BAE900090EC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		871590591826BAE900090EC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		8751F8D71806A852001AC72F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2050,6 +2135,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8715905A1826BAE900090EC5 /* Build configuration list for PBXNativeTarget "EC_test_symcipher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				871590581826BAE900090EC5 /* Debug */,
+				871590591826BAE900090EC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		8751F8D91806A852001AC72F /* Build configuration list for PBXNativeTarget "EC_test_path" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
