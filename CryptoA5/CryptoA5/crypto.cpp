@@ -49,7 +49,6 @@ string eg_receive_and_decrypt_message(TcpSocket& stream, mpz_t secret, CurveRef 
 		mpz_clear(mpzChar);
 	}
 	
-    mpz_clears(peerC1x, peerC1y, NULL);
     PointDestroy(peerC1);
     PointDestroy(intermediaire);
     
