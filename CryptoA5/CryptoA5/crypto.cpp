@@ -129,7 +129,7 @@ bool dsa_receive_and_verify_message(TcpSocket& stream, CurveRef curve, PointRef 
 	mpz_init_set_str(v, vString.c_str(), 10);
 	
 	verified = dsa_verify_message(messageString.data(), messageString.size(), u, v, curve, pubKey);
-	mpz_clears(u, v);
+	mpz_clears(u, v, NULL);
 	
 	return verified;
 }
