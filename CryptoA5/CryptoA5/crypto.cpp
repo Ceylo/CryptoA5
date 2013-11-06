@@ -46,7 +46,7 @@ string eg_receive_and_decrypt_message(TcpSocket& stream, mpz_t secret, CurveRef 
 		s[0] = (char)mpz_get_ui(mpzChar);
 		
 		result.append(string(s));
-		mpz_clear(mpzChar);
+		mpz_clears(mpzChar, peerC2, NULL);
 	}
 	
     PointDestroy(peerC1);

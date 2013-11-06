@@ -42,18 +42,18 @@ void sts_priv_maker_setup(STSContext& context)
 		perror("error when listening");
 		exit(1);;
 	}
-	
-	// Wait for a connection
-	if (listener.accept(context.stream) != sf::Socket::Done)
-	{
-		perror("error when receiving new client");
-		exit(1);
-	}
     
-	// Send and load curve
+    // Wait for a connection
+    if (listener.accept(context.stream) != sf::Socket::Done)
+    {
+        perror("error when receiving new client");
+        exit(1);
+    }
+        
+    // Send and load curve
     string curveData = send_random_curve(context.stream);
-	context.curve = CurveCreateFromData(curveData.c_str());
-	assert(context.curve != NULL);
+    context.curve = CurveCreateFromData(curveData.c_str());
+    assert(context.curve != NULL);
 	
 	listener.close();
 }
@@ -124,6 +124,8 @@ void sts_priv_show_my_idendity(STSContext& context)
 	pkt << cipherLength;
 	context.stream.send(pkt);
 	context.stream.send(encryptedData, cipherLength);
+    free(encryptedData);
+    mpz_clears(u, v, NULL);
 }
 
 void sts_priv_verify_peer_identity(STSContext& context)
@@ -178,4 +180,16 @@ void sts_priv_verify_peer_identity(STSContext& context)
 	cout << "Peer's signature ok? " << signatureOk << endl;
 	assert(signatureOk);
 }
+
+void sts_free_context(STSContext& context)
+{
+    context.stream.disconnect();
+    CurveDestroy(context.curve);
+    PointDestroy(context.myDsaPubKey);
+    PointDestroy(context.myDhPubKey);
+    PointDestroy(context.peerDsaPubKey);
+    PointDestroy(context.sharedSecret);
+    mpz_clears(context.dsaRand, context.dhRand, NULL);
+}
+
 

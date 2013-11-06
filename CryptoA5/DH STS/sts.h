@@ -77,4 +77,8 @@ void sts_priv_show_my_idendity(STSContext& context);
  */
 void sts_priv_verify_peer_identity(STSContext& context);
 
+/** Free the STSContext
+ */
+void sts_free_context(STSContext& context);
+
 #endif /* defined(__CryptoA5__sts__) */

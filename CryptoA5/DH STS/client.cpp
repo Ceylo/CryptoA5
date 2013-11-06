@@ -12,4 +12,5 @@ void client()
 {
 	STSContext context;
 	sts_from_curve_receiver(context);
+    sts_free_context(context);
 }
