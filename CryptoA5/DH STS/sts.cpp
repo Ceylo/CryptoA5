@@ -42,18 +42,18 @@ void sts_priv_maker_setup(STSContext& context)
 		perror("error when listening");
 		exit(1);;
 	}
-	
-	// Wait for a connection
-	if (listener.accept(context.stream) != sf::Socket::Done)
-	{
-		perror("error when receiving new client");
-		exit(1);
-	}
     
-	// Send and load curve
+    // Wait for a connection
+    if (listener.accept(context.stream) != sf::Socket::Done)
+    {
+        perror("error when receiving new client");
+        exit(1);
+    }
+        
+    // Send and load curve
     string curveData = send_random_curve(context.stream);
-	context.curve = CurveCreateFromData(curveData.c_str());
-	assert(context.curve != NULL);
+    context.curve = CurveCreateFromData(curveData.c_str());
+    assert(context.curve != NULL);
 	
 	listener.close();
 }
