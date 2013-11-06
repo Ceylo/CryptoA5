@@ -238,7 +238,9 @@ void dsa_sign_message(const void *data, size_t data_length, mpz_t& u, mpz_t& v, 
         secure_rand(k, curve->n);
         PointRef p = curve->g;
         PointRef kp = PointCreateMultiple(p, k, curve);
-		mpz_inits(u, v, msgHashed, kinv, NULL);
+		mpz_inits(msgHashed, kinv, NULL);
+		mpz_set_d(u, 0);
+		mpz_set_d(v, 0);
 		
         mpz_mod(u, kp->x, curve->n);
         

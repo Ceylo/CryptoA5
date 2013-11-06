@@ -77,7 +77,6 @@ void sha256(mpz_t h, const void *data, size_t dataLength)
     SHA256_Update(&sha256, data, dataLength);
     SHA256_Final(hash, &sha256);
 	
-	mpz_init(h);
 	mpz_import (h, 256/8, 1, sizeof(hash[0]), 1, 0, hash);
 }
 
@@ -97,8 +96,10 @@ void * pointToKey(PointRef p)
 	mpz_t hash;
 	size_t exportedBytes = 0;
 	void *x = mpz_export(NULL, &exportedBytes, 1, 1, 1, 0, p->x);
+	mpz_init(hash);
 	sha256(hash, x, exportedBytes);
 	void *buffer = mpz_export(NULL, &exportedBytes, 1, 1, 1, 0, hash);
+	mpz_clear(hash);
 	assert(exportedBytes == 256 / 8);
 	
 	free(x);
