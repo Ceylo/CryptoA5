@@ -26,6 +26,7 @@ void secure_rand(mpz_t random, mpz_t max)
 	gmp_randinit_default(rstate);
 	gmp_randseed_ui(rstate, rand());
 	mpz_urandomm(random, rstate, max);
+	gmp_randclear(rstate);
 }
 
 long limited_rand(long min, long max)
