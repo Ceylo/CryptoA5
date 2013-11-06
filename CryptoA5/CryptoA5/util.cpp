@@ -95,12 +95,26 @@ void * pointToKey(PointRef p)
 {
 	mpz_t hash;
 	size_t exportedBytes = 0;
+	const size_t sizeInBytes = 256 / 8;
 	void *x = mpz_export(NULL, &exportedBytes, 1, 1, 1, 0, p->x);
 	mpz_init(hash);
 	sha256(hash, x, exportedBytes);
 	void *buffer = mpz_export(NULL, &exportedBytes, 1, 1, 1, 0, hash);
-	mpz_clear(hash);
-	assert(exportedBytes == 256 / 8);
+	
+	assert(exportedBytes != 0);
+	size_t diff = sizeInBytes - exportedBytes;
+	
+	if (diff > 0)
+	{
+		void *tmp = malloc(sizeInBytes);
+		assert(tmp != NULL);
+		
+		memset(tmp, 0, sizeInBytes);
+		memcpy((char *)tmp + diff, buffer, exportedBytes);
+		
+		free(buffer);
+		buffer = tmp;
+	}
 	
 	free(x);
 	mpz_clear(hash);
