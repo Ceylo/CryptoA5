@@ -124,6 +124,8 @@ void sts_priv_show_my_idendity(STSContext& context)
 	pkt << cipherLength;
 	context.stream.send(pkt);
 	context.stream.send(encryptedData, cipherLength);
+    free(encryptedData);
+    mpz_clears(u, v, NULL);
 }
 
 void sts_priv_verify_peer_identity(STSContext& context)
@@ -178,4 +180,16 @@ void sts_priv_verify_peer_identity(STSContext& context)
 	cout << "Peer's signature ok? " << signatureOk << endl;
 	assert(signatureOk);
 }
+
+void sts_free_context(STSContext& context)
+{
+    context.stream.disconnect();
+    CurveDestroy(context.curve);
+    PointDestroy(context.myDsaPubKey);
+    PointDestroy(context.myDhPubKey);
+    PointDestroy(context.peerDsaPubKey);
+    PointDestroy(context.sharedSecret);
+    mpz_clears(context.dsaRand, context.dhRand, NULL);
+}
+
 

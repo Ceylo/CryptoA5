@@ -13,5 +13,9 @@ using namespace std;
 void server()
 {
 	STSContext context;
-	sts_from_curve_maker(context);
+    while (1)
+    {
+        sts_from_curve_maker(context);
+        sts_free_context(context);
+    }
 }
