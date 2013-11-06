@@ -24,8 +24,8 @@ static int aes_init(EVP_CIPHER_CTX *encryption_ctx,
 					unsigned int keyDataLength)
 {
 	int i, nrounds = 5;
-	unsigned char key[16];
-	unsigned char iv[16];
+	unsigned char key[32];
+	unsigned char iv[32];
 	
 	/* Gen key & IV for AES 256 CBC mode. A SHA256 digest is used to hash the
 	 * supplied key material.
@@ -96,10 +96,10 @@ static void *aes_decrypt(EVP_CIPHER_CTX *decryption_ctx, const void *ciphertext,
 SymCipherRef SymCipherCreateWithKey(const unsigned char *key)
 {
 	SymCipherRef newCipher = malloc(sizeof(*newCipher));
-	bzero(newCipher, sizeof(*newCipher));
 	
 	if (newCipher != NULL)
 	{
+		memset(newCipher, 0, sizeof(*newCipher));
 		memcpy(newCipher->keyData, key, SYMCIPHER_KEY_LENGTH);
 		
 		int err = aes_init(&newCipher->encryption_ctx, &newCipher->decryption_ctx,

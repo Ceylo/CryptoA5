@@ -20,7 +20,7 @@ void server()
 	sf::TcpListener listener;
 	
 	// bind the listener to a port
-	if (listener.listen(EG_PORT) != sf::Socket::Done)
+	if (listener.listen(ECDSA_PORT) != sf::Socket::Done)
 	{
 		perror("error when listening");
 		return;
@@ -51,4 +51,5 @@ void server()
     PointDestroy(q);
     
     socket.disconnect();
+	listener.close();
 }

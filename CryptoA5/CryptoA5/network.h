@@ -18,7 +18,8 @@ using namespace std;
 
 #define DH_PORT 4444
 #define EG_PORT 4445
-#define DHSTS_PORT 4445
+#define ECDSA_PORT 4568
+#define DHSTS_PORT 4446
 
 /** Create the a.P key and send it to the peer
  *

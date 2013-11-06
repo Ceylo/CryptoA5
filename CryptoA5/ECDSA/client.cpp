@@ -29,7 +29,7 @@ CurveRef client_receive_curve(TcpSocket& stream)
 void client()
 {
 	TcpSocket socket;
-	Socket::Status status = socket.connect(IpAddress::getLocalAddress(), EG_PORT);
+	Socket::Status status = socket.connect(IpAddress::getLocalAddress(), ECDSA_PORT);
 	
 	if (status != Socket::Status::Done)
 	{

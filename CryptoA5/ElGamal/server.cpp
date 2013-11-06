@@ -53,4 +53,5 @@ void server()
     PointDestroy(q);
     
     socket.disconnect();
+	listener.close();
 }

@@ -121,4 +121,6 @@ void server()
 		
 		socket.disconnect();
 	}
+	
+	listener.close();
 }

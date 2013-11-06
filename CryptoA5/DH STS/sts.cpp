@@ -54,6 +54,8 @@ void sts_priv_maker_setup(STSContext& context)
     string curveData = send_random_curve(context.stream);
 	context.curve = CurveCreateFromData(curveData.c_str());
 	assert(context.curve != NULL);
+	
+	listener.close();
 }
 
 void sts_priv_receiver_setup(STSContext& context)
@@ -148,13 +150,13 @@ void sts_priv_verify_peer_identity(STSContext& context)
 	Socket::Status connectionStatus;
 	
 	// Read stream until we got the whole signature
-	while (offset < encryptedSignatureLength && connectionStatus != Socket::Status::Disconnected && connectionStatus != Socket::Status::Error)
+	do
 	{
 		size_t receivedLength = 0;
 		connectionStatus = context.stream.receive((char *)encryptedSignature + offset, (size_t)encryptedSignatureLength - offset, receivedLength);
 		
 		offset += receivedLength;
-	}
+	} while (offset < encryptedSignatureLength && connectionStatus != Socket::Status::Disconnected && connectionStatus != Socket::Status::Error);
 	
 	assert(encryptedSignatureLength == offset);
 	
